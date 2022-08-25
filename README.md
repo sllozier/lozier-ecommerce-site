@@ -19,20 +19,19 @@ For this project, you must use Express to handle HTTP requests and Sequelize to 
 - other client side libraries you will need
 - redux
 - react-redux
-- react-router-dom@5
-- redux-thunk
+- react-router-dom@6
 - axios
 
 ### Requirements + Rubric (see rubric file)
 
 ## Requirements
 
-- the application needs to be deployed
 - the application needs to load without errors (blank screens are not acceptable)
 - do not copy and paste previous code!
 - you will have ample time to complete project, NO EXTENSIONS WILL BE GIVEN
 - build incrementally! 
 - if you have an error, fix the error, before attempting to **add** functionality
+- as a developer, we should be able to clone/download your project and run it without issue
 
 
 ### Views and Functionality
