@@ -51,7 +51,7 @@ _Comments from your instructor or fellow will go here_
 
 ## Evaluation
 
-- Requirements score (59 points total, weighted at 70% of total grade)
+- Requirements score (61 points total, weighted at 70% of total grade)
 - Rubric score (24 points total, weighted at 30% of total grade)
 - Extra credit (15 points total, for an additional 15% max)
 
