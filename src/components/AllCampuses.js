@@ -11,7 +11,7 @@ const AllCampuses = () => {
     
     const campuses = useSelector(state => state.campuses);
     
-    console.log('CampusList?', campuses)
+    
     // const handleOptions = event => {
     //     setSort(event.target.value);
     // }

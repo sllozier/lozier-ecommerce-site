@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const SET_CAMPUS = "SET_CAMPUS";
 const UPDATE_CAMPUS = "UPDATE_CAMPUS";
+const REMOVE_STUDENT = "REMOVE_STUDENT";
 
 
 
@@ -19,8 +20,13 @@ export const setCampus = (campus) => {
       campus,
     };
   };
-  
 
+  export const removeStudent = (student) => {
+    return{
+      type: REMOVE_STUDENT,
+      student,
+    };
+  };
   
   export const fetchOneCampus = (campusId) => {
     return async (dispatch) => {
@@ -48,10 +54,14 @@ export const setCampus = (campus) => {
   export const singleCampusReducer = (state = {}, action) => {
     switch (action.type) {
       case SET_CAMPUS:
-        console.log('CAMPUSACTION', action.campus)
+        console.log('CAMPUSSTATE1', action.campus)
         return action.campus;
       case UPDATE_CAMPUS:
         return action.campus;
+      case REMOVE_STUDENT:
+        console.log('CAMPUSSTATE2', state)
+        console.log('NOTSTATE', !state)
+        return {...state, campus: {...state.campus, students: state.students}};
       default:
         return state;
     }

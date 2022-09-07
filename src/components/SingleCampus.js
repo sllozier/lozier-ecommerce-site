@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { fetchOneCampus} from '../store/singleCampusReducer';
-import { fetchAllCampuses, removeStudent } from '../store/campusesReducer';
-import { unenrollThisStudent  } from '../store/singleStudentReducer'
+import { fetchOneCampus, removeStudent } from '../store/singleCampusReducer';
+import { fetchAllCampuses } from '../store/campusesReducer';
+import { fetchAllStudents } from '../store/studentsReducer';
+import { unenrollThisStudent, fetchOneStudent  } from '../store/singleStudentReducer'
 
 
 const SingleCampus = () => {
@@ -15,26 +16,38 @@ const SingleCampus = () => {
 
     const  campus   = useSelector(state =>  state.campus);
     const campuses = useSelector(state => state.campuses);
-    // const state = useSelector((state) => state)
-     console.log('CAMPUSES?', campuses);
-     console.log('CAMPUS', campus)
+    const students = useSelector(state => state.students);
+    // const isEnrollee = useSelector(state => state.student ? state.student.campusId : undefined);
+    console.log('STUDENTS??', students)
     
     
-    //console.log('NAME?', campus.student)
+
+
+    const isEnrollee = students.filter((student) =>  student.id === campus.id);
+     console.log('ISENROLLEE?', isEnrollee);
+    // console.log('STUDENTS?', students)
+    // console.log('THISSTUDENT', thisStudent);
+
+    // console.log('NAME??', studentName);
+    // console.log('ID??', studentId);
    
-    const handleRemove = student => {
-        dispatch(unenrollThisStudent({campusId: null, id: student.id}));
-        dispatch(removeStudent(student));
-    }
+    
 
 
     useEffect(() => {
         if(!isNaN(params.campusId)){
             dispatch(fetchOneCampus(params.campusId));
-       dispatch(fetchAllCampuses())
+            dispatch(fetchAllCampuses());
+            dispatch(fetchAllStudents());
         }
     }, []);
 
+
+    const handleRemove = student => {
+        console.log('HANDLESTUDENT', student)
+        dispatch(unenrollThisStudent({campusId: null, id: student.id}));
+        dispatch(removeStudent({student: {campusId: null, id:student.id}}));
+    }
 
     
 
@@ -46,22 +59,21 @@ const SingleCampus = () => {
                         <div className='column mr1'>
                         <img src={campus.imageUrl} alt={campus.imageUrl}/>
                         <h2>{campus.name}</h2>
-                        <p><i>{campus.address}</i></p>
+                        <p>{campus.address}</p>
                         <p>{campus.description}</p>
                         </div>
-                        {/* <h3>Campus Enrollees:</h3>
-                        {console.log('rendering...')}
-                        {campus.students.length > 0 ? 
+                        <h3>Campus Enrollees:</h3>
+                        {/* <button onClick={() => handleRemove(student) }>Unregister {studentFirstName} {studentLastName}</button>
+                        {console.log('rendering...')} */} 
+                        { isEnrollee.length > 0 ? 
                             <ul>
-                                {campus.students.map(student => 
-                                <li key={student.id}>
-                                    <Link to={`/students/${student.id}`}>
-                                        {student.firstName + ' ' + student.lastName}
-                                    </Link>
-                                    <button onClick={() => handleRemove(student) }>Unregister {student.firstName} {student.lastName}</button>
+                                {isEnrollee.map(enrollee => 
+                            <li key={enrollee.id}>
+                                <Link to={`/students/${enrollee.id}`}>{enrollee.firstName} {enrollee.lastName}</Link>  
+                                    <button onClick={() => handleRemove(enrollee) }>Unregister</button>
                                 </li>)}
                             </ul> 
-                            : 'This campus currently has no students enrolled.' } */}
+                            : 'Not Enrolled'}
                         <hr/>
                     </div>
                 </div>
@@ -82,3 +94,5 @@ const SingleCampus = () => {
     };
     
     export default SingleCampus;
+
+    // {isEnrollee ? <Link to={`/students/${studentId}`}>{studentFirstName} {studentLastName}</Link> : 'Not Enrolled'}

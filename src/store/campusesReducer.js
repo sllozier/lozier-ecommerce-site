@@ -4,7 +4,8 @@ const SET_CAMPUSES = "SET_CAMPUSES";
 const ADD_CAMPUS = "ADD_CAMPUS";
 const DELETE_CAMPUS = "DELETE_CAMPUS";
 const CLEAR_CAMPUS = "CLEAR_CAMPUS";
-const REMOVE_STUDENT = "REMOVE_STUDENT";
+
+
 
 
 //ACTION CREATORS
@@ -33,7 +34,6 @@ export const deleteCampus = (campus) => {
 };
 
 
-
 export const clearCampus = () => {
   return{
     type: CLEAR_CAMPUS,
@@ -41,12 +41,7 @@ export const clearCampus = () => {
   };
 };
 
-export const removeStudent = (student) => {
-  return{
-    type: REMOVE_STUDENT,
-    student,
-  };
-};
+
 
 //THUNKS
 
@@ -91,12 +86,9 @@ export const deleteThisCampus = (id) => {
 export const campusesReducer = (state = [], action) => {
   switch (action.type) {
     case SET_CAMPUSES:
-      console.log('CAMPUSESACTION', action.campuses)
       return action.campuses;
     case DELETE_CAMPUS:
       return state.filter((campus) => campus.id !== action.campus.id);
-    case REMOVE_STUDENT:
-      return state.filter((student) => student.id !== action.student.id);
     case CLEAR_CAMPUS:
       return action.campus;
     default:

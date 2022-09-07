@@ -8,23 +8,23 @@ const CLEAR_STUDENT = "CLEAR_STUDENT";
 export const setStudents = (data) => {
     return{
       type: SET_STUDENTS,
-      campuses: data,
+      students: data,
     };
   };
   
   
-  export const addStudent = (campus) => {
+  export const addStudent = (student) => {
     return {
       type: ADD_STUDENT,
-      campus,
+      student,
     };
   };
   
   
-  export const deleteStudent = (campus) => {
+  export const deleteStudent = (student) => {
     return{
       type: DELETE_STUDENT,
-      campus,
+      student,
     };
   };
 
@@ -76,13 +76,12 @@ export const setStudents = (data) => {
   export const studentsReducer = (state = [], action) => {
     switch (action.type) {
       case SET_STUDENTS:
+        console.log('STUDENTSACTION', action.students);
         return action.students;
       case DELETE_STUDENT:
         return state.filter((student) => student.id !== action.student.id);
       case CLEAR_STUDENT:
-        return action.student;
-    //   case REMOVE_CAMPUS:
-    //     return state.filter((student) => student.id !== action.student.id);
+        return [];
       default:
         return state;
     }

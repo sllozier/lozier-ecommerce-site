@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { response } = require('express');
-const { Student, Campus, Quote } = require('../db');
+
+const { Student, Campus } = require('../db');
 
 router.get('/', async(req, res, next) => {
     try{

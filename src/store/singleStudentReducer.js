@@ -3,13 +3,15 @@ import axios from 'axios';
 
 const SET_STUDENT = "SET_STUDENT";
 const UPDATE_STUDENT = "UPDATE_STUDENT";
+const UNENROLL = "UNENROLL"
 
 
 
-export const setStudent = (data) => {
+
+export const setStudent = (student) => {
     return{
       type: SET_STUDENT,
-      student: data,
+      student,
     };
   };
   
@@ -20,13 +22,19 @@ export const setStudent = (data) => {
     };
   };
   
-
+  export const unenroll = (student) => {
+    return {
+      type: UNENROLL,
+      student,
+    };
+  };
+  
   
   export const fetchOneStudent = (studentId) => {
     return async (dispatch) => {
       try{
-        const student  = await axios.get(`/api/students/${studentId}`);
-        dispatch(setCampus(student.data));
+        const { data: student }  = await axios.get(`/api/students/${studentId}`);
+        dispatch(setStudent(student));
       }catch(error){
         console.log('FETCH STUDENT THUNK ERROR: ', error);
       }
@@ -60,9 +68,11 @@ export const setStudent = (data) => {
   export const singleStudentReducer = (state = {}, action) => {
     switch (action.type) {
       case SET_STUDENT:
-        console.log('CAMPUSACTION', state)
-        return {...state, student: action.student};
+        return action.student;
       case UPDATE_STUDENT:
+        return action.student;
+      case UNENROLL:
+        console.log('STUDENTACTION', state)
         return action.student;
       default:
         return state;

@@ -39,7 +39,7 @@ const syncAndSeed = async () => {
       imageUrl: 'footballField.jpg',
   })
   
-  const brian = await Student.create({
+  await Student.create({
       firstName: 'Brian',
       lastName: 'Johnson',
       email: 'brain@breakfastclub.com',
@@ -48,7 +48,7 @@ const syncAndSeed = async () => {
       campusId: parkingLot.id,
     })
   
-  const andrew = await Student.create({
+  await Student.create({
       firstName:'Andrew',
       lastName:'Clark',
       email:'athlete@breakfastclum.com',
@@ -57,7 +57,7 @@ const syncAndSeed = async () => {
       campusId: hallway.id,
     })
   
-  const allison = await Student.create({
+  await Student.create({
       firstName: 'Allison',
       lastName:'Reynolds',
       email: 'basketCase@breakfastclub.com',
@@ -66,7 +66,7 @@ const syncAndSeed = async () => {
       campusId: hallway.id,
     })
   
-  const claire = await Student.create({
+  await Student.create({
       firstName: 'Claire',
       lastName: 'Standish',
       email: 'princess@breakfastclub.com',
@@ -75,7 +75,7 @@ const syncAndSeed = async () => {
       campusId: library.id,
     })
     
-  const bender = await Student.create({
+  await Student.create({
       firstName: 'John',
       lastName: 'Bender',
       email: 'criminal@breakfastclub.com',
