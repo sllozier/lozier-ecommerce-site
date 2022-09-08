@@ -52,7 +52,7 @@ const syncAndSeed = async () => {
   await Student.create({
       firstName:'Andrew',
       lastName:'Clark',
-      email:'athlete@breakfastclum.com',
+      email:'athlete@breakfastclub.com',
       imageUrl:'andrew.jpg',
       gpa: 3.0,
       campusId: hallway.id,

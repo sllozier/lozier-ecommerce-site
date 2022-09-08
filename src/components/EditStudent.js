@@ -67,7 +67,7 @@ const EditStudent = () => {
     <input name='email' value={form.email} onChange={handleChange('email')}/>
     <label htmlFor='campus'>Select Campus:</label>
     <select name='campus' defaultValue={student.campusId} onChange={handleChange('campus')}>
-        <option value={undefined}>Not Enrolled Yet!</option>
+        <option value={undefined}>Choose a campus:</option>
         {campuses ? [...campuses].sort((a,b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0).map(campus => <option value={campus.id} key={campus.id}>{campus.name}</option>) : null}
     </select>
     <button type='submit'>Submit</button>

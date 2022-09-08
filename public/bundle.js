@@ -3087,7 +3087,7 @@ var EditStudent = function EditStudent() {
     onChange: handleChange('campus')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
     value: undefined
-  }, "Not Enrolled Yet!"), campuses ? _toConsumableArray(campuses).sort(function (a, b) {
+  }, "Choose a campus:"), campuses ? _toConsumableArray(campuses).sort(function (a, b) {
     return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
   }).map(function (campus) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
