@@ -42,16 +42,16 @@ export const setStudent = (student) => {
   };
   
   
-  export const updateThisStudent = (student) => {
+  export const updateThisStudent = (student, studentId) => {
     return async (dispatch) => {
       try{
-        const { data: updatedStudent } = await axios.put(`/api/students/${student.id}`, student);
+        const { data: updatedStudent } = await axios.put(`/api/students/${studentId}`, student);
         dispatch(updateStudent(updatedStudent));
       }catch(error){
         console.log('UPDATE STUDENT THUNK ERROR: ', error);
       }
-    }
-  }
+    };
+  };
 
   export const unenrollThisStudent = (student) => {
     return async (dispatch) => {
@@ -61,8 +61,8 @@ export const setStudent = (student) => {
         }catch(error){
             console.log('UNENROLL STUDENT THUNK ERROR: ', error)
         }
-    }
-  }
+    };
+  };
   
   
   export const singleStudentReducer = (state = {}, action) => {
@@ -72,23 +72,8 @@ export const setStudent = (student) => {
       case UPDATE_STUDENT:
         return action.student;
       case UNENROLL:
-        console.log('STUDENTACTION', state)
-        return action.student;
+        return {...state, campusId: null};
       default:
         return state;
     }
   }
-
-
-// export const studentsReducer = (state = {}, action) => {
-//     switch (action.type) {
-//         case _getStudent:
-//             return { ...state, student: action.student };
-//         case _updateStudent:
-//             return { ...state, student: action.student};
-//         case _clearStudent:
-//             return { ...state, student: action.student };
-//         default:
-//             return state;
-//     }
-// }

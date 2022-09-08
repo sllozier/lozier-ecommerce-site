@@ -7,9 +7,6 @@ const CLEAR_CAMPUS = "CLEAR_CAMPUS";
 
 
 
-
-//ACTION CREATORS
-
 export const setCampuses = (data) => {
   return{
     type: SET_CAMPUSES,
@@ -43,7 +40,6 @@ export const clearCampus = () => {
 
 
 
-//THUNKS
 
 export const fetchAllCampuses = () => {
   return async (dispatch) => {
@@ -87,6 +83,8 @@ export const campusesReducer = (state = [], action) => {
   switch (action.type) {
     case SET_CAMPUSES:
       return action.campuses;
+    case ADD_CAMPUS:
+      return [...state, action.campus];
     case DELETE_CAMPUS:
       return state.filter((campus) => campus.id !== action.campus.id);
     case CLEAR_CAMPUS:
@@ -96,7 +94,3 @@ export const campusesReducer = (state = [], action) => {
   }
 }
 
-
-// case UPDATE_CAMPUS:
-//       return state.map((campus) =>
-//       campus.id === action.campus.id ? action.campus : campus);

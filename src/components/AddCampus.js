@@ -31,7 +31,7 @@ const AddCampus = () => {
     }, [form])
 
     return (
-        <form id='campus-form' onSubmit={handleSubmit}>
+        <form id='form' onSubmit={handleSubmit}>
             <h3>Add New Campus:</h3>
             <label htmlFor='name'>Campus Name:</label>
             <input

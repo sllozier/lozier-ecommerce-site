@@ -27,6 +27,7 @@ router.post('/', async(req, res, next) => {
     try{
         res.status(201).send(await Campus.create(req.body));
     }catch(error){
+        console.log('CAMPUS NOT ADDED!')
         next(error);
     }
 });
@@ -38,6 +39,7 @@ router.delete('/:campusId', async(req, res, next) => {
         await campus.destroy();
         res.send(campus);
     }catch(error){
+        console.log('CAMPUS NOT DELETED!')
         next(error);
     }
 });
@@ -51,9 +53,11 @@ router.put('/:campusId', async(req, res, next) => {
         });
         res.send(await campus.update(req.body));
     }catch(error){
+        console.log('CAMPUS NOT UPDATED!')
         next(error);
     }
 });
+
 
 
 module.exports = router;

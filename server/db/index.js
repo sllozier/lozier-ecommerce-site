@@ -46,6 +46,7 @@ const syncAndSeed = async () => {
       imageUrl:'brian.jpg',
       gpa: 4.0,
       campusId: parkingLot.id,
+      quote: "Dear Mr. Vernon, we accept the fact that we had to sacrifice a whole Saturday in detention for whatever it was we did wrong. What we did was wrong. But we think you're crazy to make us write an essay telling you who we think we are. What do you care? And you see us as you want to see us - in the simplest terms, in the most convenient definitions. You see us as a brain, an athlete, a basket case, a princess, and a criminal.",
     })
   
   await Student.create({
@@ -55,6 +56,7 @@ const syncAndSeed = async () => {
       imageUrl:'andrew.jpg',
       gpa: 3.0,
       campusId: hallway.id,
+      quote: "I'm not a winner because I want to be one. I'm a winner because I've got strength and speed... kinda like a racehorse. It's about how involved I am in what's happening to me.",
     })
   
   await Student.create({
@@ -64,6 +66,7 @@ const syncAndSeed = async () => {
       imageUrl: 'allison.jpg',
       gpa: 2.8,
       campusId: hallway.id,
+      quote: "I don't have to run away and live in the street. I can run away and I can go to the ocean, I can go to the country, I can go to the mountains. I could go to Israel, Africa, Afghanistan.",
     })
   
   await Student.create({
@@ -73,6 +76,7 @@ const syncAndSeed = async () => {
       imageUrl: 'claire.jpg',
       gpa: 3.5,
       campusId: library.id,
+      quote: "I have just as, many feelings as you do and it hurts so much when someone steps all over them",
     })
     
   await Student.create({
@@ -82,6 +86,7 @@ const syncAndSeed = async () => {
       imageUrl: 'bender.jpg',
       gpa: 0.0,
       campusId: footballField.id,
+      quote: "But face it. You’re a neo maxi zoom dweebie, what would you be doing if you weren’t out making yourself a better citizen?",
     })
     console.log(`
     Seeding successful!

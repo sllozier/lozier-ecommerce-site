@@ -22,6 +22,9 @@ app.use((req, res, next) => {
     }
 });
 
+app.get('/', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '..', 'src', 'index.html'))
+})
 
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '..', '/public/index.html' ))

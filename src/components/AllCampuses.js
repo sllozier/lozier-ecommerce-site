@@ -10,11 +10,7 @@ const AllCampuses = () => {
     
     
     const campuses = useSelector(state => state.campuses);
-    
-    
-    // const handleOptions = event => {
-    //     setSort(event.target.value);
-    // }
+
 
     useEffect(() => {
         dispatch(fetchAllCampuses());
@@ -27,49 +23,23 @@ const AllCampuses = () => {
       {campuses
         ? campuses.map((campus) => (
             <div className='campuses' key={`All Campuses ${campus.id}`}>
-                <h1>{campus.id}</h1>
-              <button onClick={() => dispatch(deleteThisCampus(campus.id))}className='delete-button'>X</button>
               <Link to={`/campuses/${campus.id}`}>
                 <h3>{campus.name}</h3>
-                <h6>{campus.address}</h6>
-                <img src={campus.imageUrl}/>
+                <h6>Location: {campus.address}</h6>
               </Link>
+              <button onClick={() => dispatch(deleteThisCampus(campus.id))}className='delete-button'>X</button>
               <hr/>
             </div>
           ))
       :null}
       <hr />
-        <AddCampus />
+      <div className='add'>
+      <AddCampus />
+      </div>
+        
     </div>
    )
 };
 
-//   return (
-//     <div id='campuses' className='column'>
-//       {campuses.map((campus) => {
-//           const handleDelete = (event) => {
-//             event.preventDefault();
-//             dispatch(deleteThisCampusAsync(campus.id))
-//               }
-//               return(
-//                 <div className='campus-list' key={`Campus List ${campus.id}`}>
-//                 <Link to={`/campuses/${campus.id}`}>
-//                 <h3>{campus.name}</h3>
-//                 <h6>{campus.address}</h6>
-//                 <p>{campus.id}</p>
-//                 </Link>
-//               <div className='delete-button'>
-//                 <button onClick={handleDelete}>X</button>
-//               </div>
-//               </div>
-//               );
-//             </div>
-//               })}
-//         <div>
-//       <hr />
-//         <AddCampus />
-//     </div>
-//   );
-// };
 
 export default AllCampuses;

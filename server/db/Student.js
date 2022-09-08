@@ -35,6 +35,9 @@ const Student = db.define('student', {
         type: Sequelize.STRING,
         defaultValue: 'https://postimg.cc/q6fgs3f3'
     },
+    quote: {
+        type: Sequelize.TEXT,
+    }
 });
 
 

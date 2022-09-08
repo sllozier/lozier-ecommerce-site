@@ -76,8 +76,9 @@ export const setStudents = (data) => {
   export const studentsReducer = (state = [], action) => {
     switch (action.type) {
       case SET_STUDENTS:
-        console.log('STUDENTSACTION', action.students);
         return action.students;
+      case ADD_STUDENT:
+        return [...state, action.student];
       case DELETE_STUDENT:
         return state.filter((student) => student.id !== action.student.id);
       case CLEAR_STUDENT:
