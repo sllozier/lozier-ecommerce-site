@@ -1,15 +1,10 @@
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from "redux-thunk";
-import { campusesReducer } from './campusesReducer';
-import { singleCampusReducer } from "./singleCampusReducer";
-import { studentsReducer } from "./studentsReducer";
-import { singleStudentReducer } from "./singleStudentReducer";
+//import reducers here
+
 
 const rootReducer = combineReducers({
-    campuses: campusesReducer,
-    campus: singleCampusReducer,
-    students: studentsReducer,
-    student: singleStudentReducer,
+    //reducers go here
 })
 
 export const store = createStore(
