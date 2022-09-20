@@ -9,7 +9,7 @@ const Product = db.define('product', {
   price: {
     type: Sequelize.DECIMAL(10, 2),
   },
-  quantity: {
+  stock: {
     type: Sequelize.INTEGER,
   },
   image: {

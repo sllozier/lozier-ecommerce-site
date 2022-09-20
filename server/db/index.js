@@ -119,28 +119,28 @@ const syncAndSeed = async () => {
     const product1 = await Product.create({
       title: 'product1',
       price: 99.99,
-      quantity: 10,
+      stock: 10,
       description: 'lorem ipsum some text for product1...',
     });
 
     const product2 = await Product.create({
       title: 'product2',
       price: 12.50,
-      quantity: 15,
+      stock: 15,
       description: 'lorem ipsum some text for product2...',
     });
 
     const product3 = await Product.create({
       title: 'product3',
       price: 10.99,
-      quantity: 25,
+      stock: 25,
       description: 'lorem ipsum some text for product3...',
     });
 
     const product4 = await Product.create({
       title: 'product4',
       price: 5.00,
-      quantity: 10,
+      stock: 10,
       description: 'lorem ipsum some text for product4...',
     });
 
