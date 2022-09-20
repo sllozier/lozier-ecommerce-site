@@ -13,12 +13,12 @@ router.get('/accounts', async (req, res, next) => {
 router.get('/accounts/:id', async (req, res, next) => {
     try {
         const id = req.params.id
-        const account = await Account.findOne({
-            where: {
-                id: id
-            }
-        })
-        res.send(account)
+        const account = await Account.findByPk(id)
+        if (account) {
+            res.send(account)
+        } else {
+            res.send('error: no account available');
+        }
     } catch (error) {
         next(error)
     }
