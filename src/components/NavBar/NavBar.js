@@ -15,7 +15,7 @@ function NavBar() {
                 <Link to='/single-product'>
                     <h3>Single Album</h3>
                 </Link>
-                <Link to='/account'>
+                <Link to='/account/:id'>
                     <h3>Account</h3>
                 </Link>
 

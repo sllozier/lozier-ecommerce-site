@@ -21,7 +21,7 @@ function App() {
                 <Route path='/' element={<LandingPage />} />
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/single-product' element={<SingleAlbum />} />
-                <Route path='/account' element={<ViewAccount />} />
+                <Route path='/account/:id' element={<ViewAccount />} />
             </Routes>
         </div>
 
