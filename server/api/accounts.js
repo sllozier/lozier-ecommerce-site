@@ -1,17 +1,24 @@
 const router = require('express').Router();
+const Account = require('../db/Account')
 
-router.get('/accounts', (req, res, next) => {
+router.get('/accounts', async (req, res, next) => {
     try {
-        res.send('all accounts')
+        const accounts = await Account.findAll()
+        res.send(accounts)
     } catch (error) {
         next(error)
     }
 })
 
-router.get('/accounts/:id', (req, res, next) => {
+router.get('/accounts/:id', async (req, res, next) => {
     try {
         const id = req.params.id
-        res.send(`single account: account ${id}`)
+        const account = await Account.findOne({
+            where: {
+                id: id
+            }
+        })
+        res.send(account)
     } catch (error) {
         next(error)
     }
