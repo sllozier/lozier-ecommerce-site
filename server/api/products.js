@@ -13,12 +13,12 @@ router.get('/products', async (req, res, next) => {
 router.get('/products/:id', async (req, res, next) => {
     try {
         const id = req.params.id
-        const products = await Product.findOne({
-            where: {
-                id: id
-            }
-        })
-        res.send(products)
+        const product = await Product.findByPk(id)
+        if (product) {
+            res.send(product)
+        } else {
+            res.send('error: no product available')
+        }
     } catch (error) {
         next(error)
     }
