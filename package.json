@@ -1,10 +1,11 @@
 {
-  "name": "final-project",
+  "name": "flintstones_gh",
   "version": "0.0.1",
   "description": "A review time project",
   "main": "index.js",
   "scripts": {
     "start": "npm run build-watch & npm run start-server ",
+    "start:dev": "JWT=shhh nodemon server",
     "build-watch": "webpack -w",
     "start-server": "nodemon --watch server -e js,html server/index.js",
     "test": "NODE_ENV=test JWT=a_secret mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" --require @babel/register --require esm "
