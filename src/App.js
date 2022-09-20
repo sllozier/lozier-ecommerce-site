@@ -1,22 +1,26 @@
 import React from "react";
 //import components here
 import { Routes, Route } from 'react-router-dom';
+import AllAlbums from "./components/AllAlbums/AllAlbums";
+import LandingPage from "./components/LandingPage/LandingPage";
+import NavBar from "./components/NavBar/NavBar";
+import ViewAccount from "./components/ViewAccount/ViewAccount";
 
-function App(){
+function App() {
 
-    return(
-        
-       <div id='main'>
-            <div className='column container'>
-                <div id='header'>
-                    <h1>Flintstones Grace Hopper</h1>
-                    {/* <Navbar/> */}
-                </div>
-            </div>
+    return (
+
+        <div id='main'>
+            <NavBar />
 
             {/*Routes Here*/}
-       </div>
-       
+            <Routes>
+                <Route path='/' element={<LandingPage />} />
+                <Route path='/products' element={<AllAlbums />} />
+                <Route path='/account' element={<ViewAccount />} />
+            </Routes>
+        </div>
+
     )
 }
 
