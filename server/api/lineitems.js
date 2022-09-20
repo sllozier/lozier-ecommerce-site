@@ -13,12 +13,12 @@ router.get('/lineitems', async (req, res, next) => {
 router.get('/lineitems/:id', async (req, res, next) => {
     try {
         const id = req.params.id
-        const lineitem = await LineItem.findOne({
-            where: {
-                id: id
-            }
-        })
-        res.send(lineitem)
+        const lineitem = await LineItem.findByPk(id)
+        if (lineitem) {
+            res.send(lineitem)
+        } else {
+            res.send('error: no genre available');
+        }
     } catch (error) {
         next(error)
     }
