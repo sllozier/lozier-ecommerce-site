@@ -1,14 +1,15 @@
-import {createStore, applyMiddleware, combineReducers} from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 //import reducers here
+import accountReducer from './reducers1/accountReducer'
 
 
 const rootReducer = combineReducers({
-    //reducers go here
+    accounts: accountReducer
 })
 
 export const store = createStore(
-   rootReducer,
-   applyMiddleware(thunk)
-    
+    rootReducer,
+    applyMiddleware(thunk)
+
 )
