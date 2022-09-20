@@ -1,28 +1,37 @@
 /* tags */
 * {
-    box-sizing: border-box;
-  }
-  
-  
-  
-  /* ids */
-  #root {
-    height: 100%;
-    width: 100%;
-  }
-  
-  #header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  
-  
-  /* classes */
-  
+  box-sizing: border-box;
+  margin: 0;
+}
 
-  /*form*/
+nav {
+  display: flex;
+  background-color: slategrey;
+  height: 40px;
+  align-items: center;
+}
 
-  
+nav h3 {
+  margin: 0 20px;
+  color: white;
+}
+
+/* ids */
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* classes */
+
+
+/*form*/
