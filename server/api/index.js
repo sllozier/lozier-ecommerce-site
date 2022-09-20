@@ -9,6 +9,7 @@ router.use('/', require('./products'))
 router.use('/', require('./accounts'))
 router.use('/', require('./orders'))
 router.use('/', require('./lineitems'))
+router.use('/', require('./genres'))
 
 
 router.use((req, res, next) => {
