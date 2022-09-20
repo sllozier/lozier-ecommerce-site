@@ -6,6 +6,7 @@ router.get('/', (req, res) => {
 })
 
 router.use('/', require('./products'))
+router.use('/', require('./accounts'))
 
 router.use((req, res, next) => {
     const err = new Error('API route not found!');
