@@ -11,7 +11,7 @@ function HandleProduct() {
     return (
         <div>
             <div className='edit-product-menu-container'>
-                <h1>Welcome Auth'd User</h1>
+                <h1>Welcome Admin</h1>
                 <button onClick={() => setAddTorf(!addTorf)}>Add A Product</button>
                 {addTorf ? <AddProduct /> : <></>}
                 <button onClick={() => setEditTorf(!editTorf)}>Edit A Product</button>
