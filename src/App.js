@@ -25,12 +25,9 @@ function App() {
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
-<<<<<<< HEAD
-                <Route path='/confirmation' element={<ConfirmationPage/>}/>
-=======
+                <Route path='/confirmation' element={<ConfirmationPage />} />
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
                 <Route path='/sign-up' element={<SignUp />} />
->>>>>>> main
             </Routes>
         </div>
 
