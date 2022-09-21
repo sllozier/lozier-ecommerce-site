@@ -214,6 +214,11 @@ nav h3 {
   transition: ease-in-out 0.2s;
 }
 
+.add-product-container:hover {
+  box-shadow: 15px 15px darkslateblue;
+  border: 3px solid darkslateblue;
+}
+
 .add-product-container>h2 {
   margin-top: 20px;
 }
