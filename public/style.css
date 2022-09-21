@@ -2,6 +2,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 nav {
@@ -10,6 +11,11 @@ nav {
   height: 40px;
   align-items: center;
 }
+
+body {
+  background-color: rgb(255, 247, 235);
+}
+
 
 nav h3 {
   margin: 0 20px;
@@ -35,3 +41,302 @@ nav h3 {
 
 
 /*form*/
+
+
+/* Authd User Styles */
+.edit-product-menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-product-menu-container>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 180px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 40px 20px;
+  color: lightblue;
+  font-size: 1em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.edit-product-menu-container>button:hover {
+  background-color: white;
+  border: 3px solid darkslateblue;
+  width: 180px;
+  box-shadow: 10px 10px darkslateblue;
+  height: 40px;
+  color: darkslateblue;
+  font-size: 1em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.product-list-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+}
+
+.product-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 20px;
+  border: 3px solid lightblue;
+  padding: 20px;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+  animation: 0.5s ease-in-out 0s 1 slideDown;
+}
+
+.product-list-container:hover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 20px;
+  border: 3px solid darkslateblue;
+  padding: 20px;
+  box-shadow: 15px 15px darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.product-list-container>img {
+  width: 60px;
+}
+
+.product-list-container>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.product-list-container>button:hover {
+  background-color: white;
+  border: 3px solid darkslateblue;
+  width: 100px;
+  box-shadow: 5px 5px darkslateblue;
+  height: 40px;
+  margin: 10px;
+  color: darkslateblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.edit-container {
+  border: 3px solid lightblue;
+  text-align: center;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+  animation: 0.5s ease-in-out 0s 1 slideDown;
+}
+
+.edit-container:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 15px 15px darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.edit-container>h2 {
+  margin-top: 20px;
+}
+
+.edit-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.edit-container form>input {
+  border: 3px solid lightblue;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.edit-container form>input:hover {
+  border: 3px solid darkslateblue;
+
+}
+
+.edit-container form>textarea {
+  border: 3px solid lightblue;
+  height: 30px;
+  margin: 5px 0;
+  height: 70px;
+}
+
+.edit-container form>textarea:hover {
+  border: 3px solid darkslateblue;
+}
+
+.edit-container form>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.edit-container form>button:hover {
+  background-color: white;
+  border: 3px solid darkslateblue;
+  width: 100px;
+  box-shadow: 5px 5px darkslateblue;
+  height: 40px;
+  margin: 10px;
+  color: darkslateblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.add-product-container {
+  border: 3px solid lightblue;
+  text-align: center;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+  animation: 0.5s ease-in-out 0s 1 slideDown;
+}
+
+.add-product-container:hover {
+  box-shadow: 15px 15px darkslateblue;
+  border: 3px solid darkslateblue;
+}
+
+.add-product-container>h2 {
+  margin-top: 20px;
+}
+
+.add-product-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.add-product-container form>input {
+  border: 3px solid lightblue;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.add-product-container form>input:hover {
+  border: 3px solid darkslateblue;
+
+}
+
+.add-product-container form>textarea {
+  border: 3px solid lightblue;
+  height: 30px;
+  margin: 5px 0;
+  height: 70px;
+}
+
+.add-product-container form>textarea:hover {
+  border: 3px solid darkslateblue;
+}
+
+.add-product-container form>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.add-product-container form>button:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 5px 5px darkslateblue;
+  color: darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.signup-container {
+  text-align: center;
+  border: 3px solid lightblue;
+  margin: 50px 40%;
+  padding: 20px 0;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+}
+
+.signup-container:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 15px 15px darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.signup-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.signup-container form>input {
+  height: 30px;
+  margin: 5px 0;
+  border: 3px solid lightblue;
+  text-align: center;
+}
+
+.signup-container form>input:hover {
+  border: 3px solid darkslateblue;
+}
+
+.signup-container form>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.signup-container form>button:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 5px 5px darkslateblue;
+  color: darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 100%;
+  }
+}

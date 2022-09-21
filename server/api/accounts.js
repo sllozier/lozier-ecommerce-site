@@ -24,4 +24,13 @@ router.get('/accounts/:id', async (req, res, next) => {
     }
 })
 
+// router.post('/accounts', async (req, res, next) => {
+//     try {
+//         const account = await Account.create(req.body)
+//         res.send(account)
+//     } catch (error) {
+//         next(error)
+//     }
+// })
+
 module.exports = router;
