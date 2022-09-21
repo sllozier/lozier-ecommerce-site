@@ -2,6 +2,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 nav {
@@ -10,6 +11,7 @@ nav {
   height: 40px;
   align-items: center;
 }
+
 
 nav h3 {
   margin: 0 20px;
@@ -35,3 +37,87 @@ nav h3 {
 
 
 /*form*/
+
+
+/* Authd User Styles */
+.edit-product-menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-product-menu-container>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 180px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 40px 20px;
+  color: lightblue;
+  font-size: 1em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.edit-product-menu-container>button:hover {
+  background-color: white;
+  border: 3px solid darkslateblue;
+  width: 180px;
+  box-shadow: 10px 10px darkslateblue;
+  height: 40px;
+  color: darkslateblue;
+  font-size: 1em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.product-list-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+}
+
+.product-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 20px;
+  border: 3px solid lightblue;
+  padding: 20px;
+}
+
+.product-list-container>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.product-list-container>button:hover {
+  background-color: white;
+  border: 3px solid darkslateblue;
+  width: 100px;
+  box-shadow: 5px 5px darkslateblue;
+  height: 40px;
+  margin: 10px;
+  color: darkslateblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid lightblue;
+  align-items: center;
+
+}

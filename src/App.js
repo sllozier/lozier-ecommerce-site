@@ -2,6 +2,7 @@ import React from "react";
 //import components here
 import { Routes, Route } from 'react-router-dom';
 import AllAlbums from "./components/AllAlbums/AllAlbums";
+import AuthdUserHome from "./components/AuthdUserViews/AuthdUserHome/AuthdUserHome";
 import LandingPage from "./components/LandingPage/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
@@ -22,6 +23,7 @@ function App() {
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/single-product' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
+                <Route path='/authd-user' element={<AuthdUserHome />} />
             </Routes>
         </div>
 
