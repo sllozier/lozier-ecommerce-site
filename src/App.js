@@ -9,6 +9,7 @@ import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import SignUp from "./components/SignUp/SignUp";
 import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
 import ViewAccount from "./components/ViewAccount/ViewAccount";
+import ConfirmationPage from "./components/ConfirmationPage/ConfirmationPage";
 
 function App() {
 
@@ -24,8 +25,12 @@ function App() {
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
+<<<<<<< HEAD
+                <Route path='/confirmation' element={<ConfirmationPage/>}/>
+=======
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
                 <Route path='/sign-up' element={<SignUp />} />
+>>>>>>> main
             </Routes>
         </div>
 

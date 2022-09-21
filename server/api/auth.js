@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const Account = require('../db/Account');
+const Account = require('../db/database');
+
 
 router.post('/auth/signup', async (req, res, next) => {
   try {

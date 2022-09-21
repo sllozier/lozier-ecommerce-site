@@ -14,6 +14,15 @@ export const authUser = (username) => {
     return async (dispatch) => {
         try {
             const token = window.localStorage.getItem(TOKEN)
+<<<<<<< HEAD
+            if(token) {
+              const res = await axios.get('/api/auth/authuser', {
+                headers: {
+                  authorization: token,
+                },
+              });
+              dispatch(setAuth(res.data));
+=======
             if (token) {
                 const res = await axios.get('/api/auth/authuser', {
                     headers: {
@@ -21,6 +30,7 @@ export const authUser = (username) => {
                     },
                 });
                 dispatch(setAuth(res.data));
+>>>>>>> main
             }
         } catch (error) {
             console.log('AUTHUSER THUNK ERROR ', error)
@@ -29,9 +39,15 @@ export const authUser = (username) => {
 };
 
 export const authenticate = (username, password, method) => {
+<<<<<<< HEAD
+    return async(dispatch) => {
+        try{
+            const res = await axios.post(`/api/auth/${method}`, {username, password});
+=======
     return async (dispatch) => {
         try {
             const res = await axios.post(`/api/auth/${method}`, { username, password });
+>>>>>>> main
             window.localStorage.setItem(TOKEN, res.data.token);
             dispatch(authUser(username));
             history.push('/')
@@ -42,8 +58,13 @@ export const authenticate = (username, password, method) => {
 };
 
 export const signup = (account) => {
+<<<<<<< HEAD
+    return async(dispatch) => {
+        try{
+=======
     return async (dispatch) => {
         try {
+>>>>>>> main
             const res = await axios.post(`/api/auth/signup`, account)
             window.localStorage.setItem(TOKEN, res.data.token)
             dispatch(authUser())

@@ -8,6 +8,7 @@ const SALT_ROUNDS = 5;
 const Account = db.define('account', { 
   username: {
     type: Sequelize.STRING,
+    unique: true,
     allowNull: false,
   },
   password: {
@@ -19,18 +20,31 @@ const Account = db.define('account', {
     allowNull: false,
     validate: {
       isEmail: true,
+      notEmpty: true,
     },
   },
   firstName: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   lastName: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   isAdmin: { // true = admin account, false = user account
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+  // paymentInfo: {
+  //   type: Sequelize.STRING,
+  //   defaultValue: 'XXX-XXX-XXXX',
+  // }
 });
 module.exports = Account;
 // // TODO: include additional helper functions where needed (placeholders for now)
