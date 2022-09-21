@@ -23,7 +23,7 @@ function App() {
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
-                <Route path='/authd-user' element={<AuthdUserHome />} />
+                <Route path='/admin-panel' element={<AuthdUserHome />} />
             </Routes>
         </div>
 
