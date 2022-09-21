@@ -50,11 +50,11 @@ module.exports = Account;
 //AUTH
 
 Account.prototype.correctPassword = (candidatePwd) => {
-  return bcrypt.compare(candidatePwd, account.password);
+  return bcrypt.compare(candidatePwd, this.password);
 };
 
 Account.prototype.generateToken = () => {
- return jwt.sign({ id: account.id }, process.env.JWT);
+ return jwt.sign({ id: this.id }, process.env.JWT);
 };
 
 Account.findByToken = async(token) => {

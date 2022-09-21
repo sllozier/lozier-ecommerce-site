@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Account = require('./database');
 
-router.post('/signUp', async( req, res, next) => {
+router.post('/signup', async( req, res, next) => {
   try{
     const account = await Account.create(req.body);
     if(!account) res.sendStatus(404);
@@ -21,7 +21,7 @@ router.post('/login', async(req, res, next) => {
   }
 });
 
-router.get('/authUser', async(req, res, next) => {
+router.get('/authuser', async(req, res, next) => {
   try{
     const authUser = await Account.findByToken(req.headers.authorization);
     res.send(authUser);
