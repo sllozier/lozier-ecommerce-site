@@ -6,7 +6,7 @@ import EditProduct from './EditProduct'
 
 function HandleProduct() {
     const [addTorf, setAddTorf] = useState(false)
-    const [editTorf, setEditTorf] = useState(true)
+    const [editTorf, setEditTorf] = useState(false)
     const [listTorf, setListTorf] = useState(false)
     return (
         <div>

@@ -26,7 +26,7 @@ function DeleteProduct() {
                             <div className='product-list-container'>
                                 <h3>Product Id: {product.id}</h3>
                                 <img src={`${product.image}`} />
-                                < h3 > {product.title}</h3>
+                                <h3>{product.title}</h3>
                                 <h3>${product.price}</h3>
                                 <p>{product.description}</p>
                                 <button onClick={() => deleteProductThunk(product.id)(dispatch)}>Delete Product</button>

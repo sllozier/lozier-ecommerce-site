@@ -39,8 +39,9 @@ function EditProduct() {
 
     return (
         <>
-            <h2>Edit Product</h2>
+
             <div className='edit-container'>
+                <h2>Edit Product</h2>
                 <form onSubmit={handleSubmit}>
                     <p>Product Id</p>
                     <input onChange={handleId} type='number' />

@@ -33,20 +33,22 @@ function AddProduct() {
     }
     return (
         <>
-            <h2>Add Product</h2>
-            <form onSubmit={handleSubmit}>
-                <p>Title</p>
-                <input onChange={handleTitle} type='text' />
-                <p>Price</p>
-                <input onChange={handlePrice} type='number' />
-                <p>Stock</p>
-                <input onChange={handleStock} type='number' />
-                <p>Image</p>
-                <input onChange={handleImage} type='text' />
-                <p>Description</p>
-                <textarea onChange={handleDescription}></textarea>
-                <button type='submit'>Add Product</button>
-            </form>
+            <div className='add-product-container'>
+                <h2>Add Product</h2>
+                <form onSubmit={handleSubmit}>
+                    <p>Title</p>
+                    <input onChange={handleTitle} type='text' />
+                    <p>Price</p>
+                    <input onChange={handlePrice} type='number' />
+                    <p>Stock</p>
+                    <input onChange={handleStock} type='number' />
+                    <p>Image</p>
+                    <input onChange={handleImage} type='text' />
+                    <p>Description</p>
+                    <textarea onChange={handleDescription}></textarea>
+                    <button type='submit'>Add Product</button>
+                </form>
+            </div>
         </>
     )
 }
