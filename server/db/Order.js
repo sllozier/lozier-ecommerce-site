@@ -6,9 +6,18 @@ const Order = db.define('order', {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
   },
-  address: {
-    type: Sequelize.STRING,
+  totalPrice: {
+    type: Sequelize.FLOAT,
+    defaultValue: 0,
+    validate: {
+      min: 0,
+    },
   },
+  // UUID: {
+  //   type: Sequelize.UUID,
+  //   defaultValue: Sequelize.UUIDV4,
+  // },
+
 });
 
 module.exports = Order;

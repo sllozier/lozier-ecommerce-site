@@ -5,9 +5,18 @@ const db = require('./database');
 const Product = db.define('product', {
   title: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   price: {
     type: Sequelize.DECIMAL(10, 2),
+    allowNull: false,
+    validate:{
+      isDecimal: true,
+      min: 0.0,
+    },
   },
   stock: {
     type: Sequelize.INTEGER,

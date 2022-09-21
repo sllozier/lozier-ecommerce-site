@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
 import ViewAccount from "./components/ViewAccount/ViewAccount";
+import ConfirmationPage from "./components/ConfirmationPage/ConfirmationPage";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/single-product' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
+                <Route path='/confirmation' element={<ConfirmationPage/>}/>
             </Routes>
         </div>
 

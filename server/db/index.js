@@ -2,18 +2,24 @@
 // with your models, for which you'll find some blank files in this directory:
 
 const db = require('./database');
+const Sequelize = require('sequelize');
 const Account = require('./Account');
 const Order = require('./Order');
-const Genre = require('./Genre');
+// const Genre = require('./Genre');
 const LineItem = require('./LineItem');
 const Product = require('./Product');
 
 //associations
-Account.hasMany(Order);
-Genre.hasMany(Product);
-LineItem.belongsTo(Product);
 Order.belongsTo(Account);
-Order.hasMany(LineItem);
+Account.hasMany(Order);
+
+
+
+Product.belongsToMany(Order, { through: LineItem });
+Order.belongsToMany(Product, { through: LineItem });
+
+// Genre.hasMany(Product);
+
 
 const syncAndSeed = async () => {
   try {
@@ -59,61 +65,43 @@ const syncAndSeed = async () => {
     // Order
     const order1 = await Order.create({
       isCart: false,
-      address: '123 Test Street',
+      accountId: 1,
     });
 
     const order2 = await Order.create({
-      isCart: true,
-      address: '123 Test Street',
+      isCart: false,
+      accountId: 2,
     });
 
     const order3 = await Order.create({
       isCart: false,
-      address: '456 Placeholder Place',
+      accountId: 3,
     });
 
     const order4 = await Order.create({
       isCart: false,
-      address: '789 Foo Avenue',
+      accountId: 4,
     });
 
     // Genre
-    const pop = await Genre.create({
-      name: 'pop',
-    });
+    // const pop = await Genre.create({
+    //   name: 'pop',
+    // });
 
-    const rock = await Genre.create({
-      name: 'rock',
-    });
+    // const rock = await Genre.create({
+    //   name: 'rock',
+    // });
 
-    const classical = await Genre.create({
-      name: 'classical',
-    });
+    // const classical = await Genre.create({
+    //   name: 'classical',
+    // });
 
-    const hipHop = await Genre.create({
-      name: 'hip hop',
-    });
+    // const hipHop = await Genre.create({
+    //   name: 'hip hop',
+    // });
 
     // LineItem
-    const lineItem1 = await LineItem.create({
-      name: 'lineItem1',
-      quantity: 2,
-    });
-
-    const lineItem2 = await LineItem.create({
-      name: 'lineItem2',
-      quantity: 3,
-    });
-
-    const lineItem3 = await LineItem.create({
-      name: 'lineItem3',
-      quantity: 1,
-    });
-
-    const lineItem4 = await LineItem.create({
-      name: 'lineItem4',
-      quantity: 4,
-    });
+    
 
     // Product
     const product1 = await Product.create({
@@ -162,7 +150,7 @@ module.exports = {
   syncAndSeed,
   Account,
   Order,
-  Genre,
+  // Genre,
   LineItem,
   Product,
 };

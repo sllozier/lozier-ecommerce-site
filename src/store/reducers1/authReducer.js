@@ -17,7 +17,7 @@ export const authUser = (username) => {
         try{
             const token = window.localStorage.getItem(TOKEN)
             if(token) {
-              const res = await axios.get('/auth/authuser', {
+              const res = await axios.get('/api/auth/authuser', {
                 headers: {
                   authorization: token,
                 },
@@ -33,7 +33,7 @@ export const authUser = (username) => {
 export const authenticate = (username, password, method) => {
     return async(dispatch) => {
         try{
-            const res = await axios.post(`/auth/${method}`, {username, password});
+            const res = await axios.post(`/api/auth/${method}`, {username, password});
             window.localStorage.setItem(TOKEN, res.data.token);
             dispatch(authUser(username));
             history.push('/')
@@ -46,7 +46,7 @@ export const authenticate = (username, password, method) => {
 export const signup = (account) => {
     return async(dispatch) => {
         try{
-            const res = await axios.post(`/auth/signup`, account)
+            const res = await axios.post(`/api/auth/signup`, account)
             window.localStorage.setItem(TOKEN, res.data.token)
             dispatch(authUser())
             history.push('/');
