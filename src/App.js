@@ -17,10 +17,10 @@ function App() {
 
             {/*Routes Here*/}
             <Routes>
-                <Route path='*' element={<NotFoundPage />} />
+                {/* <Route path='*' element={<NotFoundPage />} /> */} //TODO: We can comment NotFoundPage back in at the end (easier to debug routes without)
                 <Route path='/' element={<LandingPage />} />
                 <Route path='/products' element={<AllAlbums />} />
-                <Route path='/single-product' element={<SingleAlbum />} />
+                <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
             </Routes>
         </div>
