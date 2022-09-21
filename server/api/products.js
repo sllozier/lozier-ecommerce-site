@@ -24,4 +24,32 @@ router.get('/products/:id', async (req, res, next) => {
     }
 })
 
+router.post('/products', async (req, res, next) => {
+    try {
+        res.send(await Product.create(req.body))
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/products/:id', async (req, res, next) => {
+    try {
+        const toBeDeleted = await Product.findByPk(req.params.id)
+        await toBeDeleted.destroy()
+        res.send(toBeDeleted)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.put('/products/:id', async (req, res, next) => {
+    try {
+        const toBeUpdated = await Product.findByPk(req.params.id)
+        console.log(toBeUpdated)
+        res.send(await toBeUpdated.update(req.body))
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = router;

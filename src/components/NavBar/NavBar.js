@@ -18,6 +18,9 @@ function NavBar() {
                 <Link to='/account/:id'>
                     <h3>Account</h3>
                 </Link>
+                <Link to='authd-user'>
+                    <h3>Auth Home</h3>
+                </Link>
 
             </nav>
         </>
