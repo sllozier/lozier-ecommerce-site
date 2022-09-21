@@ -21,7 +21,9 @@ function NavBar() {
                 <Link to='admin-panel'>
                     <h3>Admin Panel</h3>
                 </Link>
-
+                <Link to='sign-up'>
+                    <h3>Sign Up</h3>
+                </Link>
             </nav>
         </>
     )

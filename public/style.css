@@ -275,6 +275,60 @@ nav h3 {
   transition: ease-in-out 0.2s;
 }
 
+.signup-container {
+  text-align: center;
+  border: 3px solid lightblue;
+  margin: 50px 40%;
+  padding: 20px 0;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+}
+
+.signup-container:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 15px 15px darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.signup-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.signup-container form>input {
+  height: 30px;
+  margin: 5px 0;
+  border: 3px solid lightblue;
+  text-align: center;
+}
+
+.signup-container form>input:hover {
+  border: 3px solid darkslateblue;
+}
+
+.signup-container form>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.signup-container form>button:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 5px 5px darkslateblue;
+  color: darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+
 @keyframes slideDown {
   0% {
     transform: translateY(-50px);

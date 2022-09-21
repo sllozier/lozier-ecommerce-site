@@ -6,6 +6,7 @@ import AuthdUserHome from "./components/AuthdUserViews/AuthdUserHome/AuthdUserHo
 import LandingPage from "./components/LandingPage/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
+import SignUp from "./components/SignUp/SignUp";
 import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
 import ViewAccount from "./components/ViewAccount/ViewAccount";
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
+                <Route path='/sign-up' element={<SignUp />} />
             </Routes>
         </div>
 
