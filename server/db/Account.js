@@ -2,6 +2,8 @@ const Sequelize = require('sequelize');
 const db = require('./database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const JWT = process.env.JWT;
 
 const SALT_ROUNDS = 5;
 
@@ -66,19 +68,27 @@ const Account = db.define('account', {
 
 //AUTH
 
+Account.prototype.comparePassword = function(pswd) {
+  return bcrypt.compare(pswd, this.password);
+}
+
+Account.prototype.generateToken = function() {
+  return jwt.sign({id: this.id}, JWT)
+}
 
 
-
-Account.findByToken = async(token) => {
+Account.byToken = async function(token) {
   try{
-    jwt.verify(token, process.env.JWT);
+    console.log('ByTokenTOKEN', token);
+    console.log('what is JWT?', JWT);
+    await jwt.verify(token, JWT);
+    
     const account = await Account.findByPK(jwt.decode(token).accountId);
-    if(account){
-      return account;
+    
+    if(!account){
+      throw 'nooo'
     }
-    const error = Error('bad credentials');
-    error.status = 401;
-    throw error;
+    return account
   }catch{
     const error = Error('bad credentials');
     error.status = 401;
@@ -86,22 +96,21 @@ Account.findByToken = async(token) => {
   }
 };
 
-Account.authenticate = async({username, password}) => {
+Account.authenticate = async function({username, password}) {
   const account = await Account.findOne({
     where: {
       username,
     },
   });
-  if(account && (await bcrypt.compare(password, account.password))){
-    let temp = jwt.sign({ accountId: account.id}, process.env.JWT);
-    return temp;
-  }
+  if(!account || !(await account.comparePassword(password))){
     const error = Error('Incorrect username or password');
     error.status = 401;
     throw error; 
+  }
+    return account.generateToken();
   };
   
-const hashPassword = async (account) => {
+const hashPassword = async function(account) {
   if (account.changed('password')){
     account.password = await bcrypt.hash(account.password, SALT_ROUNDS);
   }

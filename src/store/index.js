@@ -8,12 +8,14 @@ import { guestCartReducer } from './reducers1/guestCartReducer';
 import { albumReducer } from './reducers2/albumReducer';
 
 
+
 const rootReducer = combineReducers({
     accounts: accountReducer,
     products: productReducer,
     albums: albumReducer,
     account: authReducer,
-    guestCart: guestCartReducer
+    guestCart: guestCartReducer,
+   
 })
 
 export const store = createStore(

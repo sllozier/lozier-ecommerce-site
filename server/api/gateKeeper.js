@@ -2,7 +2,7 @@ const { Account } = require('../db');
 
 const requireToken = async (req, res, next) => {
     try{
-        const account = await Account.findByToken(req.headers.authorization);
+        const account = await Account.byToken(req.headers.authorization);
         req.account = account;
     }catch(error){
         next(error);

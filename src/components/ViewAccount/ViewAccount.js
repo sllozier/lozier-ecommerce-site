@@ -1,43 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAccountsThunk } from '../../store/reducers1/accountReducer'
-import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function ViewAccount() {
-    const idParam = useParams()
-    const id = ((Number(idParam.id) - 1))
-    const dispatch = useDispatch()
-    const state = useSelector(state => state)
-    useEffect(() => {
-        const getData = async () => {
-            await getAccountsThunk()(dispatch)
-        }
-        getData()
-    }, [])
-    console.log(id)
+const ViewAccount = () => {
+   const account = useSelector((state) => state.account);
 
-    return (
-        <>
-            {state.accounts.length > 0 ?
-                <div className='account-container'>
-                    <h1>{state.accounts[id].firstName} {state.accounts[id].lastName}</h1>
-                    <h3>username: {state.accounts[id].username}</h3>
-                    <h3>email: {state.accounts[id].email}</h3>
+    return account.username ? (
+        
+            <div className='account-container'>
+                <div className = 'account-info'>
+                <h1>Account Information:</h1>
+                <h3>{`Name: ${account.firstName} ${account.lastName}`}</h3>
+                <h3>{`Username: ${account.username}`}</h3>
+                <h3>{`Email: ${account.email}`}</h3>
+                <h3>{`Address: ${account.address.length ? account.address : 
+                'Please add your address'}`}</h3>
                 </div>
-                :
-                <h1>no data</h1>
-            }
+                <h3>Placeholder for links to orderHistory and editAccount</h3>
+                {account.isAdmin ? (
+                    <Link to='/adminDashboard'>Admin Dashboard</Link>
+                ):(
+                    <></>
+                )}
+            </div>
+):(<div>You must be logged in to view account information</div>
+        
 
-        </>
-
-    )
-}
+    );
+   
+};
 
 export default ViewAccount
 
 
-
+// {state.accounts.length > 0 ?
+//     <div className='account-container'>
+//         <h1>{state.accounts[id].firstName} {state.accounts[id].lastName}</h1>
+//         <h3>username: {state.accounts[id].username}</h3>
+//         <h3>email: {state.accounts[id].email}</h3>
+//     </div>
+//     :
+//     <h1>no data</h1>
+// }
     // const [accountInfo, setAccountInfo] = useState()
 
     // const data = async () => {

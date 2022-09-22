@@ -4,7 +4,9 @@ const { Account } = require('../db');
 
 router.post('/auth', async (req, res, next) => {
   try {
-    const account = await Account.findByToken(req.headers.authorization);
+    console.log('Acct Info?', req.headers.authorization)
+    const account = await Account.byToken(req.headers.authorization);
+    console.log('AUTHACCT API', account);
     res.send(account);
   } catch (error) {
       next(error)

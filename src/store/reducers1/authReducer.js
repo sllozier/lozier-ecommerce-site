@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-
+import { getToken, removeToken, setToken } from '../../utils/HelperFunctions';
+import  history from '../../utils/history';
 
 
 const ADD_ACCOUNT = 'ADD_ACCOUNT';
@@ -17,19 +17,19 @@ export const addAccount = (account) => {
        } 
 };
 
-export const logIn = (token) => {
+export const logIn = (auth) => {
     return{
         type: LOG_IN,
-        token,
+        auth,
     }
 };
 
 
 
-const logout = (token) => {
+const logout = (auth) => {
    return {
     type: LOG_OUT,
-    token: {},
+    auth: {},
    }
 };
 
@@ -41,16 +41,18 @@ export const updateAccount = (account) => {
 };
 
 
-export const accountLoginAttempt = () => {
+export const fetchAccountData = () => {
     return async (dispatch) => {
         try {
-            const token = window.localStorage.getItem('token')
+           const token = window.localStorage.getItem('token');
+           console.log('THUNK TOKEN', typeof token);
             if (token) {
-                const { data: accountInfo } = await axios.post('/api/auth',{}, {
+                const { data: accountInfo } = await axios.post('/api/auth', {}, {
                     headers: {
-                        authorization: token,
+                        authorization: `Bearer: ${token}`,
                     },
                 });
+                //can add a fetchCart call here
                 dispatch(logIn(accountInfo));
             }
         } catch (error) {
@@ -59,12 +61,13 @@ export const accountLoginAttempt = () => {
     };
 };
 
-export const attemptPasswordLogin = (loginInfo) => {
+export const attemptLogin = (auth) => {
     return async(dispatch) => {
         try{
-            const { data: token } = await axios.post('/api/auth/login', loginInfo);
+            const { data: token } = await axios.post('/api/auth/login', auth);
             window.localStorage.setItem('token', token);
-            dispatch(accountLoginAttempt());
+            dispatch(fetchAccountData());
+            history.push('/');
         }catch(error){
             console.log('ATTEMPT PASSWORD THUNK ERROR ', error);
         }
@@ -78,7 +81,7 @@ export const createAccount = (accountInfo) => {
                 ...accountInfo,
             });
             if(account){
-                attemptPasswordLogin({
+                attemptLogin({
                     username: accountInfo.username,
                     password: accountInfo.password,
                 })
@@ -92,8 +95,8 @@ export const createAccount = (accountInfo) => {
 
 export const logoutAccount = () => {
     return(dispatch) => {
-        dispatch(logout());
         window.localStorage.removeItem('token');
+        dispatch(logout())
     }   
 };
 
@@ -118,13 +121,13 @@ export const updateThisAccount = (accountInfo, accountId) => {
 export const authReducer = (state = {}, action) => {
     switch (action.type) {
         case ADD_ACCOUNT:
-            return action.account;
+           return action.account;
         case LOG_IN:
-            return action.token;
+            return action.auth;
         case LOG_OUT:
-            return action.token;
-        case UPDATE_ACCOUNT:
-            return action.account;
+            return action.auth;
+         case UPDATE_ACCOUNT:
+             return action.account;
         default:
             return state;
     }

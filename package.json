@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build-watch & npm run start-server ",
     "build-watch": "webpack -w",
-    "start-server": "JWT=shhh QUIET=true nodemon server"
+    "start-server": "nodemon server"
   },
   "keywords": [],
   "author": "",
