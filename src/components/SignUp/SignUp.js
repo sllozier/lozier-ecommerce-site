@@ -1,99 +1,109 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signup } from '../../store/reducers1/authReducer';
+import { createAccount } from '../../store/reducers1/authReducer';
 
 const SignUp = () => {
+    const account = useSelector((state) => state.account);
+    console.log('ACCOUNT?', account)
     const dispatch = useDispatch();
-    const [account, setAccount] = useState({
+    const [form, setForm] = useState({
         firstName: '',
         lastName: '',
         email: '',
         username: '',
         password: '',
-        confirmPassword: '',
-    })
+    });
 
-    const [hideRequired, setHideRequired] = useState(true);
+    const handleChange = (props) => (event) => {
+        setForm({
+            ...form,
+            [props]: event.target.value,
+        });
+    };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        if (account.password === account.confirmPassword) {
-            let trigger = true;
-            let addAccount = {};
-            for (let key in account) {
-                if (account[key]) {
-                    if (key !== 'confirmPassword') {
-                        addAccount[key] = account[key]
-                    }
-                }
-            }
-            if (trigger) {
-                dispatch(signup({ ...account }))
-            } else {
-                setHideRequired(false)
-                setAccount({ ...account, password: '', confirmPassword: '' })
-                alert('Fill in all required fields')
-            }
-        } else {
-            alert('Enter matching password')
-            setAccount({ ...account, password: '', confirmPassword: '' })
-        }
-    }
+        await dispatch(createAccount(form));  
+    };
 
-    //I prefer using [ form, setForm ] but, since I am needing to authorize passwords etc.
-    //I opted to do it this way.
+    
 
-    return (
+    return !account.id ? (
         <>
             <div id='account-signup' className='signup-container'>
                 <h2>Sign up here:</h2>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor='firstName'>First Name: {hideRequired ? '' : <span className='required'>first name required</span>}</label>
+                    <label htmlFor='firstName'>First Name:</label>
                     <input
                         name='firstName'
                         value={account.firstName}
-                        onChange={(event) => setAccount({ ...account, firstName: event.target.value })} />
+                        onChange={handleChange('firstName')} />
 
-                    <label htmlFor='lastName'>Last Name: {hideRequired ? '' : <span className='required'>last name required</span>}</label>
+                    <label htmlFor='lastName'>Last Name:</label>
                     <input
                         name='lastName'
                         value={account.lastName}
-                        onChange={(event) => setAccount({ ...account, lastName: event.target.value })} />
+                        onChange={handleChange('lastName')} />
 
-                    <label htmlFor='email'>Email: {hideRequired ? '' : <span className='required'>email required</span>}</label>
+                    <label htmlFor='email'>Email:</label>
                     <input
                         name='email'
                         type='email'
                         value={account.email}
-                        onChange={(event) => setAccount({ ...account, email: event.target.value })} />
+                        onChange={handleChange('email')} />
 
-                    <label htmlFor='username'>Choose a username: {hideRequired ? '' : <span className='required'>username required</span>}</label>
+                    <label htmlFor='username'>Choose a username:</label>
                     <input
                         name='username'
                         value={account.username}
-                        onChange={(event) => setAccount({ ...account, username: event.target.value })} />
+                        onChange={handleChange('username')} />
 
-                    <label htmlFor='password'>Password: {hideRequired ? '' : <span className='required'>password required</span>}</label>
+                    <label htmlFor='password'>Password:</label>
                     <input
                         name='password'
                         type='password'
                         value={account.password}
-                        onChange={(event) => setAccount({ ...account, password: event.target.value })} />
-
-                    <label htmlFor='confirmPassword'>Confirm password: {hideRequired ? '' : <span className='required'>password confirmation required</span>}</label>
-                    <input
-                        name='confirmPassword'
-                        type='password'
-                        value={account.confirmPassword}
-                        onChange={(event) => setAccount({ ...account, confirmPassword: event.target.value })} />
+                        onChange={handleChange('password')} />
 
                     <button type='submit'>Submit</button>
                     {/* <button type='button'><Link to='/'>Cancel</Link></button> */}
                 </form>
+                
             </div>
         </>
-    )
+        ): ( <div>You already have an account!</div>)
 }
 
 export default SignUp;
+
+
+
+// const [hideRequired, setHideRequired] = useState(true);
+// if (account.password === account.confirmPassword) {
+//     let trigger = true;
+//     let addAccount = {};
+//     for (let key in account) {
+//         if (account[key]) {
+//             if (key !== 'confirmPassword') {
+//                 addAccount[key] = account[key]
+//             }
+//         }
+//     }
+//     if (trigger) {
+//         dispatch(signup({ ...account }))
+//     } else {
+//         setHideRequired(false)
+//         setAccount({ ...account, password: '', confirmPassword: '' })
+//         alert('Fill in all required fields')
+//     }
+// } else {
+//     alert('Enter matching password')
+//     setAccount({ ...account, password: '', confirmPassword: '' })
+// }
+{/* <label htmlFor='confirmPassword'>Confirm password: {hideRequired ? '' : <span className='required'>password confirmation required</span>}</label>
+<input
+    name='confirmPassword'
+    type='password'
+    value={account.confirmPassword}
+    onChange={handleChange('confirmpassword')} /> */}
