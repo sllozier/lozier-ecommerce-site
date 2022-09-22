@@ -3,10 +3,10 @@ const db = require('./database');
 const Order = require('./Order');
 const Product = require('./Product');
 
- const LineItem = db.define('lineitem', {
-  name: {
-    type: Sequelize.STRING,
-  },
+const LineItem = db.define('lineitem', {
+  // name: {
+  //   type: Sequelize.STRING,
+  // },
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -30,4 +30,4 @@ const Product = require('./Product');
 
 });
 
- module.exports = LineItem;
+module.exports = LineItem;

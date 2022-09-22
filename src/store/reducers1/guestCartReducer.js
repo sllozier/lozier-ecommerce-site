@@ -5,20 +5,30 @@ const ADD_TO_GUESTCART = 'ADD_TO_GUESTCART';
 const DELETE_FROM_GUESTCART = 'DELETE_FROM_GUESTCART';
 const EDIT_GUESTCART = 'EDIT_GUESTCART';
 
-export const setGuestCart = (guestCart) => {
+export const addGuestCart = (guestCart) => {
     return {
-        type: SET_GUESTCART,
+        type: ADD_TO_GUESTCART,
         guestCart,
     };
 };
 
-export const fetchGuestCart = (guestCart, history) => {
+// export const addToGuestCart = (guestCart) => {
+//     return {
+//         type: ADD_TO_GUESTCART,
+//         guestCart
+//     }
+// }
+
+
+
+// history
+export const addToGuestCartThunk = (guestCart) => {
     return async (dispatch) => {
         try {
-            await axios.post('api/orders/guest', guestCart)
+            await axios.post('/api/orders/guest', guestCart)
             localStorage.setItem('cart', [])
-            dispatch(setGuestCart([]))
-            history.push('/confirmation')
+            dispatch(addGuestCart(guestCart))
+            // history.push('/confirmation')
         } catch (error) {
             console.log('GUEST CART TUNK ERROR ', error);
         }
@@ -27,7 +37,7 @@ export const fetchGuestCart = (guestCart, history) => {
 
 export const guestCartReducer = (state = [], action) => {
     switch (action.type) {
-        case SET_GUESTCART:
+        case ADD_TO_GUESTCART:
             return [...state, action.guestCart];
         default:
             return state;

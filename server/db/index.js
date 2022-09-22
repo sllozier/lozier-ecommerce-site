@@ -12,11 +12,12 @@ const Product = require('./Product');
 //associations
 Order.belongsTo(Account);
 Account.hasMany(Order);
+Product.hasOne(LineItem)
+Account.hasMany(Product)
 
-
-
-Product.belongsToMany(Order, { through: LineItem });
-Order.belongsToMany(Product, { through: LineItem });
+// LineItem.belongsTo(Product)
+// Product.belongsToMany(Order, { through: LineItem });
+// Order.belongsToMany(Product, { through: LineItem });
 
 // Genre.hasMany(Product);
 
@@ -141,10 +142,20 @@ const syncAndSeed = async () => {
     });
 
     // seeding successful message
+    // await product3.createLineitem()
+    // await product1.createLineitem()
+    // await product3.createLineitem()
+    // await product1.createLineitem()
+    // const test = await product3.getLineitem()
+    // test.dataValues.quantity = product3.stock
+    // await product3.setLineitem([1])
     console.log(`
     Seeding successful!
-    Check the 'flintstones_gh' database for updates
-  `);
+    Check the 'flintstones_gh' database for updates`
+
+      // Object.keys(Product.prototype)
+      // test
+    );
   } catch (err) {
     // seeding failure message
     console.log(`
