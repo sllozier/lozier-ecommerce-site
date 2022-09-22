@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     accounts: accountReducer,
     products: productReducer,
     albums: albumReducer,
-    auth: authReducer,
+    account: authReducer,
     guestCart: guestCartReducer
 })
 
