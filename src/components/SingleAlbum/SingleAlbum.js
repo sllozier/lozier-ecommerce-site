@@ -22,13 +22,20 @@ function SingleAlbum() {
   return loading ? (
     <div>Loading Album...</div>
   ) : (
-    <div>
-      <img src={album.image} alt="" style={{ height: '500px' }} />
+    <div className='single-album-container'>
+      <div>
+        <img src={album.image} alt="" style={{ height: '500px' }} />
+      </div>
+
       {/* TODO: move all styling to css file */}
-      <div>{album.title}</div>
-      <div>${album.price}</div>
-      <div>{album.stock} left in store</div>
-      <div>{album.description}</div>
+      <div>
+        <h2>{album.title}</h2>
+        <h2>${album.price}</h2>
+        <h4>{album.stock} left in store</h4>
+        <p>{album.description}</p>
+        <button>Add to Cart</button>
+      </div>
+
     </div>
   );
 }
