@@ -1,16 +1,14 @@
 const router = require('express').Router();
-const Account = require('../db/database');
+const { Account } = require('../db');
 
 
 router.post('/auth/signup', async (req, res, next) => {
   try {
-    const account = await Account.create(req.body);
-    if (!account) res.sendStatus(404);
-    // const token = await account.generateToken()
-    res.send({ token: await account.generateToken(), id: account.id });
+    const account = await Account.findByToken(req.headers.authorization);
+    res.send(account);
   } catch (error) {
-    next(error)
-  }
+      next(error)
+    }
 });
 
 router.post('/auth/login', async (req, res, next) => {
@@ -22,14 +20,14 @@ router.post('/auth/login', async (req, res, next) => {
   }
 });
 
-router.get('/auth/authuser', async (req, res, next) => {
-  try {
-    const authUser = await Account.findByToken(req.headers.authorization);
-    res.send(authUser);
-  } catch (error) {
-    next(error)
-  }
-})
+// router.get('/auth/authuser', async (req, res, next) => {
+//   try {
+//     const authUser = await Account.findByToken(req.headers.authorization);
+//     res.send(authUser);
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 
 module.exports = router;

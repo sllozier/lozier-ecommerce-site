@@ -2,6 +2,9 @@ const Sequelize = require('sequelize');
 const db = require('./database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+
 const SALT_ROUNDS = 5;
 
 // NOTE: need to add authentication (jwt)
@@ -46,7 +49,7 @@ const Account = db.define('account', {
   //   defaultValue: 'XXX-XXX-XXXX',
   // }
 });
-module.exports = Account;
+
 // // TODO: include additional helper functions where needed (placeholders for now)
 // Account.prototype.getCart = async function () {
 //   return
@@ -110,5 +113,5 @@ Account.beforeCreate(hashPassword);
 Account.beforeUpdate(hashPassword);
 Account.beforeBulkCreate((accounts) => Promise.all(account.map(hashPassword)));
 
-
+module.exports = Account;
 
