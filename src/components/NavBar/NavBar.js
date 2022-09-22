@@ -24,6 +24,10 @@ function NavBar() {
                 <Link to='sign-up'>
                     <h3>Sign Up</h3>
                 </Link>
+                <Link to='cart'>
+                    <h3>Cart</h3>
+                </Link>
+
             </nav>
         </>
     )

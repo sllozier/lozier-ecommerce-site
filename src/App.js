@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp/SignUp";
 import SingleAlbum from "./components/SingleAlbum/SingleAlbum";
 import ViewAccount from "./components/ViewAccount/ViewAccount";
 import ConfirmationPage from "./components/ConfirmationPage/ConfirmationPage";
+import Cart from "./components/Cart/Cart";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/confirmation' element={<ConfirmationPage />} />
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
                 <Route path='/sign-up' element={<SignUp />} />
+                <Route path='/cart' element={<Cart />} />
             </Routes>
         </div>
 

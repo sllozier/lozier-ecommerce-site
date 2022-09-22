@@ -66,6 +66,10 @@ const syncAndSeed = async () => {
     const order1 = await Order.create({
       isCart: false,
       accountId: 1,
+      // cart: [
+      //   "product1",
+      //   "product2"
+      // ]
     });
 
     const order2 = await Order.create({

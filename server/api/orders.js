@@ -24,33 +24,34 @@ router.get('/orders', async (req, res, next) => {
 //     }
 // });
 
-router.get('/orders/:id', async(req, res, next) => {
-    try{
+router.get('/orders/:id', async (req, res, next) => {
+    try {
         const account = Account.findOne({
             where: {
                 id: req.params.id,
             },
-            include: [ Product ],
+            include: [Product],
         });
         res.send(account);
-    }catch(error){
+    } catch (error) {
         next(error);
     }
 });
 
-router.post('/orders/guest', async(req, res, next) => {
-    try{
+router.post('/orders/guest', async (req, res, next) => {
+    try {
         let guestOrders = req.body;
         res.status(201).send(
-            guestOrders.map((order) => {
-                return Order.create(order);
-            })
+            // guestOrders.map((order) => {
+            //     return Order.create(order);
+            // })
+            guestOrders
         )
-    }catch(error){
+    } catch (error) {
         next(error);
     }
 })
 
 
 
- module.exports = router;
+module.exports = router;
