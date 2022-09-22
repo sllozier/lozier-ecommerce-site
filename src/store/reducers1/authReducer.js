@@ -1,26 +1,62 @@
 import axios from 'axios';
-import history from '../history';
 
-const TOKEN = 'token';
 
-const SET_AUTH = 'SET_AUTH';
 
-const setAuth = (auth) => ({
-    type: SET_AUTH,
-    auth,
-});
+// const SET_AUTH = 'SET_AUTH';
+const ADD_ACCOUNT = 'ADD_ACCOUNT';
+const LOG_IN = 'LOG_IN';
+const LOG_OUT = 'LOG_OUT';
+const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 
-export const authUser = (username) => {
+// const setAuth = (auth) => {
+//    return {
+//     type: SET_AUTH,
+//     auth,
+//    }
+// };
+
+export const addAccount = (account) => {
+       return {
+        type: ADD_ACCOUNT,
+        account,
+       } 
+};
+
+export const logIn = (token) => {
+    return{
+        type: LOG_IN,
+        token,
+    }
+};
+
+
+
+const logout = (token) => {
+   return {
+    type: LOG_OUT,
+    token: {},
+   }
+};
+
+export const updateAccount = (account) => {
+    return{
+        type: UPDATE_ACCOUNT,
+        account,
+    }
+};
+
+
+export const accountLoginAttempt = () => {
     return async (dispatch) => {
         try {
-            const token = window.localStorage.getItem(TOKEN)
+            const token = window.localStorage.getItem('token')
             if (token) {
-                const res = await axios.get('/api/auth/authuser', {
+                const { data: accountInfo } = await axios.post('/api/auth',{}, {
                     headers: {
                         authorization: token,
                     },
                 });
-                dispatch(setAuth(res.data));
+                dispatch(logIn(accountInfo));
             }
         } catch (error) {
             console.log('AUTHUSER THUNK ERROR ', error)
@@ -28,45 +64,72 @@ export const authUser = (username) => {
     };
 };
 
-export const authenticate = (username, password, method) => {
-    return async (dispatch) => {
-        try {
-            const res = await axios.post(`/api/auth/${method}`, { username, password });
-            window.localStorage.setItem(TOKEN, res.data.token);
-            dispatch(authUser(username));
-            history.push('/')
-        } catch (error) {
-            console.log('AUTHENTICATE THUNK ERROR ', error)
-        }
-    }
-};
-
-export const signup = (account) => {
-    return async (dispatch) => {
-        try {
-            const res = await axios.post(`/api/auth/signup`, account)
-            window.localStorage.setItem(TOKEN, res.data.token)
-            dispatch(authUser())
-            history.push('/');
-        } catch (error) {
-            console.log('SIGNUP THUNK ERROR ', error);
+export const attemptPasswordLogin = (loginInfo) => {
+    return async(dispatch) => {
+        try{
+            const { data: token } = await axios.post('/api/auth/login', loginInfo);
+            window.localStorage.setItem('token', token);
+            dispatch(accountLoginAttempt());
+        }catch(error){
+            console.log('ATTEMPT PASSWORD THUNK ERROR ', error);
         }
     }
 }
 
-export const logout = () => {
-    window.localStorage.removeItem(TOKEN);
-    history.push('/');
-    return {
-        type: SET_AUTH,
-        auth: {},
-    };
+export const createAccount = (accountInfo) => {
+    return async (dispatch) => {
+        try {
+            const { data: account } = await axios.post('/api/accounts', {
+                ...accountInfo,
+            });
+            if(account){
+                attemptPasswordLogin({
+                    username: accountInfo.username,
+                    password: accountInfo.password,
+                })
+                dispatch(addAccount(account));
+            }
+        } catch (error) {
+            console.log('CREATE ACCOUNT THUNK ERROR ', error);
+        }
+    }
+}
+
+export const logoutAccount = () => {
+    return(dispatch) => {
+        dispatch(logout());
+        window.localStorage.removeItem('token');
+    }   
 };
+
+export const updateThisAccount = (accountInfo, accountId) => {
+    return async (dispatch) => {
+        try{
+            const token = window.localStorage.getItem('token');
+            const { data: account } = await axios.put(`/api/accounts/${accountId}`, accountInfo,
+            {
+                headers: {
+                    authorization: token,
+                },
+            }
+            );
+            dispatch(updateAccount(account));
+        }catch(error){
+            console.log('UPDATE ACCOUNT THUNK ERROR ', error);
+        }
+    }
+}
 
 export const authReducer = (state = {}, action) => {
     switch (action.type) {
-        case SET_AUTH:
-            return action.auth;
+        case ADD_ACCOUNT:
+            return action.account;
+        case LOG_IN:
+            return action.token;
+        case LOG_OUT:
+            return action.token;
+        case UPDATE_ACCOUNT:
+            return action.account;
         default:
             return state;
     }

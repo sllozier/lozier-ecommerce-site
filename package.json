@@ -6,8 +6,7 @@
   "scripts": {
     "start": "npm run build-watch & npm run start-server ",
     "build-watch": "webpack -w",
-    "start-server": "JWT=shhh nodemon server -e js,html,scss --ignore public --ignore client",
-    "test": "NODE_ENV=test JWT=a_secret mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" --require @babel/register --require esm "
+    "start-server": "JWT=shhh QUIET=true nodemon server"
   },
   "keywords": [],
   "author": "",

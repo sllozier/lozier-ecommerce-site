@@ -2,10 +2,10 @@ const Sequelize = require('sequelize');
 const db = require('./database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
-
 
 const SALT_ROUNDS = 5;
+
+
 
 // NOTE: need to add authentication (jwt)
 const Account = db.define('account', { 
@@ -66,22 +66,19 @@ const Account = db.define('account', {
 
 //AUTH
 
-Account.prototype.correctPassword = (candidatePwd) => {
-  return bcrypt.compare(candidatePwd, this.password);
-};
 
-Account.prototype.generateToken = () => {
- return jwt.sign({ id: this.id }, process.env.JWT);
-};
+
 
 Account.findByToken = async(token) => {
   try{
-    const { id } = await jwt.verify(token, process.env.JWT);
-    const account = Account.findByPK(id);
-    if(!account){
-      throw 'not account';
+    jwt.verify(token, process.env.JWT);
+    const account = await Account.findByPK(jwt.decode(token).accountId);
+    if(account){
+      return account;
     }
-    return account;
+    const error = Error('bad credentials');
+    error.status = 401;
+    throw error;
   }catch{
     const error = Error('bad credentials');
     error.status = 401;
@@ -95,12 +92,13 @@ Account.authenticate = async({username, password}) => {
       username,
     },
   });
-  if(!account || !(await account.correctPassword(password))){
+  if(account && (await bcrypt.compare(password, account.password))){
+    let temp = jwt.sign({ accountId: account.id}, process.env.JWT);
+    return temp;
+  }
     const error = Error('Incorrect username or password');
     error.status = 401;
-    throw error;
-  }
-    return account.generateToken();
+    throw error; 
   };
   
 const hashPassword = async (account) => {
@@ -112,6 +110,13 @@ const hashPassword = async (account) => {
 Account.beforeCreate(hashPassword);
 Account.beforeUpdate(hashPassword);
 Account.beforeBulkCreate((accounts) => Promise.all(account.map(hashPassword)));
+
+//cart prototypes
+
+Account.prototype.addToCart = () => {};
+Account.prototype.createOrder = () => {};
+Account.prototype.cancelOrder = () => {};
+Account.prototype.cancelOrder = () => {};
 
 module.exports = Account;
 
