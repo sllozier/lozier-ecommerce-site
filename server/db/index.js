@@ -101,13 +101,14 @@ const syncAndSeed = async () => {
     // });
 
     // LineItem
-    
+
 
     // Product
     const product1 = await Product.create({
       title: 'product1',
       price: 99.99,
       stock: 10,
+      image: 'https://i.imgur.com/MZAcECn.png',
       description: 'lorem ipsum some text for product1...',
     });
 
@@ -115,6 +116,7 @@ const syncAndSeed = async () => {
       title: 'product2',
       price: 12.50,
       stock: 15,
+      image: 'https://i.imgur.com/GI9lCcj.png',
       description: 'lorem ipsum some text for product2...',
     });
 
@@ -122,6 +124,7 @@ const syncAndSeed = async () => {
       title: 'product3',
       price: 10.99,
       stock: 25,
+      image: 'https://i.imgur.com/hQw5iCB.png',
       description: 'lorem ipsum some text for product3...',
     });
 
@@ -129,6 +132,7 @@ const syncAndSeed = async () => {
       title: 'product4',
       price: 5.00,
       stock: 10,
+      image: 'https://i.imgur.com/0H3SsJa.png',
       description: 'lorem ipsum some text for product4...',
     });
 
