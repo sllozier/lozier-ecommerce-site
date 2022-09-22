@@ -2,18 +2,13 @@ import axios from 'axios';
 
 
 
-// const SET_AUTH = 'SET_AUTH';
+
 const ADD_ACCOUNT = 'ADD_ACCOUNT';
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
 const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 
-// const setAuth = (auth) => {
-//    return {
-//     type: SET_AUTH,
-//     auth,
-//    }
-// };
+
 
 export const addAccount = (account) => {
        return {
