@@ -2,7 +2,7 @@ import React from "react";
 //import components here
 import { Routes, Route } from 'react-router-dom';
 import AllAlbums from "./components/AllAlbums/AllAlbums";
-import AuthdUserHome from "./components/AuthdUserViews/AuthdUserHome/AuthdUserHome";
+import AuthdUserHome from "./components/AdminPanelView/AuthdUserHome/AuthdUserHome";
 import LandingPage from "./components/LandingPage/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
@@ -25,7 +25,7 @@ function App() {
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account/:id' element={<ViewAccount />} />
-                <Route path='/confirmation' element={<ConfirmationPage/>}/>
+                <Route path='/confirmation' element={<ConfirmationPage />} />
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
                 <Route path='/sign-up' element={<SignUp />} />
             </Routes>

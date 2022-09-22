@@ -18,27 +18,31 @@ function AllAlbums() {
       setLoading(false);
     }
   }, [allAlbums]);
-  
+
   return loading ? (
     <div>Albums loading...</div>
   ) : (
     <>
-      {allAlbums.map((album) => (
-        <div key={album.id}>
-          <Link to={'/products/' + album.id}>
-          <div style={{ marginTop: '5em' }}>{album.title}</div>
-          <img
-            className="albumArt"
-            src={album.image}
-            alt=""
-            style={{ height: '200px' }}
-          />
-          {/* TODO: move all styling to css file */}
-          <div>${album.price}</div>
-          <div>{album.stock} left in store</div>
-          </Link>
-        </div>
-      ))}
+      <div className='all-product-container'>
+        {allAlbums.map((album) => (
+          <div key={album.id} >
+            <Link id='link-style' to={'/products/' + album.id}>
+              <img
+                className="albumArt"
+                src={album.image}
+                alt=""
+              />
+              {/* TODO: move all styling to css file */}
+              <div>
+                <h4>{album.title}</h4>
+                <p >${album.price}</p>
+                <p>{album.stock} left in store</p>
+              </div>
+            </Link>
+            <button>Add to Cart</button>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

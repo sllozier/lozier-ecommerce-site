@@ -328,6 +328,114 @@ nav h3 {
   transition: ease-in-out 0.2s;
 }
 
+/* all albums styles */
+.all-product-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 20%;
+
+}
+
+
+
+.all-product-container>div {
+  margin: 20px;
+  border: 3px solid lightblue;
+  padding: 20px 30px;
+  transition: ease-in-out 0.2s;
+}
+
+.all-product-container>div:hover {
+  border: 3px solid slateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.all-product-container>div button {
+  border: 3px solid lightblue;
+  background-color: rgb(255, 247, 235);
+  color: lightblue;
+  font-weight: 600;
+  width: 110px;
+  height: 40px;
+  box-shadow: 5px 5px lightblue;
+  margin-top: 12px;
+  margin-left: 90px;
+  transition: ease-in-out 0.2s;
+}
+
+.all-product-container>div button:hover {
+  border: 3px solid slateblue;
+  box-shadow: 8px 8px slateblue;
+  transition: ease-in-out 0.2s;
+  color: slateblue;
+}
+
+.all-product-container>div div {
+  /* margin-top: 5px; */
+  width: 140px;
+  padding: 10px;
+
+}
+
+.all-product-container>div h4 {
+  font-weight: 900;
+  color: black;
+}
+
+.all-product-container>div p {
+  font-weight: 400;
+  color: black;
+}
+
+.all-product-container>div img {
+  width: 200px;
+}
+
+.single-album-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.single-album-container>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.single-album-container>div h2 {
+  margin: 20px;
+}
+
+.single-album-container>div h4 {
+  margin: 20px;
+}
+
+.single-album-container>div p {
+  margin: 20px;
+}
+
+.single-album-container>div button {
+  border: 3px solid lightblue;
+  background-color: rgb(255, 247, 235);
+  color: lightblue;
+  font-weight: 600;
+  width: 100%;
+  height: 40px;
+  box-shadow: 5px 5px lightblue;
+  margin: 20px;
+  transition: ease-in-out 0.2s;
+}
+
+.single-album-container>div button:hover {
+  border: 3px solid slateblue;
+  box-shadow: 8px 8px slateblue;
+  transition: ease-in-out 0.2s;
+  color: slateblue;
+}
+
 
 @keyframes slideDown {
   0% {
@@ -339,4 +447,8 @@ nav h3 {
     transform: translateY(0%);
     opacity: 100%;
   }
+}
+
+#link-style {
+  text-decoration: none;
 }
