@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAlbumThunk } from '../../store/reducers2/albumReducer';
 import { useParams } from 'react-router-dom';
+import { makeGuestCartThunk, setGuestCart } from '../../store/reducers1/guestCartReducer'
 
 function SingleAlbum() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const album = useSelector((state) => state.albums.album);
+  const state = useSelector(state => state)
 
   useEffect(() => {
     dispatch(setAlbumThunk(id));
@@ -18,6 +20,13 @@ function SingleAlbum() {
       setLoading(false);
     }
   }, [album]);
+  console.log(state)
+
+  const handleClick = () => {
+    makeGuestCartThunk(album)(dispatch)
+    // dispatch(setGuestCart(album))
+  }
+  console.log(state)
 
   return loading ? (
     <div>Loading Album...</div>
@@ -33,7 +42,7 @@ function SingleAlbum() {
         <h2>${album.price}</h2>
         <h4>{album.stock} left in store</h4>
         <p>{album.description}</p>
-        <button>Add to Cart</button>
+        <button onClick={handleClick}>Add to Cart</button>
       </div>
 
     </div>

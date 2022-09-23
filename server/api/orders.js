@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Order, Account, Product } = require('../db');
+const { Order, Account, Product, LineItem } = require('../db');
+const Sequelize = require('sequelize');
+
 
 router.get('/orders', async (req, res, next) => {
     try {
@@ -24,33 +26,70 @@ router.get('/orders', async (req, res, next) => {
 //     }
 // });
 
-router.get('/orders/:id', async(req, res, next) => {
-    try{
+router.get('/orders/guest', async (req, res, next) => {
+    try {
+        const lineitems = await LineItem.findAll()
+        // var total = 0
+        // for (let i = 0; i < lineitems.length; i++) {
+        //     // console.log(lineitems[i].dataValues.productId)
+        //     const product = await Product.findOne({
+        //         where: {
+        //             id: lineitems[i].dataValues.productId
+        //         }
+        //     })
+        //     console.log(product)
+        // }
+        // const lineitems = await LineItem.findAll({
+        //     attributes: [
+        //         "productId",
+        //         [Sequelize.fn("COUNT", Sequelize.col("id")), "count_test"],
+        //     ],
+        //     group: "productId",
+        // });
+        // console.log(lineitems)
+        console.log(lineitems)
+
+        res.send(`helo`)
+    } catch (error) {
+        next(error);
+    }
+})
+
+router.get('/orders/:id', async (req, res, next) => {
+    try {
         const account = Account.findOne({
             where: {
                 id: req.params.id,
             },
-            include: [ Product ],
+            include: [Product],
         });
         res.send(account);
-    }catch(error){
+    } catch (error) {
         next(error);
     }
 });
 
-router.post('/orders/guest', async(req, res, next) => {
-    try{
-        let guestOrders = req.body;
-        res.status(201).send(
-            guestOrders.map((order) => {
-                return Order.create(order);
-            })
-        )
-    }catch(error){
+
+
+router.post('/orders/guest', async (req, res, next) => {
+    try {
+        const product = await Product.findByPk(req.body.id)
+        let guestOrders = await product.createLineitem()
+        const lineitems = await LineItem.findAll()
+        console.log('HERE', lineitems)
+        // const lineitemArr = lineitems.map((ele) => {
+        //     console.log(ele)
+        // })
+        // console.log(test)
+        // guestorders -> reduce to [{productid: 1, qty: 2 total: productidprice * qty}, {}]
+        res.status(201).send('hgell')
+    } catch (error) {
         next(error);
     }
 })
 
 
 
- module.exports = router;
+
+
+module.exports = router;
