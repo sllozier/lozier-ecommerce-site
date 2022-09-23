@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build-watch & npm run start-server ",
     "build-watch": "webpack -w",
-    "start-server": "nodemon server"
+    "start-server": "nodemon server",
+    "test": "NODE_ENV=test JWT=secret mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" --require @babel/register --require esm "
   },
   "keywords": [],
   "author": "",

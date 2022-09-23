@@ -3,7 +3,7 @@ const db = require('./database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const JWT = process.env.JWT;
+const JWT = process.env.ACCESS_TOKEN_SECRET;
 
 const SALT_ROUNDS = 5;
 
@@ -69,6 +69,7 @@ const Account = db.define('account', {
 //AUTH
 
 Account.prototype.comparePassword = function(pswd) {
+  console.log('PSWD', pswd);
   return bcrypt.compare(pswd, this.password);
 }
 
@@ -79,18 +80,16 @@ Account.prototype.generateToken = function() {
 
 Account.byToken = async function(token) {
   try{
-    console.log('ByTokenTOKEN', token);
-    console.log('what is JWT?', JWT);
-    await jwt.verify(token, JWT);
-    
-    const account = await Account.findByPK(jwt.decode(token).accountId);
-    
+    console.log('MODEL TOKEN', token)
+    const {id} = await jwt.verify(token, JWT)
+    console.log('MODEL ID', id)
+    const account = Account.findByPk(id)  
     if(!account){
-      throw 'nooo'
+      throw 'nooo';
     }
-    return account
+    return account;
   }catch{
-    const error = Error('bad credentials');
+    const error = Error('bad credentials')
     error.status = 401;
     throw error;
   }

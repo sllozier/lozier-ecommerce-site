@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+// import AccountNav from './AccountNav';
+//import AccountNav from './components/AccountNav/AccountNav';
 
 const ViewAccount = () => {
    const account = useSelector((state) => state.account);
@@ -8,6 +10,7 @@ const ViewAccount = () => {
     return account.username ? (
         
             <div className='account-container'>
+                {/* <AccountNav/> */}
                 <div className = 'account-info'>
                 <h1>Account Information:</h1>
                 <h3>{`Name: ${account.firstName} ${account.lastName}`}</h3>

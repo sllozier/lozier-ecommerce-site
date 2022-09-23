@@ -29,18 +29,19 @@ function App() {
 
         <div id='main'>
             <NavBar />
-            <AccountNav />
+            {/* <AccountNav /> */}
             {/*Routes Here*/}
             <Routes>
                 {/* <Route path='*' element={<NotFoundPage />} /> */} //TODO: We can comment NotFoundPage back in at the end (easier to debug routes without)
                 <Route path='/' element={<LandingPage />} />
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/products/:id' element={<SingleAlbum />} />
-                <Route path='/account' element={<ViewAccount />} />
+                <Route path='/account-nav' element={<AccountNav />} />
+                <Route path='account-nav/login' element={<LogIn/>}/>
+                <Route path='account-nav/signup' element={<SignUp />}/>
+                <Route path='account-nav/user' element={<ViewAccount />}/>
                 <Route path='/confirmation' element={<ConfirmationPage />} />
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
-                <Route path='/signup' element={<SignUp />} />
-                <Route path='/login' element={<LogIn/>}/>
                 <Route path='/admindashboard' element={<AdminDashboard/>}/>
                 
             </Routes>
