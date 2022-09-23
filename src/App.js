@@ -44,8 +44,9 @@ function App() {
                 <Route path='/confirmation' element={<ConfirmationPage />} />
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
                 <Route path='/admindashboard' element={<AdminDashboard/>}/>
+                
                 <Route path='/cart' element={<Cart />} />
-                <Route path='/auth/signup' element={<SignUp />} />
+                
             </Routes>
         </div>
 
