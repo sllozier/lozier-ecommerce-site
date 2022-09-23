@@ -3,11 +3,13 @@ const Sequelize = require('sequelize');
 
 const databaseName = 'flintstones_gh';
 
-const config = {}
+const config = {
+  logging: false
+};
 
 if(process.env.QUIET) {
   config.logging = false;
-}
+};
 
 //saw heroku postgres database issue and this resolves it
 if(process.env.DATABASE_URL){

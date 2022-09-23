@@ -1,18 +1,34 @@
-const express = require('express')
-const path = require('path')
-const cors = require('cors')
-const volleyball = require('volleyball')
-const app = express()
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const volleyball = require('volleyball');
+const app = express();
+const { requireToken, isAdmin } = require('./api/gateKeeper');
+
 
 // static middleware
 app.use(express.static(path.join(__dirname, '..','public')))
 app.use(express.json());
-app.use(cors())
-app.use(volleyball)
+app.use(cors());
+app.use(volleyball);
+
 
 //this is where some things should go
 
-app.use('/api', require('./api'))
+app.use('/api', require('./api'));
+app.use('/auth', require('./auth'));
+
+app.get('/admin', requireToken, isAdmin, (req, res)=> {
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+});
+
+app.get('/account', requireToken, (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+});
+   
+app.get('/', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+});
 
 app.use((req, res, next) => {
     if(path.extname(req.path).length > 0) {
@@ -22,9 +38,7 @@ app.use((req, res, next) => {
     }
 });
 
-app.get('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '..', 'src', 'index.html'))
-})
+
 
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '..', '/public/index.html' ))

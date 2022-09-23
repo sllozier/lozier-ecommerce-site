@@ -1,0 +1,22 @@
+POST http://localhost:3000/auth/login
+
+
+{
+  "username": "sarah",
+  "password": "password2"
+}
+
+###
+
+GET http://localhost:3000/products
+
+###
+
+GET http://localhost:3000/products/:id
+Content-Type: application/json
+
+{
+    "productId": "1"
+}
+
+###
