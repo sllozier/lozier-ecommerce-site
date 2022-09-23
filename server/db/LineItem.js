@@ -3,16 +3,24 @@ const db = require('./database');
 const Order = require('./Order');
 const Product = require('./Product');
 
- const LineItem = db.define('lineitem', {
-  name: {
-    type: Sequelize.STRING,
-  },
-  id: {
+const LineItem = db.define('lineitem', {
+  // name: {
+  //   type: Sequelize.STRING,
+  // },
+  orderId: {
     type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false,
+    references: {
+      model: Order,
+      key: 'id'
+    }
   },
+  // productId: {
+  //   type: Sequelize.INTEGER,
+  //   references: {
+  //     model: Product,
+  //     key: 'id'
+  //   }
+  // },
   quantity: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
@@ -30,4 +38,4 @@ const Product = require('./Product');
 
 });
 
- module.exports = LineItem;
+module.exports = LineItem;

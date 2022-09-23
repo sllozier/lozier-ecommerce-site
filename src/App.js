@@ -16,6 +16,7 @@ import AccountNav from './components/AccountNav/AccountNav';
 //import { accountLoginAttempt } from './store/reducers1/authReducer';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
+import Cart from "./components/Cart/Cart";
 
 function App() {
     // const dispatch = useDispatch();
@@ -43,7 +44,8 @@ function App() {
                 <Route path='/confirmation' element={<ConfirmationPage />} />
                 <Route path='/admin-panel' element={<AuthdUserHome />} />
                 <Route path='/admindashboard' element={<AdminDashboard/>}/>
-                
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/auth/signup' element={<SignUp />} />
             </Routes>
         </div>
 

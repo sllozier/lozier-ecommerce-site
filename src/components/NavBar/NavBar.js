@@ -21,6 +21,10 @@ function NavBar() {
                 <Link to='account-nav'>
                     <h3>Account Navigation</h3>
                 </Link>
+                <Link to='cart'>
+                    <h3>Cart</h3>
+                </Link>
+
             </nav>
         </>
     )
