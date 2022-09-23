@@ -52,10 +52,10 @@ export const attemptLogin = (authInfo) => {
     }
 }
 
-export const createAccount = (username, password) => {
+export const createAccount = (authInfo) => {
     return async (dispatch) => {
         try {
-            const res = await axios.post('/auth/signup', { username, password });
+            const res = await axios.post('/auth/signup', authInfo);
             window.localStorage.setItem('token', res.data.token);
             dispatch(createCart(res.data.id, localStorage.UUID))
         } catch (error) {

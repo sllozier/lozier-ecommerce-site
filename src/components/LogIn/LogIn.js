@@ -44,7 +44,7 @@ console.log('LOGIN STATE' , state);
                     onChange={handleChange('password')}/>
                     <button type='submit'>Log In</button>
             </form>
-            <Link to='/signup'>Sign up for a new account?</Link>
+            <Link to='/account-nav/signup'>Sign up for a new account?</Link>
 
         </div>
 
