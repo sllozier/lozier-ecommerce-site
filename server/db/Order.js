@@ -13,10 +13,10 @@ const Order = db.define('order', {
       min: 0,
     },
   },
-  // UUID: {
-  //   type: Sequelize.UUID,
-  //   defaultValue: Sequelize.UUIDV4,
-  // },
+  UUID: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+  },
 
 });
 

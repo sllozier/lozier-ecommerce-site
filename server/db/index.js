@@ -13,12 +13,8 @@ const Product = require('./Product');
 Order.belongsTo(Account);
 Account.hasMany(Order);
 
-
-
 Product.belongsToMany(Order, { through: LineItem });
 Order.belongsToMany(Product, { through: LineItem });
-
-// Genre.hasMany(Product);
 
 
 const syncAndSeed = async () => {
@@ -66,6 +62,10 @@ const syncAndSeed = async () => {
     const order1 = await Order.create({
       isCart: false,
       accountId: 1,
+      // cart: [
+      //   "product1",
+      //   "product2"
+      // ]
     });
 
     const order2 = await Order.create({
@@ -137,10 +137,22 @@ const syncAndSeed = async () => {
     });
 
     // seeding successful message
+    // await product3.createLineitem()
+    // await product1.createLineitem()
+    // await product3.createLineitem()
+    // await product1.createLineitem()
+    // const test = await product3.getLineitem()
+    // test.dataValues.quantity = product3.stock
+    // await product3.setLineitem([1])
     console.log(`
     Seeding successful!
-    Check the 'flintstones_gh' database for updates
-  `);
+    Check the 'flintstones_gh' database for updates`,
+
+      Object.keys(Order.prototype),
+      Object.keys(Product.prototype),
+      Object.keys(LineItem.prototype)
+      // test
+    );
   } catch (err) {
     // seeding failure message
     console.log(`
