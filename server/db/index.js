@@ -12,14 +12,9 @@ const Product = require('./Product');
 //associations
 Order.belongsTo(Account);
 Account.hasMany(Order);
-Product.hasOne(LineItem)
-Account.hasMany(Product)
 
-// LineItem.belongsTo(Product)
-// Product.belongsToMany(Order, { through: LineItem });
-// Order.belongsToMany(Product, { through: LineItem });
-
-// Genre.hasMany(Product);
+Product.belongsToMany(Order, { through: LineItem });
+Order.belongsToMany(Product, { through: LineItem });
 
 
 const syncAndSeed = async () => {
@@ -151,9 +146,11 @@ const syncAndSeed = async () => {
     // await product3.setLineitem([1])
     console.log(`
     Seeding successful!
-    Check the 'flintstones_gh' database for updates`
+    Check the 'flintstones_gh' database for updates`,
 
-      // Object.keys(Product.prototype)
+      Object.keys(Order.prototype),
+      Object.keys(Product.prototype),
+      Object.keys(LineItem.prototype)
       // test
     );
   } catch (err) {

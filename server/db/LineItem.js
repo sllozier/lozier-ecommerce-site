@@ -7,12 +7,20 @@ const LineItem = db.define('lineitem', {
   // name: {
   //   type: Sequelize.STRING,
   // },
-  id: {
+  orderId: {
     type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false,
+    references: {
+      model: Order,
+      key: 'id'
+    }
   },
+  // productId: {
+  //   type: Sequelize.INTEGER,
+  //   references: {
+  //     model: Product,
+  //     key: 'id'
+  //   }
+  // },
   quantity: {
     type: Sequelize.INTEGER,
     defaultValue: 0,

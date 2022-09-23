@@ -28,7 +28,7 @@ router.get('/orders', async (req, res, next) => {
 
 router.get('/orders/guest', async (req, res, next) => {
     try {
-        // const lineitems = await LineItem.findAll()
+        const lineitems = await LineItem.findAll()
         // var total = 0
         // for (let i = 0; i < lineitems.length; i++) {
         //     // console.log(lineitems[i].dataValues.productId)
@@ -47,8 +47,9 @@ router.get('/orders/guest', async (req, res, next) => {
         //     group: "productId",
         // });
         // console.log(lineitems)
+        console.log(lineitems)
 
-        res.send(`total: `)
+        res.send(`helo`)
     } catch (error) {
         next(error);
     }
@@ -74,9 +75,14 @@ router.post('/orders/guest', async (req, res, next) => {
     try {
         const product = await Product.findByPk(req.body.id)
         let guestOrders = await product.createLineitem()
-        console.log(guestOrders)
+        const lineitems = await LineItem.findAll()
+        console.log('HERE', lineitems)
+        // const lineitemArr = lineitems.map((ele) => {
+        //     console.log(ele)
+        // })
+        // console.log(test)
         // guestorders -> reduce to [{productid: 1, qty: 2 total: productidprice * qty}, {}]
-        res.status(201).send(guestOrders)
+        res.status(201).send('hgell')
     } catch (error) {
         next(error);
     }

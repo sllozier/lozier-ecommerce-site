@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAlbumThunk } from '../../store/reducers2/albumReducer';
 import { useParams } from 'react-router-dom';
-import { addToGuestCartThunk, setGuestCart } from '../../store/reducers1/guestCartReducer'
+import { makeGuestCartThunk, setGuestCart } from '../../store/reducers1/guestCartReducer'
 
 function SingleAlbum() {
   const { id } = useParams();
@@ -20,10 +20,10 @@ function SingleAlbum() {
       setLoading(false);
     }
   }, [album]);
-  console.log(album)
+  console.log(state)
 
   const handleClick = () => {
-    addToGuestCartThunk(album)(dispatch)
+    makeGuestCartThunk(album)(dispatch)
     // dispatch(setGuestCart(album))
   }
   console.log(state)
