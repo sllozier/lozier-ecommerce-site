@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductsThunk, deleteProductThunk } from '../../../store/reducers1/productReducer'
+import { getProductsThunk, deleteProductThunk } from '../../../store/reducers1/productsReducer'
 
 function DeleteProduct() {
     const dispatch = useDispatch()

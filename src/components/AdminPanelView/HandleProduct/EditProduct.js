@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { editProductThunk } from '../../../store/reducers1/productReducer'
+import { editProductThunk } from '../../../store/reducers1/productsReducer'
 
 
 function EditProduct() {

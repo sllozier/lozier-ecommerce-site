@@ -38,6 +38,8 @@ export const fetchAccountData = () => {
     };
 };
 
+
+
 export const attemptLogin = (authInfo) => {
     return async(dispatch) => {
         try{

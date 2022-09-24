@@ -7,10 +7,10 @@ import { useSelector } from 'react-redux';
 const ViewAccount = () => {
    const account = useSelector((state) => state.account);
 
+
     return account.username ? (
         
             <div className='account-container'>
-                {/* <AccountNav/> */}
                 <div className = 'account-info'>
                 <h1>Account Information:</h1>
                 <h3>{`Name: ${account.firstName} ${account.lastName}`}</h3>

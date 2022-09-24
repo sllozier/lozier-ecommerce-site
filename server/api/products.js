@@ -25,13 +25,13 @@ router.get('/products/:id', async (req, res, next) => {
     }
 })
 
-router.post('/products', requireToken, isAdmin, async (req, res, next) => {
-    try {
-        res.send(await Product.create(req.body))
-    } catch (error) {
-        next(error)
-    }
-})
+// router.post('/products', requireToken, isAdmin, async (req, res, next) => {
+//     try {
+//         res.send(await Product.create(req.body))
+//     } catch (error) {
+//         next(error)
+//     }
+// })
 
 router.delete('/products/:id', async (req, res, next) => {
     try {

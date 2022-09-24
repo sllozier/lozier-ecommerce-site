@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addProductThunk } from '../../../store/reducers1/productsReducer'
+import { addProductThunk } from '../../store/reducers1/productsReducer'
 
-function AddProduct() {
+function LoadProduct() {
     const dispatch = useDispatch()
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('')
@@ -53,4 +53,4 @@ function AddProduct() {
     )
 }
 
-export default AddProduct
+export default LoadProduct;

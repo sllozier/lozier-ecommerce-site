@@ -18,7 +18,7 @@ const AccountNav = () => {
     return account.id? (
         <div className='account-welcome'>
             {`Welcome Back, `}{' '}
-            <Link to='/account' className='username'>
+            <Link to='/account-nav/account' className='username'>
                 {account.username}
             </Link>
             <button onClick={logout}>Log Out</button>

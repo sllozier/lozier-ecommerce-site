@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import AllProducts from './AllProducts';
+import LoadProduct from './LoadProduct';
 
 const AdminDashboard = () => {
     const account = useSelector((state) => state.account);
@@ -20,11 +22,11 @@ const AdminDashboard = () => {
             <div className='delete-user'>
                 <h3>Placeholder for link to delete single user</h3>
             </div>
-            <div className='edit-product'>
-                <h3>Placeholder for link to edit product</h3>
+            <div className='handle-product'>
+            <AllProducts />
             </div>
             <div className='add-product'>
-                <h3>Placeholder for link to add product</h3>
+                <LoadProduct />
             </div>
         </div>
     );

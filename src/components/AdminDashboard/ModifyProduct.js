@@ -1,24 +1,29 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addProductThunk } from '../../../store/reducers1/productsReducer'
+import { editProductThunk } from '../../store/reducers1/productsReducer'
 
-function AddProduct() {
+
+function ModifyProduct() {
     const dispatch = useDispatch()
+    const [id, setId] = useState(0)
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('')
     const [stock, setStock] = useState(0)
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
 
+    const handleId = (event) => {
+        console.log(event.target.value)
+        setId(Number(event.target.value))
+    }
     const handleTitle = (event) => {
-        console.log(title)
         setTitle(event.target.value)
     }
     const handlePrice = (event) => {
-        setPrice(event.target.value)
+        setPrice(Number(event.target.value))
     }
     const handleStock = (event) => {
-        setStock(event.target.value)
+        setStock(Number(event.target.value))
     }
     const handleImage = (event) => {
         setImage(event.target.value)
@@ -29,13 +34,17 @@ function AddProduct() {
     const handleSubmit = (event) => {
         event.preventDefault()
         // console.log(title, price, stock, image, description)
-        addProductThunk({ title, price, stock, image, description })(dispatch)
+        editProductThunk({ id, title, price, stock, image, description })(dispatch)
     }
+
     return (
         <>
-            <div className='add-product-container'>
-                <h2>Add Product</h2>
+
+            <div className='edit-container'>
+                <h2>Edit Product</h2>
                 <form onSubmit={handleSubmit}>
+                    <p>Product Id</p>
+                    <input onChange={handleId} type='number' />
                     <p>Title</p>
                     <input onChange={handleTitle} type='text' />
                     <p>Price</p>
@@ -53,4 +62,4 @@ function AddProduct() {
     )
 }
 
-export default AddProduct
+export default ModifyProduct;
