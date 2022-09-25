@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from 'react-router-dom';
 import AllAlbums from "./components/AllAlbums/AllAlbums";
-import AuthdUserHome from "./components/AdminPanelView/AuthdUserHome/AuthdUserHome";
+//import AuthdUserHome from "./components/AdminPanelView/AuthdUserHome/AuthdUserHome";
 import LandingPage from "./components/LandingPage/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
@@ -42,7 +42,7 @@ function App() {
                 <Route path='/account-nav/signup' element={<SignUp />}/>
                 <Route path='/account-nav/account' element={<ViewAccount />}/>
                 <Route path='/confirmation' element={<ConfirmationPage />} />
-                <Route path='/admin-panel' element={<AuthdUserHome />} />
+                {/* <Route path='/admin-panel' element={<AuthdUserHome />} /> */}
                 <Route path='/admindashboard' element={<AdminDashboard/>}/>
                 
                 <Route path='/cart' element={<Cart />} />

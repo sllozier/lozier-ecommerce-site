@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LoadProduct from './LoadProduct';
-import RemoveProduct from './RemoveProduct';
+import ProductList from './ProductList';
 import ModifyProduct from './ModifyProduct';
 
 
@@ -17,7 +17,7 @@ function AllProducts() {
                 <button onClick={() => setEditTorf(!editTorf)}>Edit A Product</button>
                 {editTorf ? <ModifyProduct /> : <></>}
                 <button onClick={() => setListTorf(!listTorf)}>Product List</button>
-                {listTorf ? <RemoveProduct /> : <></>}
+                {listTorf ? <ProductList /> : <></>}
             </div>
         </div>
     )

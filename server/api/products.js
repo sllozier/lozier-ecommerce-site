@@ -35,9 +35,10 @@ router.get('/products/:id', async (req, res, next) => {
 
 router.delete('/products/:id', async (req, res, next) => {
     try {
-        const toBeDeleted = await Product.findByPk(req.params.id)
-        await toBeDeleted.destroy()
-        res.send(toBeDeleted)
+        const deletedProduct = await Product.findByPk(req.params.id);
+        console.log('PRODUCT API', deletedProduct)
+        await deletedProduct.destroy();
+        res.send(deletedProduct);
     } catch (error) {
         next(error)
     }
