@@ -23,7 +23,6 @@ router.get('/cart/line-item-qty', async (req, res, next) => {
                 lineitemsObj[lineitems[i].dataValues.productId] = 1
             }
         }
-
         res.send(lineitemsObj)
     } catch (error) {
         next(error)
@@ -89,7 +88,7 @@ router.put('/cart', async (req, res, next) => {
         const total = product.price * req.body.num
         // await LineItem.increment
     } catch (error) {
-
+        next(error)
     }
 })
 
