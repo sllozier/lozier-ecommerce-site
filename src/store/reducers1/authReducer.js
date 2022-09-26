@@ -38,6 +38,8 @@ export const fetchAccountData = () => {
     };
 };
 
+
+
 export const attemptLogin = (authInfo) => {
     return async(dispatch) => {
         try{
@@ -93,7 +95,7 @@ export const logoutAccount = () => {
 //     }
 // }
 
-export const authReducer = (state = {}, action) => {
+export default function  authReducer (state = {}, action) {
     switch (action.type) {
        case SET_AUTH:
         return action.auth;

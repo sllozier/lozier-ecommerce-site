@@ -46,6 +46,9 @@ const Account = db.define('account', {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+  address: {
+    type: Sequelize.STRING,
+  }
   // paymentInfo: {
   //   type: Sequelize.STRING,
   //   defaultValue: 'XXX-XXX-XXXX',

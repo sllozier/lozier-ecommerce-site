@@ -12,6 +12,7 @@ router.use('/', require('./lineitems'))
 router.use('/', require('./genres'))
 
 router.use('/', require('./cart'))
+router.use('/', require('./admin'))
 
 
 router.use((req, res, next) => {

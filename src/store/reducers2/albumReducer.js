@@ -49,7 +49,7 @@ export const setAlbumThunk = (id) => {
 };
 
 // reducer
-export const albumReducer = (state = initialState, action) => {
+export default function albumReducer(state = initialState, action) {
   switch (action.type) {
     case SET_ALBUMS:
       return { ...state, albums: action.albums };
