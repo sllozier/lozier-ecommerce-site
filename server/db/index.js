@@ -28,6 +28,7 @@ const syncAndSeed = async () => {
       email: 'bilal@gmail.com',
       firstName: 'Bilal',
       lastName: 'Abbas',
+      address: '123 London Street',
       isAdmin: false,
     });
 
@@ -37,6 +38,7 @@ const syncAndSeed = async () => {
       email: 'sarah@gmail.com',
       firstName: 'Sarah',
       lastName: 'Lozier',
+      address: '123 Maine Lane',
       isAdmin: false,
     });
 
@@ -46,6 +48,7 @@ const syncAndSeed = async () => {
       email: 'will@gmail.com',
       firstName: 'Will',
       lastName: 'Siddons',
+      address: '123 Philly Road',
       isAdmin: true,
     });
 
@@ -55,6 +58,7 @@ const syncAndSeed = async () => {
       email: 'austin@gmail.com',
       firstName: 'Austin',
       lastName: 'Gautney',
+      address: '123 Stone Cold Court',
       isAdmin: true,
     });
 

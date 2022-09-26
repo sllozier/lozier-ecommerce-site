@@ -40,7 +40,7 @@ export const makeGuestCartThunk = (guestCart) => {
 
 
 
-export const guestCartReducer = (state = [], action) => {
+export default function guestCartReducer (state = [], action) {
     switch (action.type) {
         case ADD_TO_GUESTCART:
             const guestCartQty = action.guestCart.map((item) => {
