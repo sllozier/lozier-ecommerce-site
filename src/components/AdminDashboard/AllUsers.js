@@ -15,23 +15,26 @@ const AllUsers = () => {
 
     const dispatch = useDispatch()
     const accounts = useSelector(state => state.accounts)
-    
+
     useEffect(() => {
         dispatch(getAccountThunk())
     }, [])
 
 
     return (
-        <div>
-        {accounts ? accounts.map(account =>
-            <div key={account.id}>
-            <p>{account.username}</p>
-            <button onClick={() => deleteAccountThunk(account.id)(dispatch)}>Delete</button>
-             </div>
-        ) :
-        <div>null</div>
-        }
-        {/* // <div>Loading accounts...</div>
+        <div className='user-list-container'>
+            {accounts ? accounts.map(account =>
+                <div className='user-wrapper' key={account.id}>
+                    <p>Name: {account.firstName} {account.lastName}</p>
+                    <p>Username: {account.username}</p>
+                    <p>Address: {account.address}</p>
+                    {account.isAdmin ? <p>Admin</p> : <p>Not an Admin</p>}
+                    <button onClick={() => deleteAccountThunk(account.id)(dispatch)}>Delete User</button>
+                </div>
+            ) :
+                <div>null</div>
+            }
+            {/* // <div>Loading accounts...</div>
         // :
         // <div>
         //     <button onClick={() => console.log(state)}>Get Users</button>

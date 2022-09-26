@@ -71,4 +71,13 @@ router.delete('/admin/accounts/:id', async (req, res, next) => {
   }
 })
 
+router.put('/admin/accounts/:id', async (req, res, next) => {
+  try {
+    const accountToBeEdited = await Account.findByPk(req.params.id)
+    res.send(await accountToBeEdited.update(req.body))
+  } catch (error) {
+
+  }
+})
+
 module.exports = router;

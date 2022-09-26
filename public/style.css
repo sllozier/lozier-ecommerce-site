@@ -436,6 +436,117 @@ nav h3 {
   color: slateblue;
 }
 
+.single-album-desc {
+  width: 350px;
+}
+
+.user-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+}
+
+.user-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 20px;
+  border: 3px solid lightblue;
+  padding: 20px;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+  animation: 0.5s ease-in-out 0s 1 slideDown;
+}
+
+.user-wrapper:hover {
+  border: 3px solid darkslateblue;
+}
+
+.user-wrapper>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.user-wrapper>button:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 5px 5px darkslateblue;
+  color: darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.admin-dashboard h1 {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.account-welcome {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-welcome>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 100px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.7em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.account-welcome>button:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 5px 5px darkslateblue;
+  color: darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.account-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-container h3 {
+  margin: 10px 0;
+}
+
+.account-container button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 180px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.account-container button:hover {
+  border: 3px solid darkslateblue;
+  box-shadow: 5px 5px darkslateblue;
+  color: darkslateblue;
+  transition: ease-in-out 0.2s;
+}
+
 
 @keyframes slideDown {
   0% {

@@ -15,15 +15,15 @@ const AccountNav = () => {
         navigate('/');
     };
 
-    return account.id? (
+    return account.id ? (
         <div className='account-welcome'>
-            {`Welcome Back, `}{' '}
-            <Link to='/account-nav/account' className='username'>
-                {account.username}
+            <h1>Welcome Back:</h1>
+            <Link to='/account-nav/account' className='welcome-username'>
+                <h1>{account.username}</h1>
             </Link>
             <button onClick={logout}>Log Out</button>
         </div>
-    ):(
+    ) : (
         <LogIn />
     );
 };
