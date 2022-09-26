@@ -9,6 +9,8 @@ const CLEAR_PRODUCT = 'CLEAR_PRODUCT';
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
+// const GET_ACCOUNT = 'GET_ACCOUNT';
+
 const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
@@ -29,6 +31,13 @@ const getProduct = (product) => {
     product,
   };
 };
+
+// const getAccount = (account) => {
+//   return {
+//     type: GET_ACCOUNT,
+//     account,
+//   }
+// }
 
 const getInventory = (products) => {
   return {
@@ -75,6 +84,17 @@ export const addProductThunk = (product) => {
     }
   }
 }
+
+// export const getAccountThunk = () =>  {
+//   try {
+//     return async (dispatch) => {
+//       const { data } = await axios.get('/api/admin/accounts')
+//       dispatch(getAccount(data))
+//     }
+//   } catch (error) {
+//     console.log('uh oh something went wrong getting accounts.', error);
+//   }
+// }
 
 
 // export const addProductThunk = (product, history) => {

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Product = require('../db/Product');
+const Account = require('../db/Account')
 const { isAdmin, requireToken } = require('./gateKeeper');
 
 router.get('/admin/products', async (req, res, next) => {
@@ -50,5 +51,24 @@ router.post('/admin/products', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/admin/accounts', async (req, res, next) => {
+  try {
+    const allAccounts = await Account.findAll();
+    res.send(allAccounts)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/admin/accounts/:id', async (req, res, next) => {
+  try {
+    const accountToDel = await Account.findByPk(req.params.id)
+    await accountToDel.destroy()
+    res.send(accountToDel)
+  } catch (error) {
+    next(error)
+  }
+})
 
 module.exports = router;

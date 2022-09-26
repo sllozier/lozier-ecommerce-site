@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import AllProducts from './AllProducts';
 import LoadProduct from './LoadProduct';
+import AllUsers from './AllUsers';
 
 const AdminDashboard = () => {
     const account = useSelector((state) => state.account);
@@ -24,6 +25,9 @@ const AdminDashboard = () => {
             </div>
             <div className='handle-product'>
                 <AllProducts />
+            </div>
+            <div className='handle-user'>
+                <AllUsers />
             </div>
             {/* <div className='add-product'>
                 <LoadProduct />
