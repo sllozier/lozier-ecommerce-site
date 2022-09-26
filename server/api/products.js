@@ -25,7 +25,8 @@ router.delete('/products/:id', async (req, res, next) => {
   try {
     const deleteProduct = await Product.findByPk(req.params.id);
     await deleteProduct.destroy();
-    res.sendStatus(200);
+    // res.sendStatus(200);
+    res.send(deleteProduct)
   } catch (error) {
     next(error);
   }
