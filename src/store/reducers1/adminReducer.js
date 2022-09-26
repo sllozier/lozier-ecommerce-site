@@ -7,10 +7,18 @@ const GET_INVENTORY = 'GET_INVENTORY';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
 const CLEAR_PRODUCT = 'CLEAR_PRODUCT';
 const ADD_PRODUCT = 'ADD_PRODUCT'
+const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
 const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
+    product
+  }
+}
+
+const editProduct = (product) => {
+  return {
+    type: EDIT_PRODUCT,
     product
   }
 }
@@ -47,18 +55,19 @@ export const clearProduct = () => {
 export const addProductThunk = (product) => {
   return async (dispatch) => {
     try {
-      // const { data } = axios.post('/api/admin/products', product)
+      const { data } = await axios.post('/api/admin/products', product)
       // dispatch(addProduct(data))
-      const token = window.localStorage.getItem('token');
+      // const token = window.localStorage.getItem('token');
       // history.push('/admin')
       // console.log(history)
-      if (token) {
-        var { data } = await axios.post('/api/admin/products', product, {
-          headers: {
-            authorization: token
-          }
-        })
-      }
+      // if (token) {
+      //   var { data } = await axios.post('/api/admin/products', product, {
+      //     headers: {
+      //       authorization: token
+      //     }
+      //   })
+      // }
+      console.log(data)
       dispatch(addProduct(data))
 
     } catch (error) {
@@ -68,9 +77,10 @@ export const addProductThunk = (product) => {
 }
 
 
-// export const addProduct = (product, history) => {
+// export const addProductThunk = (product, history) => {
 //   return async (dispatch) => {
 //     try {
+//       console.log(product)
 //       const token = window.localStorage.getItem('token');
 //       if (token) {
 //         await axios.post('/api/admin/products', product, {
@@ -133,10 +143,24 @@ export const deleteThisProduct = (id) => {
   };
 };
 
+export const editProductThunk = (product) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`api/admin/products/${product.id}`, product)
+      dispatch(editProduct(data))
+    } catch (error) {
+      console.log('uh oh something went wrong editing the product.', error);
+    }
+  }
+}
+
 export default function adminReducer(state = [], action) {
   switch (action.type) {
     case ADD_PRODUCT:
-      console.log(state)
+      console.log(action)
+      return [...state, action.product]
+    case EDIT_PRODUCT:
+      console.log(action)
       return [...state, action.product]
     case GET_INVENTORY:
       return action.products;

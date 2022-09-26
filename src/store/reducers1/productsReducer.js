@@ -12,13 +12,13 @@ const getProducts = (products) => {
 };
 
 export const deleteProduct = (product) => {
-    return{
-      type: DELETE_PRODUCT,
-      product,
-    };
+  return {
+    type: DELETE_PRODUCT,
+    product,
   };
-  
-  
+};
+
+
 //   export const clearProduct = () => {
 //     return{
 //       type: CLEAR_PRODUCT,
@@ -30,6 +30,7 @@ export const getProductsThunk = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get('/api/products');
+      console.log(data)
       dispatch(getProducts(data));
     } catch (error) {
       console.log('uh oh something went wrong fetching products.', error);
@@ -54,8 +55,8 @@ export default function productsReducer(state = [], action) {
     case GET_PRODUCTS:
       return action.products;
     case DELETE_PRODUCT:
-      // console.log('delete product switch case', state)
-      // return state.filter((product) => product.id !== action.product.id);
+    // console.log('delete product switch case', state)
+    // return state.filter((product) => product.id !== action.product.id);
     // case CLEAR_PRODUCT:
     //   return action.product;
     default:

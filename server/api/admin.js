@@ -29,25 +29,26 @@ router.put('/admin/products/:id', async (req, res, next) => {
   }
 });
 
-router.post('/admin/products', requireToken, isAdmin, async (req, res, next) => {
-  try {
-    console.log('hit')
-    const newProduct = await Product.create(req.body);
-    console.log(newProduct)
-    res.send(newProduct);
-  } catch (error) {
-    console.log(isAdmin)
-    next(error);
-  }
-});
-// router.post('/admin/products', async (req, res, next) => {
+// router.post('/admin/products', requireToken, isAdmin, async (req, res, next) => {
 //   try {
+//     console.log('hit')
 //     const newProduct = await Product.create(req.body);
 //     console.log(newProduct)
 //     res.send(newProduct);
 //   } catch (error) {
+//     // console.log(isAdmin)
 //     next(error);
 //   }
 // });
+
+router.post('/admin/products', async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body);
+    console.log(newProduct)
+    res.send(newProduct);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;

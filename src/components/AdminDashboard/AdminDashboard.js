@@ -9,7 +9,7 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!account.isAdmin) {
+        if (!account.isAdmin) {
             navigate('/');
         }
     }, []);
@@ -23,11 +23,11 @@ const AdminDashboard = () => {
                 <h3>Placeholder for link to delete single user</h3>
             </div>
             <div className='handle-product'>
-            <AllProducts />
+                <AllProducts />
             </div>
-            <div className='add-product'>
+            {/* <div className='add-product'>
                 <LoadProduct />
-            </div>
+            </div> */}
         </div>
     );
 };

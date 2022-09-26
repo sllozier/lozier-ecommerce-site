@@ -5,6 +5,7 @@ const Product = require('../db/Product');
 
 router.get('/products', async (req, res, next) => {
   try {
+
     const products = await Product.findAll();
     res.send(products);
   } catch (error) {
