@@ -92,7 +92,7 @@ export const deleteThisProduct = (id) => {
   return async (dispatch) => {
     try {
       await axios.delete(`api/products/${id}`);
-      //dispatch(getProductsThunk());
+      dispatch(deleteProduct());
     } catch (error) {
       console.log('uh oh something went wrong deleting products.', error);
     }
@@ -106,6 +106,7 @@ export default function adminReducer(state = [], action) {
     case GET_PRODUCT:
       return action.product;
     case DELETE_PRODUCT:
+        console.log(state)
         return state.filter((product) => product.id !== action.product.id);
     case CLEAR_PRODUCT:
         return action.product;

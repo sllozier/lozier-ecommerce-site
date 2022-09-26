@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProductsThunk, deleteProductThunk } from '../../../store/reducers1/productsReducer'
 
 function DeleteProduct() {
+    console.log('running component')
     const dispatch = useDispatch()
     const state = useSelector(state => state)
 
@@ -10,6 +11,17 @@ function DeleteProduct() {
         const getData = async () => {
             await getProductsThunk()(dispatch)
         }
+        getData()
+    }, [])
+
+    // const handleDelete = (productId) => {
+    //     dispatch(deleteProductThunk(productId))
+    // }
+
+
+    useEffect(() => {
+        console.log('running')
+        handleDelete(productId)
         getData()
     }, [])
 
@@ -30,6 +42,7 @@ function DeleteProduct() {
                                 <h3>${product.price}</h3>
                                 <p>{product.description}</p>
                                 <button onClick={() => deleteProductThunk(product.id)(dispatch)}>Delete Product</button>
+                                <button onClick={() => console.log(state)}>STATE</button>
                             </div>
                         </>
                     )}

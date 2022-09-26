@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchInventory, deleteThisProduct, clearProduct } from '../../store/reducers1/adminReducer';
+// import { getProductsThunk, deleteProductThunk } from '../../store/reducers1/productsReducer';
 
 
 function ProductList() {
@@ -12,6 +13,7 @@ function ProductList() {
     useEffect(() => {
         dispatch(fetchInventory());
         dispatch(clearProduct())
+        // dispatch(deleteThisProduct())
     }, []);
     
 
@@ -26,6 +28,7 @@ function ProductList() {
                     <h3>${product.price}</h3>
                     <p>{product.description}</p>
                     <button onClick={() => dispatch(deleteThisProduct(product.id))}>Delete Product</button>
+
                     </div>
                     ))
                 :null}
