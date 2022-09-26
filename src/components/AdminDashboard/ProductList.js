@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchInventory } from '../../store/reducers1/adminReducer';
-import { clearProduct, deleteThisProduct } from '../../store/reducers1/productsReducer';
+import { fetchInventory, deleteThisProduct, clearProduct } from '../../store/reducers1/adminReducer';
+
 
 function ProductList() {
     const dispatch = useDispatch()
@@ -11,23 +11,24 @@ function ProductList() {
 
     useEffect(() => {
         dispatch(fetchInventory());
-        dispatch(clearProduct());
+        dispatch(clearProduct())
     }, []);
     
 
     return (
         
          <div className='product-list-wrap'>
-            {inventory.map((lineItem) => (
-                <div className='product-list-container' key={`${lineItem.id}`}>
-                    <h3>Product Id: {lineItem.id}</h3>
-                    <img src={`${lineItem.image}`} />
-                    <h3>{lineItem.title}</h3>
-                    <h3>${lineItem.price}</h3>
-                    <p>{lineItem.description}</p>
-                    <button onClick={() => dispatch(deleteThisProduct(lineItem.id))}>Delete Product</button>
+            {inventory ? inventory.map((product) => (
+                <div className='product-list-container' key={`${product.id}`}>
+                    <h3>Product Id: {product.id}</h3>
+                    <img src={`${product.image}`} />
+                    <h3>{product.title}</h3>
+                    <h3>${product.price}</h3>
+                    <p>{product.description}</p>
+                    <button onClick={() => dispatch(deleteThisProduct(product.id))}>Delete Product</button>
                     </div>
-                    ))}
+                    ))
+                :null}
             </div>
         
     )
