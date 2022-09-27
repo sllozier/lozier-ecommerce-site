@@ -5,6 +5,11 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+body {
+  background-color: rgb(255, 247, 235);
+}
+
+/* navbar */
 nav {
   display: flex;
   background-color: slategrey;
@@ -12,14 +17,37 @@ nav {
   align-items: center;
 }
 
-body {
-  background-color: rgb(255, 247, 235);
-}
-
 
 nav h3 {
-  margin: 0 20px;
+  margin: 0 40px;
   color: white;
+  text-decoration: none;
+}
+
+.navBarLogo {
+  height: 20px;
+  filter: invert(100%);
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+
+#logoText {
+  color: rgb(255, 247, 235);;
+  margin-left: 5px;
+}
+
+.navBarShop {
+  background-color: slategrey;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 40px;
+  width: 100%;
 }
 
 /* ids */
@@ -328,27 +356,76 @@ nav h3 {
   transition: ease-in-out 0.2s;
 }
 
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-container>h1 {
+  color: slateblue;
+  border: 6px solid slateblue;
+  /* background-color: lightblue; */
+  /* box-shadow: 7px 7px slateblue; */
+  padding: 20px;
+  font-size: 2.7em;
+  transition: ease-in-out 0.2s;
+}
+
+.landing-container>h1:hover {
+  color: lightblue;
+  background-color: slateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.landing-container>img {
+  margin: 60px 0;
+  width: 90%;
+  height: 600px;
+  object-fit: cover;
+}
+
 /* all albums styles */
+
+.landing-header {
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: 4em;
+  color: slateblue;
+  border: 6px solid slateblue;
+  /* box-shadow: 10px 10px slateblue; */
+  padding: 20px;
+}
+
 .all-product-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 40px 20%;
-
+  margin: 40px 10%;
+  /* height: 900px; */
+  padding: 40px 0;
+  border: 6px solid lightblue;
+  box-shadow: 13px 13px lightblue;
+  /* background-color: slateblue; */
 }
 
 
 
 .all-product-container>div {
-  margin: 20px;
+  margin: 40px;
   border: 3px solid lightblue;
   padding: 20px 30px;
   transition: ease-in-out 0.2s;
+  background-color: rgb(255, 247, 235);
+  box-shadow: 5px 5px lightblue;
 }
 
 .all-product-container>div:hover {
   border: 3px solid slateblue;
+  box-shadow: 10px 10px slateblue;
   transition: ease-in-out 0.2s;
 }
 
@@ -360,8 +437,9 @@ nav h3 {
   width: 110px;
   height: 40px;
   box-shadow: 5px 5px lightblue;
-  margin-top: 12px;
-  margin-left: 90px;
+  /* margin-top: 12px;
+  margin-left: 90px; */
+  float: right;
   transition: ease-in-out 0.2s;
 }
 
@@ -407,6 +485,7 @@ nav h3 {
 
 .single-album-container>div h2 {
   margin: 20px;
+  width: 400px;
 }
 
 .single-album-container>div h4 {
