@@ -24,7 +24,7 @@ function AllAlbums() {
     <div>Albums loading...</div>
   ) : (
     <>
-      <h1 className='landing-header'>Welcome to Flintstones Album Collective</h1>
+      {/* <h1 className='landing-header'>Welcome to Flintstones Album Collective</h1> */}
       <div className='landing-container'>
         <img src='https://wallpaper.dog/large/5447354.jpg' />
         <h1>All Products</h1>
