@@ -20,6 +20,11 @@ function DeleteProduct() {
         getData()
     }, [])
 
+    // useEffect(() => {
+    //     const handleDelete = () => {
+
+    //     }
+    // }, [])
 
     console.log(state)
     if (state.products.length > 0) {
