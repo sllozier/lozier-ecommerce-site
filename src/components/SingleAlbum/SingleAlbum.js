@@ -41,7 +41,7 @@ function SingleAlbum() {
         <h2>{album.title}</h2>
         <h2>${album.price}</h2>
         <h4>{album.stock} left in store</h4>
-        <p>{album.description}</p>
+        <p className='single-album-desc'>{album.description}</p>
         <button onClick={handleClick}>Add to Cart</button>
       </div>
 

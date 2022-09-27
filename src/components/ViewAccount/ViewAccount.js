@@ -5,32 +5,32 @@ import { useSelector } from 'react-redux';
 //import AccountNav from './components/AccountNav/AccountNav';
 
 const ViewAccount = () => {
-   const account = useSelector((state) => state.account);
+    const account = useSelector((state) => state.account);
 
 
     return account.username ? (
-        
-            <div className='account-container'>
-                <div className = 'account-info'>
+
+        <div className='account-container'>
+            <div className='account-info'>
                 <h1>Account Information:</h1>
                 <h3>{`Name: ${account.firstName} ${account.lastName}`}</h3>
                 <h3>{`Username: ${account.username}`}</h3>
                 <h3>{`Email: ${account.email}`}</h3>
-                <h3>{`Address: ${account.address.length ? account.address : 
-                'Please add your address'}`}</h3>
-                </div>
-                <h3>Placeholder for links to orderHistory and editAccount</h3>
-                {account.isAdmin ? (
-                    <Link to='/adminDashboard'>Admin Dashboard</Link>
-                ):(
-                    <></>
-                )}
+                <h3>{`Address: ${account.address.length ? account.address :
+                    'Please add your address'}`}</h3>
             </div>
-):(<div>You must be logged in to view account information</div>
-        
+            <h3>Placeholder for links to orderHistory and editAccount</h3>
+            {account.isAdmin ? (
+                <Link to='/adminDashboard'><button>Admin Dashboard</button></Link>
+            ) : (
+                <></>
+            )}
+        </div>
+    ) : (<div>You must be logged in to view account information</div>
+
 
     );
-   
+
 };
 
 export default ViewAccount

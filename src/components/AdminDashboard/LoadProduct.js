@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../../store/reducers1/adminReducer';
+import { addProduct, addProductThunk } from '../../store/reducers1/adminReducer';
 
 function LoadProduct() {
     const dispatch = useDispatch()
@@ -28,8 +28,8 @@ function LoadProduct() {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        // console.log(title, price, stock, image, description)
-        addProduct({ title, price, stock, image, description })(dispatch)
+        console.log(title, price, stock, image, description)
+        addProductThunk({ title, price, stock, image, description })(dispatch)
     }
     return (
         <>

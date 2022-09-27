@@ -43,8 +43,8 @@ const syncAndSeed = async () => {
     });
 
     const will = await Account.create({
-      username: 'will',
-      password: 'password3',
+      username: 'w',
+      password: 'w',
       email: 'will@gmail.com',
       firstName: 'Will',
       lastName: 'Siddons',

@@ -5,6 +5,7 @@ const Product = require('../db/Product');
 
 router.get('/products', async (req, res, next) => {
   try {
+
     const products = await Product.findAll();
     res.send(products);
   } catch (error) {
@@ -24,8 +25,9 @@ router.get('/products/:id', async (req, res, next) => {
 router.delete('/products/:id', async (req, res, next) => {
   try {
     const deleteProduct = await Product.findByPk(req.params.id);
-    deleteProduct.destroy();
-    res.sendStatus(200);
+    await deleteProduct.destroy();
+    // res.sendStatus(200);
+    res.send(deleteProduct)
   } catch (error) {
     next(error);
   }
