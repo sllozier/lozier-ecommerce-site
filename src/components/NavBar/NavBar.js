@@ -5,7 +5,7 @@ function NavBar() {
     return (
         <>
             <nav>
-                <Link to='/'>
+                {/* <Link to='/'>
                     <h3>Home</h3>
                 </Link>
 
@@ -23,8 +23,23 @@ function NavBar() {
                 </Link>
                 <Link to='cart'>
                     <h3>Cart</h3>
-                </Link>
+                </Link> */}
 
+                <Link to='/products'>
+                    <h3>Home</h3>
+                </Link>
+                <Link to='/about'>
+                    <h3>About</h3>
+                </Link>
+                <Link to='account-nav'>
+                    <h3>Sign In</h3>
+                </Link>
+                <Link to='account-nav/signup'>
+                    <h3>Sign Up</h3>
+                </Link>
+                <Link to='cart'>
+                    <h3>Cart</h3>
+                </Link>
             </nav>
         </>
     )
