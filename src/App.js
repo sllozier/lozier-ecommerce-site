@@ -35,8 +35,8 @@ function App() {
             {/*Routes Here*/}
             <Routes>
                 {/* <Route path='*' element={<NotFoundPage />} /> */} //TODO: We can comment NotFoundPage back in at the end (easier to debug routes without)
-                <Route path='/' element={<LandingPage />} />
-                <Route path='/products' element={<AllAlbums />} />
+                {/* <Route path='/' element={<LandingPage />} /> */}
+                <Route index path='/products' element={<AllAlbums />} />
                 <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account-nav' element={<AccountNav />} />
                 <Route path='/account-nav/login' element={<LogIn/>}/>
