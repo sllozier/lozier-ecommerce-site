@@ -6,7 +6,7 @@ const initialState = {
 
 // action types
 const SET_ALBUMS = 'SET_ALBUMS';
-const SET_ALBUM = 'SET_ALBUM';
+//const SET_ALBUM = 'SET_ALBUM';
 
 // action creators
 const _setAlbums = (albums) => {
@@ -17,13 +17,13 @@ const _setAlbums = (albums) => {
   };
 };
 
-const _setAlbum = (album) => {
-  // single album
-  return {
-    type: SET_ALBUM,
-    album,
-  };
-};
+// const _setAlbum = (album) => {
+//   // single album
+//   return {
+//     type: SET_ALBUM,
+//     album,
+//   };
+// };
 
 // middleware
 export const setAlbumsThunk = () => {
@@ -37,24 +37,24 @@ export const setAlbumsThunk = () => {
   };
 };
 
-export const setAlbumThunk = (id) => {
-  return async (dispatch) => {
-    try {
-      const { data: album } = await axios.get(`/api/products/${id}`);
-      dispatch(_setAlbum(album));
-    } catch (error) {
-      console.log('setAlbumThunk error: ', error);
-    }
-  };
-};
+// export const setAlbumThunk = (id) => {
+//   return async (dispatch) => {
+//     try {
+//       const { data: album } = await axios.get(`/api/products/${id}`);
+//       dispatch(_setAlbum(album));
+//     } catch (error) {
+//       console.log('setAlbumThunk error: ', error);
+//     }
+//   };
+// };
 
 // reducer
-export default function albumReducer(state = initialState, action) {
+export default function albumReducer(state = [], action) {
   switch (action.type) {
     case SET_ALBUMS:
-      return { ...state, albums: action.albums };
-    case SET_ALBUM:
-      return { ...state, album: action.album };
+      return action.albums;
+    // case SET_ALBUM:
+    //   return action.album;
     default:
       return state;
   }

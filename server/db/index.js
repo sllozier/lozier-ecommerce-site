@@ -66,6 +66,7 @@ const syncAndSeed = async () => {
     const order1 = await Order.create({
       isCart: false,
       accountId: 1,
+      purchaseDate: new Date(),
       // cart: [
       //   "product1",
       //   "product2"
@@ -73,17 +74,16 @@ const syncAndSeed = async () => {
     });
 
     const order2 = await Order.create({
-      isCart: false,
       accountId: 2,
     });
 
     const order3 = await Order.create({
       isCart: false,
-      accountId: 3,
+      accountId: 4,
+      purchaseDate: new Date()
     });
 
     const order4 = await Order.create({
-      isCart: false,
       accountId: 4,
     });
 
@@ -152,9 +152,9 @@ const syncAndSeed = async () => {
     Seeding successful!
     Check the 'flintstones_gh' database for updates`,
 
-      Object.keys(Order.prototype),
-      Object.keys(Product.prototype),
-      Object.keys(LineItem.prototype)
+      "Order Special Methods:" , Object.keys(Order.prototype),
+      "Product Special Methods:", Object.keys(Product.prototype),
+      "Order Special Methods:", Object.keys(LineItem.prototype)
       // test
     );
   } catch (err) {
