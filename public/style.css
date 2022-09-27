@@ -5,6 +5,11 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+body {
+  background-color: rgb(255, 247, 235);
+}
+
+/* navbar */
 nav {
   display: flex;
   background-color: slategrey;
@@ -12,14 +17,37 @@ nav {
   align-items: center;
 }
 
-body {
-  background-color: rgb(255, 247, 235);
-}
-
 
 nav h3 {
-  margin: 0 20px;
+  margin: 0 40px;
   color: white;
+  text-decoration: none;
+}
+
+.navBarLogo {
+  height: 20px;
+  filter: invert(100%);
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+
+#logoText {
+  color: rgb(255, 247, 235);;
+  margin-left: 5px;
+}
+
+.navBarShop {
+  background-color: slategrey;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 40px;
+  width: 100%;
 }
 
 /* ids */
