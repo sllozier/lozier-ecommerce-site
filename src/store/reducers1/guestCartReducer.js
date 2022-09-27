@@ -11,8 +11,8 @@ const makeGuestCart = (cartArr) => {
     return {
         type: MAKE_GUESTCART,
         cartArr
-    }
-}
+    };
+};
 
 export const addGuestCart = (guestCart, qty) => {
     return {
