@@ -15,6 +15,7 @@ import LogIn from './components/LogIn/LogIn';
 import AccountNav from './components/AccountNav/AccountNav';
 //import { accountLoginAttempt } from './store/reducers1/authReducer';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import About from "./components/About/About";
 
 import Cart from "./components/Cart/Cart";
 
@@ -44,7 +45,7 @@ function App() {
                 <Route path='/confirmation' element={<ConfirmationPage />} />
                 {/* <Route path='/admin-panel' element={<AuthdUserHome />} /> */}
                 <Route path='/admindashboard' element={<AdminDashboard/>}/>
-                
+                <Route path='/about' element={<About/>}/>
                 <Route path='/cart' element={<Cart />} />
                 
             </Routes>
