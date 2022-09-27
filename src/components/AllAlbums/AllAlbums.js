@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAlbumsThunk } from '../../store/reducers2/albumReducer';
+import { setAlbumsThunk } from '../../store/reducers1/albumReducer';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 function AllAlbums() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const allAlbums = useSelector((state) => state.albums.albums);
+  const allAlbums = useSelector((state) => state.albums);
 
   // dispatch thunk to get all albums
   useEffect(() => {

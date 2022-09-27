@@ -6,17 +6,17 @@ const Order = db.define('order', {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
   },
-  totalPrice: {
-    type: Sequelize.FLOAT,
-    defaultValue: 0,
-    validate: {
-      min: 0,
-    },
+  orderTotal: {
+    type: Sequelize.DECIMAL(10,2),
+    defaultValue: 0.00
   },
   UUID: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
   },
+  purchaseDate: {
+    type: Sequelize.DATE,
+  }
 
 });
 
