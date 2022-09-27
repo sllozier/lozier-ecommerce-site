@@ -14,11 +14,6 @@ function DeleteProduct() {
         getData()
     }, [])
 
-    // const handleDelete = (productId) => {
-    //     dispatch(deleteProductThunk(productId))
-    // }
-
-
     useEffect(() => {
         console.log('running')
         handleDelete(productId)
