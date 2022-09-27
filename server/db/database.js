@@ -1,14 +1,15 @@
 const Sequelize = require('sequelize');
+const pkg = require('../../package.json');
 
 
-const databaseName = 'flintstones_gh';
+const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '');
 
 const config = {
   logging: false
 };
 
-if(process.env.QUIET) {
-  config.logging = false;
+if(process.env.LOGGING === 'true') {
+  delete config.logging
 };
 
 //saw heroku postgres database issue and this resolves it
