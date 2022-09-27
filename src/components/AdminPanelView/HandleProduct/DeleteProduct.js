@@ -20,6 +20,7 @@ function DeleteProduct() {
         getData()
     }, [])
 
+
     console.log(state)
     if (state.products.length > 0) {
         console.log(state.products[0].image)
