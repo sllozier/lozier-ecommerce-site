@@ -3,7 +3,7 @@ const db = require('./database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const JWT = process.env.ACCESS_TOKEN_SECRET;
+const JWT = process.env.TOKEN;
 
 const SALT_ROUNDS = 5;
 

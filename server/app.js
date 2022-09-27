@@ -31,7 +31,7 @@ app.get('/', (req, res, next) => {
 });
 
 app.use((req, res, next) => {
-    if(path.extname(req.path).length > 0) {
+    if(path.extname(req.path).length) {
         res.status(404).end()
     }else {
         next()
