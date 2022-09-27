@@ -109,35 +109,67 @@ const syncAndSeed = async () => {
 
     // Product
     const product1 = await Product.create({
-      title: 'product1',
+      title: 'Flower Boy - Tyler the Creator',
       price: 99.99,
       stock: 10,
       image: 'https://i.imgur.com/MZAcECn.png',
-      description: 'lorem ipsum some text for product1...',
+      description: 'The more important takeaway from the two songs, and by extension, Scum F*** Flower Boy as a whole, is that the Odd Future ex-leader delivers the most introspective and honest album of his career. Thats not to say his previous efforts lacked true self reflection.But, on Flower Boy, the bars come not from a place of angst & strife; Tyler has grown up, and he waxes poetic about loneliness, success, sexuality, love, and etc.without choosing to take on delirious, violent alter - egos.',
     });
 
     const product2 = await Product.create({
-      title: 'product2',
+      title: 'The Psychedelic Sounds - The 13th Floor Elevators',
       price: 12.50,
       stock: 15,
       image: 'https://i.imgur.com/GI9lCcj.png',
-      description: 'lorem ipsum some text for product2...',
+      description: 'Colored vinyl 2LP reissue of The 13th Floor Elevators incendiary debut album from 1966 featuring newly remastered mono mixes plus the original stereo mix in the bands intended running order. Previously only available as part of the award-winning Music Of The Spheres boxset, this is the first reissue in over four decades was sourced from original tapes for the stereo version.',
     });
 
     const product3 = await Product.create({
-      title: 'product3',
+      title: 'The Number Of The Beast - Iron Maiden',
+      price: 10.99,
+      stock: 25,
+      image: 'https://i.imgur.com/hQw5iCB.png',
+      description: 'TENTH STUDIO ALBUM FROM EAST LONDONS IRON MAIDEN.The X Factor was originally recorded between 1994 and 1995, and was the first to feature Blaze Bayley on vocals.Eleven tracks in all.Released by Sanctuary Records on 180 gram double vinyl housed in a gatefold sleeve with a fold out insert.',
+    });
+
+    const product4 = await Product.create({
+      title: 'Acid Rap - Chance the Rapper',
+      price: 5.00,
+      stock: 10,
+      image: 'https://i.imgur.com/0H3SsJa.png',
+      description: 'This album is great. It emanates a positive vibe and is what introduced a lot of people to Chance the Rapper. On this album, he is quite unrestrained. He has weird adlibs (igh) which I somehow got used to. Some people say that he has an annoying voice but I think his voice goes really well with the instrumentals on here. Song like: Cocoa Butter Kisses, Pusha Man, Juice and Favourite Song are highlights on this album for me. ',
+    });
+
+    const product5 = await Product.create({
+      title: 'Acid Rap - Chance the Rapper',
+      price: 5.00,
+      stock: 10,
+      image: 'https://i.imgur.com/0H3SsJa.png',
+      description: 'lorem ipsum some text for product4...',
+    });
+
+    const product6 = await Product.create({
+      title: 'The Number Of The Beast - Iron Maiden',
       price: 10.99,
       stock: 25,
       image: 'https://i.imgur.com/hQw5iCB.png',
       description: 'lorem ipsum some text for product3...',
     });
 
-    const product4 = await Product.create({
-      title: 'product4',
-      price: 5.00,
+    const product7 = await Product.create({
+      title: 'The Psychedelic Sounds - The 13th Floor Elevators',
+      price: 12.50,
+      stock: 15,
+      image: 'https://i.imgur.com/GI9lCcj.png',
+      description: 'lorem ipsum some text for product2...',
+    });
+
+    const product8 = await Product.create({
+      title: 'Flower Boy - Tyler the Creator',
+      price: 99.99,
       stock: 10,
-      image: 'https://i.imgur.com/0H3SsJa.png',
-      description: 'lorem ipsum some text for product4...',
+      image: 'https://i.imgur.com/MZAcECn.png',
+      description: 'lorem ipsum some text for product1...',
     });
 
     // seeding successful message
