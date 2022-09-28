@@ -68,8 +68,6 @@ export const createAccount = (authInfo) => {
 }
 
 export const logoutAccount = () => {
-    
-        console.log('IS THIS WORKING?')
         window.localStorage.removeItem('token');
         history.push('/');
         return{
