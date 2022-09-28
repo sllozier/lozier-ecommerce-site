@@ -16,24 +16,25 @@ const Cart = () => {
     if (accountId === 0 && UUID === 'empty' && localStorage.UUID !== undefined) {
         UUID = localStorage.getItem('UUID');
     }
-    const lineItems = cart.products || [];
+    //const lineItems = cart.products || [];
 
     useEffect(() => {
         dispatch(fetchCart(accountId, UUID));
     }, [accountId]);
 
+    console.log('CART COMP PROD', cart.products)
     return (
         <div>
-            {lineItems ? (
+            {cart?.products ? (
                 <div>
 
                     <div className='row-lineItem'>
                         <div className='column'>
-                            {lineItems.map((item) => (
+                            {cart?.products?.map((item) => (
                                 <div key={item.id} className='row-item'>
                                     <div className='column'>
                                         <Link to={`/products/${item.id}`}>
-                                            <img className='album-img' src={item['imageUrl']} />
+                                            <img className='album-img' src={item['image']} />
                                         </Link>
                                     </div>
                                     <div className='column-heading'>
@@ -42,7 +43,7 @@ const Cart = () => {
                                                 {item['title']}
                                             </div>{' '}
                                             <div className='column'>
-                                                {$} {item['price']}
+                                                $ {item['price']}
                                             </div>
                                         </div>
                                         <div className='row'>
@@ -53,7 +54,7 @@ const Cart = () => {
                                                 <button
                                                     className='quantity-button-decrement'
                                                     onClick={() => {
-                                                        if (item.lineItem.quantity > 1) {
+                                                        if (item.lineitem.quantity > 1) {
                                                             dispatch(updateQuantities(cart.id, UUID, accountId, item.id, 'decrement'));
                                                         } else {
                                                             dispatch(removeItem(cart.id, item.id, accountId, UUID));
@@ -61,7 +62,7 @@ const Cart = () => {
                                                     }}>
                                                     -
                                                 </button>
-                                                <span>Quantity: {item.lineItem.quantity}</span>
+                                                <span>Quantity: {item.lineitem.quantity}</span>
                                                 <button className='quantity-button-increment' onClick={() =>
                                                     dispatch(updateQuantities(cart.id, UUID, accountId, item.id, 'increment'))
                                                 }>
@@ -83,7 +84,7 @@ const Cart = () => {
                             <h3 className='column'>Shipping: $5.00</h3>
                             <h3 className='column'>Tax: 8.75%</h3>
                             <h3 className='column'>Total: {'$'} {((cart.orderTotal * 1.0875) + 5).toFixed(2)}</h3>
-
+                                               
                             {auth.id ? (
                                 <div className='row'>
                                     <Link to='/confirmation'>

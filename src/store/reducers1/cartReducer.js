@@ -37,6 +37,7 @@ export const fetchCart = (accountId, UUID) => {
     return async(dispatch) => {
         try{
             const { data } = await axios.get(`/api/cart/${accountId}/${UUID}`);
+            console.log('FETCH CART', data);
             dispatch(getCart(data));
         }catch(error){
             console.log('FETCH CART THUNK ERROR ', error);
