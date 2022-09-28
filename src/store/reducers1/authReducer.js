@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  history from '../../utils/history';
+import history from '../../utils/history';
 
 
 // const ADD_ACCOUNT = 'ADD_ACCOUNT';
@@ -10,8 +10,8 @@ import  history from '../../utils/history';
 const SET_AUTH = 'SET_AUTH';
 
 
-const setAuth = (auth) =>{
-    return{
+const setAuth = (auth) => {
+    return {
         type: SET_AUTH,
         auth,
     }
@@ -21,8 +21,8 @@ const setAuth = (auth) =>{
 export const fetchAccountData = () => {
     return async (dispatch) => {
         try {
-           const token = window.localStorage.getItem('token');
-           console.log('FETCH TOKEN', token)
+            const token = window.localStorage.getItem('token');
+            console.log('FETCH TOKEN', token)
             if (token) {
                 const res = await axios.get('/auth', {
                     headers: {
@@ -41,14 +41,14 @@ export const fetchAccountData = () => {
 
 
 export const attemptLogin = (authInfo) => {
-    return async(dispatch) => {
-        try{
+    return async (dispatch) => {
+        try {
             const res = await axios.post('/auth/login', authInfo);
             console.log('THUNK DATA', res.data)
             window.localStorage.setItem('token', res.data);
             dispatch(fetchAccountData());
             history.push('/');
-        }catch(error){
+        } catch (error) {
             console.log('ATTEMPT PASSWORD THUNK ERROR ', error);
         }
     }
@@ -67,14 +67,14 @@ export const createAccount = (authInfo) => {
 }
 
 export const logoutAccount = () => {
-    return(dispatch) => {
+    return (dispatch) => {
         window.localStorage.removeItem('token');
         history.push('/');
-        return{
+        return {
             type: SET_AUTH,
             auth: {}
         }
-    };   
+    };
 };
 
 // export const updateThisAccount = (accountInfo, accountId) => {
@@ -95,10 +95,10 @@ export const logoutAccount = () => {
 //     }
 // }
 
-export default function  authReducer (state = {}, action) {
+export default function authReducer(state = {}, action) {
     switch (action.type) {
-       case SET_AUTH:
-        return action.auth;
+        case SET_AUTH:
+            return action.auth;
         default:
             return state;
     }
