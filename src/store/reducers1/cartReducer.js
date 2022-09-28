@@ -20,7 +20,7 @@ export const clearCart = () => {
 export const createCart = (productId, accountId, UUID) => {
     return async(dispatch) => {
         try{
-            console.log('UUID', UUID, 'ACCT ID', accountId, 'Item Id', productId);
+            console.log('PRODUCTID', productId, 'ACCT ID', accountId, 'UUID', UUID);
             const {data}  = await axios.post(`/api/cart`, { productId, accountId, UUID });
             console.log('CREATE CART DATA', data)
             if(accountId === 0){

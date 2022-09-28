@@ -8,7 +8,7 @@ const Cart = () => {
 
     const auth = useSelector((state) => state.account);
     const cart = useSelector((state) => state.cart);
-    console.log('AUTH', auth);
+    console.log('WHO IS AUTH?', auth.firstName);
     console.log('CART', cart);
 
     let UUID = cart.UUID || 'empty';
@@ -23,6 +23,8 @@ const Cart = () => {
     }, [accountId]);
 
     console.log('CART COMP PROD', cart.products)
+    console.log('CART UUID', UUID);
+    console.log('CART ACCT', accountId);
     return (
         <div>
             {cart?.products ? (
