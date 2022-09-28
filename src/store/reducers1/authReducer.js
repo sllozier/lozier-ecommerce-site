@@ -68,13 +68,11 @@ export const createAccount = (authInfo) => {
 }
 
 export const logoutAccount = () => {
-    return (dispatch) => {
-        window.localStorage.removeItem('token');
-        history.push('/');
-        return {
-            type: SET_AUTH,
-            auth: {}
-        }
+    window.localStorage.removeItem('token');
+    history.push('/');
+    return {
+        type: SET_AUTH,
+        auth: {},
     };
 };
 

@@ -48,7 +48,7 @@ function ModifyUsers() {
     return (
         <>
             <div className='edit-container'>
-                <h2>Edit Product</h2>
+                <h2>Edit Account</h2>
                 <form onSubmit={handleSubmit}>
                     <p>Account Id</p>
                     <input onChange={handleId} type='text' />
@@ -64,7 +64,7 @@ function ModifyUsers() {
                     <input onChange={handleAdmin} type='text' />
                     <p>Address</p>
                     <input onChange={handleAddress} />
-                    <button type='submit'>Edit User</button>
+                    <button type='submit'>Edit Account</button>
                 </form>
             </div>
         </>
