@@ -30,6 +30,7 @@ console.log('SINGLE ALBUM', album);
 
   console.log('SING ALBUM ITEMID', productId);
   
+  
   const accountId = auth.id || 0;
   let UUID = cart.UUID || 'empty';
   if(accountId === 0 && UUID === 'empty' && localStorage.UUID !== undefined){
@@ -56,7 +57,8 @@ console.log('SINGLE ALBUM', album);
         <button onClick={() => {
           if(productId !== Infinity){
             dispatch(createCart(productId, accountId, UUID));
-          }
+            setProductId(Infinity)
+          } 
         }}>Add to Cart</button>
       </div>
 
