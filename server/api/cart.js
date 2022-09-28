@@ -65,7 +65,7 @@ router.put('/cart', async (req, res, next) => {
         // console.log('CART API PRODUCT PRICE?', product.price)
         // console.log('UPDATE CART BODY?', req.body)
         const total = (product.price * req.body.num).toFixed(2);
-        if(req.body.op = 'increment'){
+        if(req.body.op === 'increment'){
             await LineItem.increment('quantity', {
                 where: {
                     orderId: req.body.cartId,
