@@ -5,13 +5,12 @@ const { Order, Product, LineItem } = require('../db');
 //this should create a new cart.
 router.post('/cart', async (req, res, next) => {
     try {
-        console.log('HAS UUID?', req.body.UUID)
         if (req.body.UUID === 'empty' || req.body.accountId === 0) {
             let cart = await Order.create();
 
             const product = await Product.findByPk(req.body.productId);
             const doesExist = cart.hasProduct(product);
-            console.log('CART1', doesExist);
+            
             if (!doesExist) {
                 await cart.addProduct(product)
                 await cart.save()
@@ -23,10 +22,10 @@ router.post('/cart', async (req, res, next) => {
             let cart = await Order.create({
                 accountId: req.body.accountId
             });
-            console.log('NEW CART API', req.body.productId)
+            
             const product = await Product.findByPk(req.body.productId);
             const doesExist = cart.hasProduct(product);
-            console.log('CART2', doesExist);
+            
             if (!doesExist) {
                 await cart.addProduct(product)
                 await cart.save()
@@ -34,17 +33,17 @@ router.post('/cart', async (req, res, next) => {
             const response = { id, UUID } = cart
             res.send(response)
         } else {
-            console.log('CART STUFFS', req.body.UUID)
+            
             let cart = await Order.findOne({
                 where: {
                     isCart: true,
                     UUID: req.body.UUID,
                 },
             });
-            console.log('CART?', cart)
+           
             const product = await Product.findByPk(req.body.productId)
             const doesExist = cart.hasProduct(product)
-            console.log('CART3', doesExist);
+            
             if (!doesExist) {
                 await cart.addProduct(product)
                 await cart.save()

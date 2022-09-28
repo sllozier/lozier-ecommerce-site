@@ -68,14 +68,22 @@ export const createAccount = (authInfo) => {
 }
 
 export const logoutAccount = () => {
+<<<<<<< HEAD
+=======
     return (dispatch) => {
+>>>>>>> main
         window.localStorage.removeItem('token');
         history.push('/');
         return {
             type: SET_AUTH,
+<<<<<<< HEAD
+            auth: {},
+        };   
+=======
             auth: {}
         }
     };
+>>>>>>> main
 };
 
 // export const updateThisAccount = (accountInfo, accountId) => {
