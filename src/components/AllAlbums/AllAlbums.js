@@ -44,7 +44,7 @@ function AllAlbums() {
                   <p>{album.stock} left in store</p>
                 </div>
               </Link>
-              <button>Add to Cart</button>
+              {/* <button>Add to Cart</button> */}
             </div>
           ))}
         </div>
