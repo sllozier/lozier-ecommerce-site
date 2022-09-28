@@ -34,7 +34,7 @@ function NavBar() {
                 </Link> */}
 
                     <Link to='/products' style={{ textDecoration: 'none' }}>
-                        <h3>Albums</h3>
+                        <h3>Shop Albums</h3>
                     </Link>
                     <Link to='/about' style={{ textDecoration: 'none' }}>
                         <h3>About</h3>

@@ -11,7 +11,7 @@ function Footer() {
             </div>
             <div>
                 <h3>a Better Music Store since 1998</h3>
-                <p className='footer-big-text'>Turntable Lab has been a trusted store for DJs + Audio Heads + Music Fans for over 20 years. Read more about our story.</p>
+                <p className='footer-big-text'>Flintstones Collective has been a trusted store for DJs + Audio Heads + Music Fans for over 20 years. Read more about our story.</p>
             </div>
             <div>
                 <h3>Customer Service</h3>
