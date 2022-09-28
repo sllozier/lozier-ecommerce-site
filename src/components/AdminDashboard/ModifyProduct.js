@@ -140,7 +140,7 @@ function ModifyProduct() {
                     <input onChange={handleImage} type='text' />
                     <p>Description</p>
                     <textarea onChange={handleDescription}></textarea>
-                    <button type='submit'>Add Product</button>
+                    <button type='submit'>Edit Product</button>
                 </form>
             </div>
         </>

@@ -1,22 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SignInOut from './SignInOut';
 
 function NavBar() {
-    return (
-        <>
-            <div className='nav-container'>
-                <div>
-                    {/* <Link to='/products' style={{ textDecoration: 'none' }}> */}
-                    <h1>Flintstones Album Collective</h1>
-                    <img src="../../../vinyl_logo.png" className="navBarLogo" alt="vinyl icon image" />
+  return (
+    <>
+      <div className="nav-container">
+        <div>
+          {/* <Link to='/products' style={{ textDecoration: 'none' }}> */}
+          <h1>Flintstones Album Collective</h1>
+          <img
+            src="https://pngimg.com/uploads/vinyl/vinyl_PNG59.png"
+            // "../../../vinyl_logo.png"
+            className="navBarLogo"
+            alt="vinyl icon image"
+          />
 
-                    {/* </Link> */}
-                </div>
-                <nav>
-                    {/* <Link to='/'>
+          {/* </Link> */}
+        </div>
+        <nav>
+          {/* <Link to='/'>
                     <h3>Home</h3>
                 </Link>
-
                 <Link to='/products'>
                     <h3>Products(AllAlbums)</h3>
                 </Link>
@@ -33,27 +38,26 @@ function NavBar() {
                     <h3>Cart</h3>
                 </Link> */}
 
-                    <Link to='/products' style={{ textDecoration: 'none' }}>
-                        <h3>Shop Albums</h3>
-                    </Link>
-                    <Link to='/about' style={{ textDecoration: 'none' }}>
-                        <h3>About</h3>
-                    </Link>
-                    <Link to='account-nav' style={{ textDecoration: 'none' }}>
-                        <h3>Sign In</h3>
-                    </Link>
-                    <Link to='account-nav/signup' style={{ textDecoration: 'none' }}>
-                        <h3>Sign Up</h3>
-                    </Link>
+          <Link to="/products" style={{ textDecoration: 'none' }}>
+            <h3>Shop Albums</h3>
+          </Link>
+          <Link to="/about" style={{ textDecoration: 'none' }}>
+            <h3>About</h3>
+          </Link>
+          <Link to="account-nav/signup" style={{ textDecoration: 'none' }}>
+            <h3>Sign Up</h3>
+          </Link>
+          
+          <SignInOut />
 
-                    <Link to='cart' style={{ textDecoration: 'none' }}>
-                        {/* <img className="navBarLogo" src="cart_logo.png" alt="" /> */}
-                        <h3 id="logoText">Cart</h3>
-                    </Link>
-                </nav>
-            </div>
-        </>
-    )
+          <Link to="cart" style={{ textDecoration: 'none' }}>
+            {/* <img className="navBarLogo" src="cart_logo.png" alt="" /> */}
+            <h3 id="logoText">Cart</h3>
+          </Link>
+        </nav>
+      </div>
+    </>
+  );
 }
 
-export default NavBar
+export default NavBar;
