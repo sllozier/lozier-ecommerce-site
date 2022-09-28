@@ -7,6 +7,7 @@ function AllAlbums() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const allAlbums = useSelector((state) => state.albums);
+  AOS.init()
 
   // dispatch thunk to get all albums
   useEffect(() => {
@@ -34,10 +35,11 @@ function AllAlbums() {
               <Link id='link-style' to={'/products/' + album.id}>
                 <img
                   className="albumArt"
+                  data-aos="flip-up"
+                  delay="2000"
                   src={album.image}
                   alt=""
                 />
-                {/* TODO: move all styling to css file */}
                 <div>
                   <h4>{album.title}</h4>
                   <p >${album.price}</p>
