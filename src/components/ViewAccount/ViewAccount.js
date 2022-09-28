@@ -19,7 +19,6 @@ const ViewAccount = () => {
                 <h3>{`Address: ${account.address ? account.address :
                     'Please add your address'}`}</h3>
             </div>
-            <h3>Placeholder for links to orderHistory and editAccount</h3>
             {account.isAdmin ? (
                 <Link to='/adminDashboard'><button>Admin Dashboard</button></Link>
             ) : (

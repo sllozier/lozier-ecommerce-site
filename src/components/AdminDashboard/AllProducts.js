@@ -21,9 +21,9 @@ function AllProducts() {
                 {editTorf ? <ModifyProduct /> : <></>}
                 <button onClick={() => setListTorf(!listTorf)}>Product List</button>
                 {listTorf ? <ProductList /> : <></>}
-                <button onClick={() => setUserEditTorf(!userEditTorf)}>Edit Users</button>
+                <button onClick={() => setUserEditTorf(!userEditTorf)}>Edit An Account</button>
                 {userEditTorf ? <ModifyUsers /> : <></>}
-                <button onClick={() => setUserListTorf(!userListTorf)}>User List</button>
+                <button onClick={() => setUserListTorf(!userListTorf)}>Account List</button>
                 {userListTorf ? <AllUsers /> : <></>}
 
             </div>
