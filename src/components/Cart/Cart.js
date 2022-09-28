@@ -13,7 +13,7 @@ const Cart = () => {
 
     let UUID = cart.UUID || 'empty';
     const accountId = auth.id || 0;
-    if(accountId === 0 && UUID === 'empty' && localStorage.UUID !== undefined){
+    if (accountId === 0 && UUID === 'empty' && localStorage.UUID !== undefined) {
         UUID = localStorage.getItem('UUID');
     }
     const lineItems = cart.products || [];
@@ -21,21 +21,19 @@ const Cart = () => {
     useEffect(() => {
         dispatch(fetchCart(accountId, UUID));
     }, [accountId]);
-    
+
     return (
         <div>
             {lineItems ? (
                 <div>
-                    <div className='row'>
-                        <h3>Cart or Bag or Whatever</h3>
-                    </div>
+
                     <div className='row-lineItem'>
                         <div className='column'>
-                            {lineItems.map((item) =>(
+                            {lineItems.map((item) => (
                                 <div key={item.id} className='row-item'>
                                     <div className='column'>
                                         <Link to={`/products/${item.id}`}>
-                                            <img className='album-img' src={item['imageUrl']}/>
+                                            <img className='album-img' src={item['imageUrl']} />
                                         </Link>
                                     </div>
                                     <div className='column-heading'>
@@ -48,30 +46,30 @@ const Cart = () => {
                                             </div>
                                         </div>
                                         <div className='row'>
-                                         <p>Description: {item.description}</p>   
+                                            <p>Description: {item.description}</p>
                                         </div>
                                         <div className='row'>
                                             <div className='column'>
                                                 <button
-                                                className='quantity-button-decrement'
-                                                onClick={() => {
-                                                    if(item.lineItem.quantity > 1){
-                                                        dispatch(updateQuantities(cart.id, UUID, accountId, item.id, 'decrement'));
-                                                    }else{
-                                                        dispatch(removeItem(cart.id, item.id, accountId, UUID));
-                                                    }
-                                                }}>
+                                                    className='quantity-button-decrement'
+                                                    onClick={() => {
+                                                        if (item.lineItem.quantity > 1) {
+                                                            dispatch(updateQuantities(cart.id, UUID, accountId, item.id, 'decrement'));
+                                                        } else {
+                                                            dispatch(removeItem(cart.id, item.id, accountId, UUID));
+                                                        }
+                                                    }}>
                                                     -
                                                 </button>
                                                 <span>Quantity: {item.lineItem.quantity}</span>
                                                 <button className='quantity-button-increment' onClick={() =>
-                                                dispatch(updateQuantities(cart.id, UUID, accountId, item.id, 'increment'))
-                                            }>
-                                                +
-                                            </button>
+                                                    dispatch(updateQuantities(cart.id, UUID, accountId, item.id, 'increment'))
+                                                }>
+                                                    +
+                                                </button>
                                             </div>
                                             <div className='column'>
-                                                <i className='trash-can' onClick={() => dispatch(removeItem(cart.id, item.id, accountId, UUID))}>                                          
+                                                <i className='trash-can' onClick={() => dispatch(removeItem(cart.id, item.id, accountId, UUID))}>
                                                 </i>
                                             </div>
                                         </div>
@@ -79,35 +77,24 @@ const Cart = () => {
                                 </div>
                             ))}
                         </div>
-                        <div className='column-summary'>
+                        <div className='cart-container'>
                             <h1>Cart or Order Summary?</h1>
-                            <div className='row'>
-                                <div className='column'>Subtotal:</div>
-                                <div className='column'>{'$'} {cart.orderTotal}</div>
-                            </div>
-                            <div className='row'>
-                            <div className='column'>Shipping:</div>
-                            <div className='column'>$5.00</div>
-                            </div>
-                            <div className='row'>
-                            <div className='column'>Tax:</div>
-                            <div className='column'>8.75%</div>
-                            </div>
-                            <div className='row-total'>
-                            <div className='column'>Total:</div>
-                            <div className='column'>{'$'} {cart.orderTotal + 5 + (cart.orderTotal + 5) * 0.0875}</div>
-                            </div>
+                            <h3 className='column'>Subtotal: $ {cart.orderTotal}</h3>
+                            <h3 className='column'>Shipping: $5.00</h3>
+                            <h3 className='column'>Tax: 8.75%</h3>
+                            <h3 className='column'>Total: {'$'} {((cart.orderTotal * 1.0875) + 5).toFixed(2)}</h3>
+
                             {auth.id ? (
                                 <div className='row'>
                                     <Link to='/confirmation'>
-                                    <button className='sign-up-button' onClick={() => {
-                                        if(accountId !== 0){
-                                            dispatch(checkout(UUID));
-                                        }
-                                    }}>Checkout</button>
+                                        <button className='sign-up-button' onClick={() => {
+                                            if (accountId !== 0) {
+                                                dispatch(checkout(UUID));
+                                            }
+                                        }}>Checkout</button>
                                     </Link>
                                 </div>
-                            ):(
+                            ) : (
                                 <div className='row'>
                                     <Link to='/account-nav/signup'>
                                         <button className='signup-button'>Sign Up</button>
@@ -117,7 +104,7 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>
-            ): (
+            ) : (
                 <div >
                     <h3>Your Cart is Empty!!</h3>
                 </div>
