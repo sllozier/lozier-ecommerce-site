@@ -4,7 +4,7 @@ import App from "./App";
 import { Provider } from 'react-redux';
 import { store } from './store';
 import history from './utils/history';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const root = createRoot(document.getElementById('root'));
@@ -16,5 +16,5 @@ root.render(
             <App />
         </Provider>
     </BrowserRouter>
-
 );
+

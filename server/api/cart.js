@@ -5,7 +5,8 @@ const { Order, Product, LineItem } = require('../db');
 //this should create a new cart.
 router.post('/cart', async (req, res, next) => {
     try {
-        if (req.body.UUID === 'empty' && req.body.accountId === 0) {
+        console.log('HAS UUID?', req.body.UUID)
+        if (req.body.UUID === 'empty' || req.body.accountId === 0) {
             let cart = await Order.create();
 
             const product = await Product.findByPk(req.body.productId);
@@ -33,7 +34,7 @@ router.post('/cart', async (req, res, next) => {
             const response = { id, UUID } = cart
             res.send(response)
         } else {
-            console.log('CART STUFFS', req.body.isCart, req.body.UUID)
+            console.log('CART STUFFS', req.body.UUID)
             let cart = await Order.findOne({
                 where: {
                     isCart: true,
