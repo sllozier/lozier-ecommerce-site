@@ -16,7 +16,7 @@ const ViewAccount = () => {
                 <h3>{`Name: ${account.firstName} ${account.lastName}`}</h3>
                 <h3>{`Username: ${account.username}`}</h3>
                 <h3>{`Email: ${account.email}`}</h3>
-                <h3>{`Address: ${account.address.length ? account.address :
+                <h3>{`Address: ${account.address ? account.address :
                     'Please add your address'}`}</h3>
             </div>
             <h3>Placeholder for links to orderHistory and editAccount</h3>

@@ -23,10 +23,10 @@ function Footer() {
             </div>
             <div>
                 <h3>Follow Us</h3>
-                <i class="fa fa-facebook"></i>
-                <i class="fa fa-twitter"></i>
-                <i class="fa fa-instagram"></i>
-                <i class="fa fa-envelope"></i>
+                <i className="fa fa-facebook"></i>
+                <i className="fa fa-twitter"></i>
+                <i className="fa fa-instagram"></i>
+                <i className="fa fa-envelope"></i>
             </div>
         </div>
     )

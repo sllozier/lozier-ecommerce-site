@@ -12,7 +12,7 @@ const ConfirmationPage = () => {
         <div className='confirmation-page'>
             <h1>Thank you for your order! We hope you enjoy listening!</h1>
             <h3>{`Order Number: #${orderNumber}`}</h3>
-            <Link to='/'>Back to Homepage</Link>
+            <Link to='/products'>Back to Homepage</Link>
         </div>
     )
 };
