@@ -39,15 +39,15 @@ function App() {
                 <Route path='/products' element={<AllAlbums />} />
                 <Route path='/products/:id' element={<SingleAlbum />} />
                 <Route path='/account-nav' element={<AccountNav />} />
-                <Route path='/account-nav/login' element={<LogIn/>}/>
-                <Route path='/account-nav/signup' element={<SignUp />}/>
-                <Route path='/account-nav/account' element={<ViewAccount />}/>
+                <Route path='/account-nav/login' element={<LogIn />} />
+                <Route path='/account-nav/signup' element={<SignUp />} />
+                <Route path='/account-nav/account' element={<ViewAccount />} />
                 <Route path='/confirmation' element={<ConfirmationPage />} />
                 {/* <Route path='/admin-panel' element={<AuthdUserHome />} /> */}
-                <Route path='/admindashboard' element={<AdminDashboard/>}/>
-                <Route path='/about' element={<About/>}/>
+                <Route path='/admindashboard' element={<AdminDashboard />} />
+                <Route path='/about' element={<About />} />
                 <Route path='/cart' element={<Cart />} />
-                
+
             </Routes>
         </div>
 
