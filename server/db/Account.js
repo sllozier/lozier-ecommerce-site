@@ -55,19 +55,7 @@ const Account = db.define('account', {
   // }
 });
 
-// // TODO: include additional helper functions where needed (placeholders for now)
-// Account.prototype.getCart = async function () {
-//   return
-// };
-// Account.prototype.addToCart = async function () {
-//   return
-// };
-// Account.prototype.removeFromCart = async function () {
-//   return
-// };
-// Account.prototype.createOrder = async function () {
-//   return
-// };
+
 
 //AUTH
 

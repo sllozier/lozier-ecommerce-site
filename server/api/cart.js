@@ -7,15 +7,15 @@ router.post('/cart', async (req, res, next) => {
     try {
         if (req.body.UUID === 'empty' || req.body.accountId === 0) {
             let cart = await Order.create();
-
             const product = await Product.findByPk(req.body.productId);
-            const doesExist = cart.hasProduct(product);
-            
+            const doesExist = await cart.hasProduct(product);
             if (!doesExist) {
                 await cart.addProduct(product)
                 await cart.save()
             }
+            
             const response = { id, UUID } = cart
+            
             res.send(response)
         } else if(req.body.UUID === 'empty') {
 
@@ -24,7 +24,7 @@ router.post('/cart', async (req, res, next) => {
             });
             
             const product = await Product.findByPk(req.body.productId);
-            const doesExist = cart.hasProduct(product);
+            const doesExist = await cart.hasProduct(product);
             
             if (!doesExist) {
                 await cart.addProduct(product)
@@ -42,7 +42,7 @@ router.post('/cart', async (req, res, next) => {
             });
            
             const product = await Product.findByPk(req.body.productId)
-            const doesExist = cart.hasProduct(product)
+            const doesExist = await cart.hasProduct(product)
             
             if (!doesExist) {
                 await cart.addProduct(product)
@@ -62,8 +62,8 @@ router.put('/cart', async (req, res, next) => {
     try {
         const product = await Product.findByPk(req.body.productId);
         const cart = await Order.findOne({where: {UUID: req.body.UUID}});
-        console.log('CART API PRODUCT PRICE?', product.price)
-        console.log('UPDATE CART BODY?', req.body)
+        // console.log('CART API PRODUCT PRICE?', product.price)
+        // console.log('UPDATE CART BODY?', req.body)
         const total = (product.price * req.body.num).toFixed(2);
         if(req.body.op = 'increment'){
             await LineItem.increment('quantity', {
@@ -111,7 +111,7 @@ router.put('/cart', async (req, res, next) => {
                 }
             })
         }
-        console.log('CHANGE QTY CART', cart)
+        //console.log('CHANGE QTY CART', cart)
         res.send(cart)
     } catch (error) {
         next(error)
@@ -147,10 +147,22 @@ router.get('/cart/:accountId/:UUID', async(req, res, next) => {
                     isCart: true,
                 },
                 include: {
-                    model: Product
+                    model: Product,
+                    attributes: ['id', 'title', 'price', 'stock', 'description', 'image'],
+                },
+            });
+        }else if(req.params.accountId !== 0){
+            cart = await Order.findOne({
+                where: {
+                    UUID: req.params.UUID,
+                    isCart: true,
+                },
+                include: {
+                    model: Product,
+                    attributes: ['id', 'title', 'price', 'stock', 'description', 'image'],
                 },
             })
-        }if (cart === false){
+        }if(cart === false){
             res.status(200)
         }
         res.send(cart);
