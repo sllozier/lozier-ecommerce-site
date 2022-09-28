@@ -8,7 +8,7 @@ function NavBar() {
                 <div>
                     {/* <Link to='/products' style={{ textDecoration: 'none' }}> */}
                     <h1>Flintstones Album Collective</h1>
-                    <img src="vinyl_logo.png" className="navBarLogo" alt="vinyl icon image" />
+                    <img src="../../../vinyl_logo.png" className="navBarLogo" alt="vinyl icon image" />
 
                     {/* </Link> */}
                 </div>
@@ -34,7 +34,7 @@ function NavBar() {
                 </Link> */}
 
                     <Link to='/products' style={{ textDecoration: 'none' }}>
-                        <h3>Albums</h3>
+                        <h3>Shop Albums</h3>
                     </Link>
                     <Link to='/about' style={{ textDecoration: 'none' }}>
                         <h3>About</h3>
