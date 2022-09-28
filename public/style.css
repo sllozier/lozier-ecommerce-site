@@ -356,7 +356,7 @@ nav h3:hover {
 .signup-container form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding: 10px 40px;
 }
 
@@ -374,10 +374,10 @@ nav h3:hover {
 .signup-container form>button {
   background-color: white;
   border: 3px solid lightblue;
-  width: 100px;
+  /* width: 100px; */
   box-shadow: 5px 5px lightblue;
   height: 40px;
-  margin: 10px;
+  /* margin: 10px; */
   color: lightblue;
   font-size: 0.7em;
   font-weight: 600;
@@ -398,8 +398,8 @@ nav h3:hover {
 }
 
 .landing-container>h1 {
-  color: slateblue;
-  border: 6px solid slateblue;
+  color: lightblue;
+  border: 6px solid lightblue;
   /* background-color: lightblue; */
   /* box-shadow: 7px 7px slateblue; */
   padding: 20px;
@@ -407,11 +407,11 @@ nav h3:hover {
   transition: ease-in-out 0.2s;
 }
 
-.landing-container>h1:hover {
+/* .landing-container>h1:hover {
   color: lightblue;
   background-color: slateblue;
   transition: ease-in-out 0.2s;
-}
+} */
 
 .landing-container>img {
   /* margin: 60px 0; */
@@ -691,6 +691,95 @@ nav h3:hover {
 .login-container form {
   display: flex;
   flex-direction: column;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid lightblue;
+  margin: 50px 30%;
+  padding: 20px;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+}
+
+.cart-container:hover {
+  border: 3px solid slateblue;
+  box-shadow: 15px 15px slateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.cart-container h1 {
+  text-align: center;
+}
+
+.cart-container h3 {
+  margin: 10px 0;
+}
+
+.cart-container button {
+  background-color: white;
+  border: 3px solid lightblue;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.cart-container button:hover {
+  border: 3px solid slateblue;
+  color: slateblue;
+  box-shadow: 5px 5px slateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.confirmation-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid lightblue;
+  margin: 50px 30%;
+  padding: 20px;
+  box-shadow: 10px 10px lightblue;
+  transition: ease-in-out 0.2s;
+}
+
+.confirmation-page-container:hover {
+  border: 3px solid slateblue;
+  box-shadow: 15px 15px slateblue;
+  transition: ease-in-out 0.2s;
+}
+
+.confirmation-page-container h1 {
+  text-align: center;
+}
+
+.confirmation-page-container h3 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.confirmation-page-container button {
+  background-color: white;
+  border: 3px solid lightblue;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 10px;
+  color: lightblue;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.confirmation-page-container button:hover {
+  border: 3px solid slateblue;
+  color: slateblue;
+  box-shadow: 5px 5px slateblue;
+  transition: ease-in-out 0.2s;
 }
 
 @keyframes slideDown {
