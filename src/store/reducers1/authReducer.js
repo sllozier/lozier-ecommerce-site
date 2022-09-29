@@ -62,8 +62,8 @@ export const createAccount = (authInfo) => {
             
             const res = await axios.post('/auth/signup', authInfo);
             window.localStorage.setItem('token', res.data.token);
-            
             dispatch(accountAttachCart(res.data.id, localStorage.UUID));
+            history.push('/products')
         } catch (error) {
             console.log('CREATE ACCOUNT THUNK ERROR ', error);
         }

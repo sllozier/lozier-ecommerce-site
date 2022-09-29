@@ -80,7 +80,7 @@ const Cart = () => {
                             ))}
                         </div>
                         <div className='cart-container'>
-                            <h1>Cart or Order Summary?</h1>
+                            <h1>Order Summary</h1>
                             <h3 className='column'>Subtotal: $ {cart.orderTotal}</h3>
                             <h3 className='column'>Shipping: $5.00</h3>
                             <h3 className='column'>Tax: 8.75%</h3>
