@@ -15,6 +15,8 @@ const SignUp = () => {
         password: '',
     });
 
+    const [ isClicked, setIsClicked ] = useState(false);
+
     const handleChange = (props) => (event) => {
         setForm({
             ...form,
@@ -65,9 +67,11 @@ const SignUp = () => {
                         type='password'
                         value={account.password}
                         onChange={handleChange('password')} />
-
-                    <button type='submit'>Submit</button>
-                    {/* <button type='button'><Link to='/'>Cancel</Link></button> */}
+                    
+                    <button type='submit' onClick={() => setIsClicked(!isClicked)}>Submit</button>
+                    {isClicked ? <Link to='/account-nav'>Sign In here!</Link> : <h3>Click submit to complete sign up!</h3>}
+                    
+                    <button type='button'><Link to='/'>Cancel</Link></button>
                 </form>
                 
             </div>
