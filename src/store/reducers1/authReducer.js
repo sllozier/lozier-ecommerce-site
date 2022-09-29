@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../../utils/history';
-import { createCart } from './cartReducer';
+import { fetchCart, accountAttachCart } from './cartReducer';
 
 
 // const ADD_ACCOUNT = 'ADD_ACCOUNT';
@@ -17,7 +17,7 @@ const setAuth = (auth) => {
         auth,
     }
 }
-
+//
 
 export const fetchAccountData = () => {
     return async (dispatch) => {
@@ -30,7 +30,7 @@ export const fetchAccountData = () => {
                         authorization: token,
                     },
                 });
-                //can add a fetchCart call here
+               dispatch(fetchCart(res.data.id, 'empty'));
                 dispatch(setAuth(res.data));
             }
         } catch (error) {
@@ -48,7 +48,8 @@ export const attemptLogin = (authInfo) => {
             console.log('THUNK DATA', res.data)
             window.localStorage.setItem('token', res.data);
             dispatch(fetchAccountData());
-            history.push('/');
+            localStorage.removeItem('UUID');
+            history.push('/products');
         } catch (error) {
             console.log('ATTEMPT PASSWORD THUNK ERROR ', error);
         }
@@ -58,13 +59,11 @@ export const attemptLogin = (authInfo) => {
 export const createAccount = (authInfo) => {
     return async (dispatch) => {
         try {
-            console.log('CREATE ACCOUNT INFO', authInfo)
+            
             const res = await axios.post('/auth/signup', authInfo);
             window.localStorage.setItem('token', res.data.token);
-            console.log('CREATE ACCOUNT ACCTID', res.data.id)
-            console.log('CREAT ACCT DATA', res.data)
-            console.log('CREATEACCT UUID', localStorage.UUID)
-            dispatch(createCart(res.data.id, localStorage.UUID))
+            
+            dispatch(accountAttachCart(res.data.id, localStorage.UUID));
         } catch (error) {
             console.log('CREATE ACCOUNT THUNK ERROR ', error);
         }

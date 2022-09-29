@@ -11,9 +11,10 @@ const getCart = (cart) => {
     };
 };
 
-export const clearCart = () => {
+export const clearCart = (cart) => {
     return {
         type: CLEAR_CART,
+        cart: {},
     };
 };
 
@@ -23,7 +24,7 @@ export const createCart = (productId, accountId, UUID) => {
             console.log('PRODUCTID', productId, 'ACCT ID', accountId, 'UUID', UUID);
             const {data}  = await axios.post(`/api/cart`, { productId, accountId, UUID });
             console.log('CREATE CART DATA', data)
-            if(accountId === 0){
+            if(accountId == 0){
                 localStorage.setItem('UUID', data.UUID)
             }
             dispatch(updateQuantities(data.id, data.UUID, accountId, productId, 'increment'));
@@ -60,7 +61,7 @@ export const removeItem = (cartId, productId, accountId, UUID) => {
     return async(dispatch) => {
         try{
             const { data } = await axios.delete(`/api/cart/${productId}/${UUID}`);
-            const numberToRemove = data.products[0].lineItem.quantity
+            const numberToRemove = data.products[0].lineitem.quantity
             dispatch(updateQuantities(cartId, UUID, accountId, productId, 'remove', numberToRemove));
         }catch(error){
             console.log('REMOVE ITEM THUNK ERROR ', error);
@@ -98,7 +99,7 @@ export default function cartReducer(state={}, action) {
         case GET_CART:
             return action.cart;
         case CLEAR_CART:
-            return {};
+            return action.cart;
         default:
             return state;
     }

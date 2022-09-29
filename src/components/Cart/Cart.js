@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCart, updateQuantities, removeItem, checkout } from '../../store/reducers1/cartReducer';
+import { fetchCart, updateQuantities, removeItem, checkout, clearCart } from '../../store/reducers1/cartReducer';
 
 const Cart = () => {
     const dispatch = useDispatch();
 
     const auth = useSelector((state) => state.account);
     const cart = useSelector((state) => state.cart);
-    console.log('WHO IS AUTH?', auth.firstName);
+    console.log('WHO IS AUTH?', auth.address);
     console.log('CART', cart);
 
     let UUID = cart.UUID || 'empty';
@@ -22,9 +22,7 @@ const Cart = () => {
         dispatch(fetchCart(accountId, UUID));
     }, [accountId]);
 
-    console.log('CART COMP PROD', cart.products)
-    console.log('CART UUID', UUID);
-    console.log('CART ACCT', accountId);
+
     return (
         <div>
             {cart?.products ? (
@@ -87,7 +85,7 @@ const Cart = () => {
                             <h3 className='column'>Tax: 8.75%</h3>
                             <h3 className='column'>Total: {'$'} {((cart.orderTotal * 1.0875) + 5).toFixed(2)}</h3>
                                                
-                            {auth.id ? (
+                            
                                 <div className='row'>
                                     <Link to='/confirmation'>
                                         <button className='sign-up-button' onClick={() => {
@@ -97,13 +95,13 @@ const Cart = () => {
                                         }}>Checkout</button>
                                     </Link>
                                 </div>
-                            ) : (
+                            <h3>Sign up for new album release and discounts!</h3>
                                 <div className='row'>
                                     <Link to='/account-nav/signup'>
                                         <button className='signup-button'>Sign Up</button>
                                     </Link>
                                 </div>
-                            )}
+                            
                         </div>
                     </div>
                 </div>
@@ -116,4 +114,6 @@ const Cart = () => {
     );
 };
 
-export default Cart
+export default Cart;
+
+// {auth.id ? (
