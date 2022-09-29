@@ -85,6 +85,50 @@ nav h3:hover {
   width: 100%;
 }
 
+/* NotFoundPage */
+.notFoundContainer {
+  height: 500px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fofContainer {
+  font-size: 280px;
+}
+
+.fofContainer img {
+  height: 200px;
+}
+
+.not-found-button>button {
+  background-color: white;
+  border: 3px solid lightblue;
+  width: 180px;
+  box-shadow: 5px 5px lightblue;
+  height: 40px;
+  margin: 40px 20px;
+  color: lightblue;
+  font-size: 1em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+.not-found-button>button:hover {
+  background-color: white;
+  border: 3px solid darkslateblue;
+  width: 180px;
+  box-shadow: 10px 10px darkslateblue;
+  height: 40px;
+  color: darkslateblue;
+  font-size: 1em;
+  font-weight: 600;
+  transition: ease-in-out 0.2s;
+}
+
+
 /* ids */
 #root {
   height: 100%;
