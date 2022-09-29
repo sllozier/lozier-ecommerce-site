@@ -9,14 +9,14 @@ function SingleAlbum() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [ productId, setProductId ] = useState(Infinity);
-  const [ addProduct, setAddProduct ] = useState(1);
+  const [ productAmount, setProductAmount ] = useState(1);
   const album = useSelector((state) => state.singleAlbum);
   const auth = useSelector((state) => state.account);
   const cart = useSelector((state) => state.cart);
 
 console.log('SINGLE ALBUM', album);
   console.log('ALBUM AUTH', auth);
-  console.log('CART AUTH', cart);
+  console.log('GUEST CART', cart);
 
   useEffect(() => {
     dispatch(setAlbumThunk(id));
@@ -29,13 +29,17 @@ console.log('SINGLE ALBUM', album);
     }
   }, [album]);
 
-  console.log('SING ALBUM ITEMID', productId);
-  console.log('')
+  const changeAmount = prop => (event) => {
+    setProductAmount({
+      ...productAmount,
+      [prop]: event.target.value
+    })
+  }
   
   
   const accountId = auth.id || 0;
   let UUID = cart.UUID || 'empty';
-  if(accountId === 0 && UUID === 'empty' && localStorage.UUID !== undefined){
+  if(accountId == 0 && UUID == 'empty' && localStorage.UUID !== undefined){
     UUID = localStorage.getItem('UUID');
   }
    
@@ -78,7 +82,7 @@ console.log('SINGLE ALBUM', album);
           <button onClick={() => {
             if(productId !== Infinity){
               dispatch(createCart(productId, accountId, UUID));
-              // dispatch(updateQuantities(cartId, UUID, productId, 'increment', 1))
+              //dispatch(updateQuantities(cartId, UUID, productId, 'increment', 1))
               setProductId(Infinity)
             } 
           }}>Add to Cart</button>

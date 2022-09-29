@@ -14,16 +14,17 @@ const getCart = (cart) => {
 export const clearCart = () => {
     return {
         type: CLEAR_CART,
+        
     };
 };
 
 export const createCart = (productId, accountId, UUID) => {
     return async(dispatch) => {
         try{
-            console.log('UUID', UUID, 'ACCT ID', accountId, 'Item Id', productId);
+            console.log('PRODUCTID', productId, 'ACCT ID', accountId, 'UUID', UUID);
             const {data}  = await axios.post(`/api/cart`, { productId, accountId, UUID });
             console.log('CREATE CART DATA', data)
-            if(accountId === 0){
+            if(accountId == 0){
                 localStorage.setItem('UUID', data.UUID)
             }
             dispatch(updateQuantities(data.id, data.UUID, accountId, productId, 'increment'));
@@ -60,7 +61,7 @@ export const removeItem = (cartId, productId, accountId, UUID) => {
     return async(dispatch) => {
         try{
             const { data } = await axios.delete(`/api/cart/${productId}/${UUID}`);
-            const numberToRemove = data.products[0].lineItem.quantity
+            const numberToRemove = data.products[0].lineitem.quantity
             dispatch(updateQuantities(cartId, UUID, accountId, productId, 'remove', numberToRemove));
         }catch(error){
             console.log('REMOVE ITEM THUNK ERROR ', error);
@@ -72,6 +73,7 @@ export const removeItem = (cartId, productId, accountId, UUID) => {
 export const checkout = (UUID) => {
     return async(dispatch) => {
         try{
+            console.log('CHECKOUT UUID', UUID)
             await axios.put(`/api/cart/${UUID}`);
             history.push('/confirmation')
             dispatch(clearCart());
