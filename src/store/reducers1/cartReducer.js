@@ -11,10 +11,10 @@ const getCart = (cart) => {
     };
 };
 
-export const clearCart = (cart) => {
+export const clearCart = () => {
     return {
         type: CLEAR_CART,
-        cart: {},
+        
     };
 };
 
@@ -73,6 +73,7 @@ export const removeItem = (cartId, productId, accountId, UUID) => {
 export const checkout = (UUID) => {
     return async(dispatch) => {
         try{
+            console.log('CHECKOUT UUID', UUID)
             await axios.put(`/api/cart/${UUID}`);
             history.push('/confirmation')
             dispatch(clearCart());
@@ -99,7 +100,7 @@ export default function cartReducer(state={}, action) {
         case GET_CART:
             return action.cart;
         case CLEAR_CART:
-            return action.cart;
+            return {};
         default:
             return state;
     }

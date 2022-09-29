@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCart, updateQuantities, removeItem, checkout, clearCart } from '../../store/reducers1/cartReducer';
+import { fetchCart, updateQuantities, removeItem, checkout} from '../../store/reducers1/cartReducer';
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -89,10 +89,7 @@ const Cart = () => {
                                 <div className='row'>
                                     <Link to='/confirmation'>
                                         <button className='sign-up-button' onClick={() => {
-                                            if (accountId !== 0) {
-                                                dispatch(checkout(UUID));
-                                            }
-                                        }}>Checkout</button>
+                                                dispatch(checkout(UUID))}}>Checkout</button>
                                     </Link>
                                 </div>
                             <h3>Sign up for new album release and discounts!</h3>
