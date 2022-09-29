@@ -70,8 +70,9 @@ const Cart = () => {
                                                 </button>
                                             </div>
                                             <div className='column'>
-                                                <i className='trash-can' onClick={() => dispatch(removeItem(cart.id, item.id, accountId, UUID))}>
-                                                </i>
+                                                <button className='button' onClick={() => dispatch(removeItem(cart.id, item.id, accountId, UUID))}>
+                                                <i class="fa fa-trash"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
