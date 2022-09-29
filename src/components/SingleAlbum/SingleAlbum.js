@@ -9,7 +9,7 @@ function SingleAlbum() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [ productId, setProductId ] = useState(Infinity);
-  const [ addProduct, setAddProduct ] = useState(1);
+  const [ productAmount, setProductAmount ] = useState(1);
   const album = useSelector((state) => state.singleAlbum);
   const auth = useSelector((state) => state.account);
   const cart = useSelector((state) => state.cart);
@@ -29,6 +29,12 @@ console.log('SINGLE ALBUM', album);
     }
   }, [album]);
 
+  const changeAmount = prop => (event) => {
+    setProductAmount({
+      ...productAmount,
+      [prop]: event.target.value
+    })
+  }
   
   
   const accountId = auth.id || 0;
