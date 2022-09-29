@@ -71,12 +71,12 @@ export const createAccount = (authInfo) => {
 }
 
 export const logoutAccount = () => {
-        window.localStorage.removeItem('token');
-        history.push('/');
-        return {
-            type: SET_AUTH,
-            auth: {},
-        };   
+    window.localStorage.removeItem('token');
+    history.push('/');
+    return {
+        type: SET_AUTH,
+        auth: {},
+    };
 };
 
 // export const updateThisAccount = (accountInfo, accountId) => {
