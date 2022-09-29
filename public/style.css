@@ -826,6 +826,39 @@ nav h3:hover {
   transition: ease-in-out 0.2s;
 }
 
+
+.row-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.row-item img {
+  width: 400px;
+}
+
+.row-item p {
+  width: 350px;
+  margin: 10px 0;
+}
+
+.row-item div {
+  display: flex;
+}
+
+.row-item button {
+  border: 3px solid lightblue;
+  background-color: white;
+  margin: 0 5px;
+  transition: ease-in-out 0.2s;
+}
+
+.row-item button:hover {
+  border: 3px solid slateblue;
+  transition: ease-in-out 0.2s;
+}
+
 @keyframes slideDown {
   0% {
     transform: translateY(-50px);
