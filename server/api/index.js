@@ -13,6 +13,7 @@ router.use('/', require('./genres'))
 
 router.use('/', require('./cart'))
 router.use('/', require('./admin'))
+router.use('/', require('./checkout'))
 
 
 router.use((req, res, next) => {

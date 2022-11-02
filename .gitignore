@@ -2,3 +2,5 @@ public/bundle.js
 public/bundle.js.map
 node_modules
 .env
+request.rest
+bundle.js.LICENSE.txt

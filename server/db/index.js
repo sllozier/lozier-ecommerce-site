@@ -181,12 +181,11 @@ const syncAndSeed = async () => {
     // test.dataValues.quantity = product3.stock
     // await product3.setLineitem([1])
     console.log(`
-    Seeding successful!
-    Check the 'flintstones_gh' database for updates`,
+    Seeding successful!`,
 
-      "Order Special Methods:" , Object.keys(Order.prototype),
-      "Product Special Methods:", Object.keys(Product.prototype),
-      "Order Special Methods:", Object.keys(LineItem.prototype)
+      // "Order Special Methods:" , Object.keys(Order.prototype),
+      // "Product Special Methods:", Object.keys(Product.prototype),
+      // "Order Special Methods:", Object.keys(LineItem.prototype)
       // test
     );
   } catch (err) {
