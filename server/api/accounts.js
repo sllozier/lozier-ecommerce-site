@@ -1,9 +1,8 @@
 const router = require('express').Router();
+const { Order, Account } = require('../db');
+const { requireToken } = require('./gateKeeper');
 
-const Account = require('../db/Account');
-const { isAdmin, requireToken } = require('./gateKeeper');
-
-router.get('/accounts',requireToken, isAdmin, async (req, res, next) => {
+router.get('/accounts', requireToken, async (req, res, next) => {
     try {
         const accounts = await Account.findAll();
         res.send(accounts);
@@ -11,6 +10,19 @@ router.get('/accounts',requireToken, isAdmin, async (req, res, next) => {
         next(error)
     }
 });
+
+router.get('/accounts/:id', requireToken, async (req, res, next) => {
+    try{
+        const account = await Account.findByPk(req.params.id, {
+            include : {
+                model: Order,
+            }
+        });
+        res.send(account);
+    }catch(error){
+        next(error);
+    }
+})
 
 router.post('/accounts', async (req, res, next) => {
     try {
@@ -28,6 +40,16 @@ router.put('/accounts/:id', requireToken, async(req, res, next) => {
         const account = await Account.findByPk(req.account.id);
         await account.update(req.body);
         res.send(account);
+    }catch(error){
+        next(error);
+    }
+});
+
+router.delete('/accounts/:id', requireToken, async(req, res, next) => {
+    try{
+        const deleteAccount = await Account.findByPk(req.params.id);
+        await deleteAccount.destroy();
+        res.send(deleteAccount);
     }catch(error){
         next(error);
     }
