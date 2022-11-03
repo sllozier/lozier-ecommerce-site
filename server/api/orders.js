@@ -1,92 +1,43 @@
 const router = require('express').Router();
-const { Order, Account, Product, LineItem } = require('../db');
-const Sequelize = require('sequelize');
+const { Order, Account } = require('../db');
 
+
+//NEED TO REWRITE??
 
 router.get('/orders', async (req, res, next) => {
     try {
-        const allOrders = await Order.findAll({});
-        res.send(allOrders);
-    } catch (error) {
+        const orderList = await Order.findAll({
+            where: {
+                isCart: false,
+            },
+            include: {
+                model: Account,
+            },
+        });
+        res.send(orderList);
+    }catch(error){
         next(error)
     }
-})
+});
 
-// router.get('/orders/:id', async (req, res, next) => {
-//     try {
-//         const id = req.params.id
-//         const singleOrder = await Order.findByPk(id);
-//     if (singleOrder) {
-//       res.send(singleOrder);
-//     } else {
-//       res.send('error: no order available');
-//     }
-//     } catch (error) {
-//         next(error)
-//     }
-// });
-
-router.get('/orders/guest', async (req, res, next) => {
-    try {
-        const lineitems = await LineItem.findAll()
-        // var total = 0
-        // for (let i = 0; i < lineitems.length; i++) {
-        //     // console.log(lineitems[i].dataValues.productId)
-        //     const product = await Product.findOne({
-        //         where: {
-        //             id: lineitems[i].dataValues.productId
-        //         }
-        //     })
-        //     console.log(product)
-        // }
-        // const lineitems = await LineItem.findAll({
-        //     attributes: [
-        //         "productId",
-        //         [Sequelize.fn("COUNT", Sequelize.col("id")), "count_test"],
-        //     ],
-        //     group: "productId",
-        // });
-        // console.log(lineitems)
-        console.log(lineitems)
-
-        res.send(`helo`)
-    } catch (error) {
-        next(error);
-    }
-})
-
-router.get('/orders/:id', async (req, res, next) => {
-    try {
-        const account = Account.findOne({
+router.get('/orders/:id', async(req, res, next) => {
+    try{
+        const singleOrder = await Order.findByPk(req.params.id, {
             where: {
-                id: req.params.id,
+                isCart: false,
             },
-            include: [Product],
+            include: {
+                model: Account,
+            },
         });
-        res.send(account);
-    } catch (error) {
+        res.send(singleOrder);
+    }catch(error){
         next(error);
     }
 });
 
 
 
-router.post('/orders/guest', async (req, res, next) => {
-    try {
-        const product = await Product.findByPk(req.body.id)
-        let guestOrders = await product.createLineitem()
-        const lineitems = await LineItem.findAll()
-        console.log('HERE', lineitems)
-        // const lineitemArr = lineitems.map((ele) => {
-        //     console.log(ele)
-        // })
-        // console.log(test)
-        // guestorders -> reduce to [{productid: 1, qty: 2 total: productidprice * qty}, {}]
-        res.status(201).send('hgell')
-    } catch (error) {
-        next(error);
-    }
-})
 
 
 

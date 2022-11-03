@@ -1,32 +1,23 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-//import reducers here
-import accountsReducer from './reducers1/accountsReducer'
-import productsReducer from './reducers1/productsReducer'
-import  authReducer  from "./reducers1/authReducer";
-import  guestCartReducer  from './reducers1/guestCartReducer';
-import  albumReducer  from './reducers1/albumReducer';
-import  adminReducer  from './reducers1/adminReducer';
-import cartReducer from './reducers1/cartReducer';
-import singleAlbumReducer from './reducers1/singleAlbumReducer';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import loggerMiddleware from "redux-logger";
+import accountReducer from "./reducers/accountSlice";
+import adminReducer from "./reducers/adminSlice";
+import albumReducer from "./reducers/albumSlice";
+import authReducer from "./reducers/authSlice";
+import cartReducer from "./reducers/cartSlice";
+import orderReducer from "./reducers/orderSlice";
+import genreReducer from "./reducers/genreSlice";
 
-
-
-const rootReducer = combineReducers({
-    accounts: accountsReducer,
-    products: productsReducer,
-    albums: albumReducer,
-    account: authReducer,
-    guestCart: guestCartReducer,
-    admin: adminReducer,
-    cart: cartReducer,
-    singleAlbum: singleAlbumReducer,
-   
-})
-
-export const store = createStore(
-    rootReducer,
-    applyMiddleware(thunk)
-)
-
-
+export default configureStore ({
+    reducer: {
+       account: accountReducer,
+       admin: adminReducer,
+       album: albumReducer,
+       auth: authReducer,
+       cart: cartReducer,
+       order: orderReducer,
+       genre: genreReducer,
+    },
+    middleware: (getDefaultMiddleware) => 
+        getDefaultMiddleware().concat(loggerMiddleware),
+});

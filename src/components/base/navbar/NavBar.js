@@ -1,25 +1,122 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LogoutButton } from '../../auth';
+import Search from './Search';
 
-function NavBar() {
+const NavBar = () => {
   return (
     <>
-      <div className="nav-container">
+    <h1>Main NavBar includes:</h1>
+        <p>Home Button, Dropdown filters, Search Bar, LogIn, Cart, Sale Ribbon</p>
+    
+    <nav className='navbar is-transparent is-info has-logo-above' role="navigation" aria-label="main navigation">
+      <div className='navbar-brand'>
+        <a className='navbar-item' href="/">
+          <img src="/piccies/waybackNavbarLogo.svg" width="112" height="28"/>
+        </a>
+  
+        <a role="button" className='navbar-burger burger' aria-label="menu" aria-expanded="false" data-target="navBarMain">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navBarMain" className='navbar-menu'>
+        <div className='navbar-start'>
+          <div className='navbar-item has-dropdown is-hoverable'>
+            <a className='navbar-link'>
+              Shop By Genre
+            </a>
+              <div className='navbar-dropdown'>
+                <a className='navbar-item' href='albums'>
+                  Genre 1
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Genre 2
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Genre 3
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Genre 4
+                </a>
+              </div>
+            </div>
+            <div className='navbar-item has-dropdown is-hoverable'>
+            <a className='navbar-link' href='/albums'>
+              Shop By Artist
+            </a>
+            <div className='navbar-dropdown'>
+                <a className='navbar-item' href='albums'>
+                  Artist 1
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Artist 2
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Artist 3
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Artist 4
+                </a>
+              </div>
+            </div>
+            <div className='navbar-item has-dropdown is-hoverable'>
+            <a className='navbar-link' href='/albums'>
+              Shop By Title
+            </a>
+            <div className='navbar-dropdown'>
+                <a className='navbar-item' href='albums'>
+                  Title 1
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Title 2
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Title 3
+                </a>
+                <a className='navbar-item' href='albums'>
+                  Title 4
+                </a>
+              </div>
+          </div>
+        </div>
+        <div className='navbar-end'>
+          <a className='navbar-item' href="#">
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </a>
+          <a className='navbar-item' href="/cart">
+              <i className="has-text-black fa-solid fa-cart-shopping fas fa-2x"></i>
+          </a>
+          <a className='navbar-item' href="/login">
+              <i className="has-text-black fa-solid fa-right-to-bracket fas fa-2x"></i>
+          </a>
+              
+           
+          
+        </div>
+      </div>
+    </nav>
+   
+
+
+
+      {/* <div className="nav-container">
         <div>
-          {/* <Link to='/products' style={{ textDecoration: 'none' }}> */}
+          <Link to='/products' style={{ textDecoration: 'none' }}>
           <h1>Flintstones Album Collective</h1>
           <img
             src="https://pngimg.com/uploads/vinyl/vinyl_PNG59.png"
-            // "../../../vinyl_logo.png"
+             "../../../vinyl_logo.png"
             className="navBarLogo"
             alt="vinyl icon image"
           />
 
-          {/* </Link> */}
+          </Link>
         </div>
         <nav>
-          {/* <Link to='/'>
+          <Link to='/'>
                     <h3>Home</h3>
                 </Link>
                 <Link to='/products'>
@@ -36,7 +133,7 @@ function NavBar() {
                 </Link>
                 <Link to='cart'>
                     <h3>Cart</h3>
-                </Link> */}
+                </Link>
 
           <Link to="/products" style={{ textDecoration: 'none' }}>
             <h3>Shop Albums</h3>
@@ -51,11 +148,11 @@ function NavBar() {
           <LogoutButton />
 
           <Link to="cart" style={{ textDecoration: 'none' }}>
-            {/* <img className="navBarLogo" src="cart_logo.png" alt="" /> */}
+            <img className="navBarLogo" src="cart_logo.png" alt="" />
             <h3 id="logoText">Cart</h3>
           </Link>
         </nav>
-      </div>
+      </div> */}
     </>
   );
 }

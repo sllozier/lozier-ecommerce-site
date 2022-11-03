@@ -32,8 +32,8 @@ const Router = () => {
             <Routes>
                 <Route path='*' element={<PageNotFound />} />
                 <Route index path='/' element={<Home />} />
-                <Route path='/products' element={<ViewAllAlbums />} />
-                <Route path='/products/:id' element={<ViewSingleAlbum />} />
+                <Route path='/albums' element={<ViewAllAlbums />} />
+                <Route path='/albums/:id' element={<ViewSingleAlbum />} />
                 <Route path='/account' element={<AccountPortal />} />
                 <Route path='/wishlist' element={<WishList/>}/>
                 <Route path='/login' element={<LogIn />} />

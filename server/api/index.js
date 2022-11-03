@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
     res.send('hello')
 })
 
-router.use('/', require('./products'))
+router.use('/', require('./albums'))
 router.use('/', require('./accounts'))
 router.use('/', require('./orders'))
 router.use('/', require('./lineitems'))

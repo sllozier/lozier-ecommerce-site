@@ -5,7 +5,6 @@ const { Account } = require('../db');
 router.get('/', async (req, res, next) => {
   try {
     const user = await Account.byToken(req.headers.authorization);
-    console.log('AUTH USER', user)
     res.send(user);
   } catch (error) {
       next(error)
@@ -15,7 +14,6 @@ router.get('/', async (req, res, next) => {
 router.post('/login', async (req, res, next) => {
   try {
     const token = await Account.authenticate(req.body);
-    console.log('LOGIN TOKEN?', token)
     res.send(token);
   } catch (error) {
     next(error);

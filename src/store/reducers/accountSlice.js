@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const axios = require('axios');
+import axios from 'axios';
 
 const accountSlice = createSlice({
     name: "accountSlice",
@@ -48,8 +48,7 @@ export const fetchAccounts = () => {
     }
 };
 
-export const fetchAccountData = (accountId) => {
-    return async(dispatch) => {
+export const fetchAccountData = (accountId) => async(dispatch) => {
         try{
             const token = window.localStorage.getItem('token');
             const { data: accountData } = await axios.get(`/api/accounts/${accountId}`, {
@@ -61,22 +60,20 @@ export const fetchAccountData = (accountId) => {
         }catch(error){
             console.log("FETCH ACCOUNT DATA ERROR", error);
         }
-    }
-};
+    };
 
-export const updateAccountData = (accountInfo, accountId) => {
-    return async(dispatch) => {
+
+export const updateAccountData = (accountInfo, accountId) => async(dispatch) => {
         try{
             const { data: updatedAccount } = await axios.put(`/api/accounts/${accountId}`, accountInfo, accountId);
             dispatch(getAccountData(updatedAccount));
         }catch(error){
             console.log("UPDATE ACCOUNT ERROR", error);
         }
-    }
-};
+    };
 
-export const deleteAccountData = (accoundId) => {
-    return async(dispatch) => {
+
+export const deleteAccountData = (accoundId) => async(dispatch) => {
         try{
             const { data: deletedAccount } = await axios.delete(`/api/accounts/${accoundId}`);
             dispatch(_deleteAccount(deletedAccount));
@@ -84,5 +81,4 @@ export const deleteAccountData = (accoundId) => {
         }catch(error){
             console.log("DELETE ACCOUNT DATA ERROR", error)
         }
-    }
-};
+    };

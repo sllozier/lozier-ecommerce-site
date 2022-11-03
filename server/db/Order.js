@@ -16,8 +16,10 @@ const Order = db.define('order', {
   },
   purchaseDate: {
     type: Sequelize.DATE,
+  },
+  orderAddress: {
+    type: Sequelize.STRING,
   }
-
 });
 
 module.exports = Order;

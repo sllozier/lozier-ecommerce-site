@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { Order, Account } = require('../db');
 const { requireToken } = require('./gateKeeper');
 
+
+//Account routes
 router.get('/accounts', requireToken, async (req, res, next) => {
     try {
         const accounts = await Account.findAll();

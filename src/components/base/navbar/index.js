@@ -3,6 +3,7 @@ import AlbumSearchBar from "./AlbumSearchBar";
 import HomeButton from "./HomeButton";
 import NavBar from "./NavBar";
 import SaleRibbon from "./SaleRibbon";
+import Search from "./Search";
 
 export{
     AlbumFilter,
@@ -10,4 +11,5 @@ export{
     HomeButton,
     NavBar,
     SaleRibbon,
+    Search,
 }
