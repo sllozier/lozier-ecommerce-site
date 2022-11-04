@@ -6,14 +6,25 @@ import Search from './Search';
 const NavBar = () => {
   return (
     <>
-    <h1>Main NavBar includes:</h1>
-        <p>Home Button, Dropdown filters, Search Bar, LogIn, Cart, Sale Ribbon</p>
+    <h1 className='is-family-monospace'>Main NavBar includes:</h1>
+        <p className='is-family-monospace'>Home Button, Dropdown filters, Search Bar, LogIn, Cart, Sale Ribbon</p>
     
-    <nav className='navbar is-transparent is-info has-logo-above' role="navigation" aria-label="main navigation">
-      <div className='navbar-brand'>
+    <nav className='navbar is-transparent is-primary has-logo-above is-family-monospace' role="navigation" aria-label="main navigation">
+      <div className='navbar-brand is-family-monospace'>
         <a className='navbar-item' href="/">
-          <img src="/piccies/waybackNavbarLogo.svg" width="112" height="28"/>
+          <img src="/piccies/waybackNavbarLogo.svg" width="280" height="70"/>
         </a>
+        <div className='navbar-item field has-addons'>
+          <div className='control is-centered has-icons-right'>
+            <input className='input is-family-monospace' type="search" placeholder='search...'/>
+            <span className='icon is-small is-right'>
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </span>
+          </div>
+          <div className='control '>
+            <button type="submit" class="button is-danger is-family-monospace">Search</button>
+          </div>
+        </div>
   
         <a role="button" className='navbar-burger burger' aria-label="menu" aria-expanded="false" data-target="navBarMain">
           <span aria-hidden="true"></span>
@@ -25,7 +36,7 @@ const NavBar = () => {
       <div id="navBarMain" className='navbar-menu'>
         <div className='navbar-start'>
           <div className='navbar-item has-dropdown is-hoverable'>
-            <a className='navbar-link'>
+            <a className='navbar-link has-text-info'>
               Shop By Genre
             </a>
               <div className='navbar-dropdown'>
@@ -44,7 +55,7 @@ const NavBar = () => {
               </div>
             </div>
             <div className='navbar-item has-dropdown is-hoverable'>
-            <a className='navbar-link' href='/albums'>
+            <a className='navbar-link has-text-info' href='/albums'>
               Shop By Artist
             </a>
             <div className='navbar-dropdown'>
@@ -63,7 +74,7 @@ const NavBar = () => {
               </div>
             </div>
             <div className='navbar-item has-dropdown is-hoverable'>
-            <a className='navbar-link' href='/albums'>
+            <a className='navbar-link has-text-info' href='/albums'>
               Shop By Title
             </a>
             <div className='navbar-dropdown'>
@@ -83,9 +94,9 @@ const NavBar = () => {
           </div>
         </div>
         <div className='navbar-end'>
-          <a className='navbar-item' href="#">
+          {/* <a className='navbar-item' href="#">
             <i className="fa-solid fa-magnifying-glass"></i>
-          </a>
+          </a> */}
           <a className='navbar-item' href="/cart">
               <i className="has-text-black fa-solid fa-cart-shopping fas fa-2x"></i>
           </a>

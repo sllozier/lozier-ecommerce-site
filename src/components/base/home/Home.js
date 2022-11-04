@@ -3,6 +3,7 @@ import React from 'react'
 const Home = () => {
     return (
         <>
+        <div className='container is-family-monospace'>
         <h1>Main NavBar includes:</h1>
         <p>Home Button, Dropdown filters, Search Bar, LogIn, Cart, Sale Ribbon</p>
         <h1>Hero With Logo MP4 comp</h1>
@@ -13,6 +14,7 @@ const Home = () => {
         <p>Help & FAQ: rewards prog, about, contact us, FAQ, Privacy Pol, Terms, Return Pol;
             My Acct: Login, Wish List, OrderHistory, Cart; Follow SM: IG, FB, Tw, Em, YouTube
         </p>
+        </div>
         </>
     )
 }
