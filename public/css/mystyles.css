@@ -9,8 +9,7 @@
   flex-direction: column; }
 
 .navbar-item.field {
-  justify-content: center;
-  align-items: center; }
+  width: 100%; }
 
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */

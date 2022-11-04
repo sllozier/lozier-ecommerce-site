@@ -1,21 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LogoutButton } from '../../auth';
-import Search from './Search';
+import SaleRibbon from './SaleRibbon';
 
 const NavBar = () => {
   return (
     <>
-    <h1 className='is-family-monospace'>Main NavBar includes:</h1>
-        <p className='is-family-monospace'>Home Button, Dropdown filters, Search Bar, LogIn, Cart, Sale Ribbon</p>
+    <SaleRibbon/>
     
     <nav className='navbar is-transparent is-primary has-logo-above is-family-monospace' role="navigation" aria-label="main navigation">
       <div className='navbar-brand is-family-monospace'>
-        <a className='navbar-item' href="/">
+        <a className='navbar-item mr-6 pr-6' href="/">
           <img src="/piccies/waybackNavbarLogo.svg" width="280" height="70"/>
         </a>
-        <div className='navbar-item field has-addons'>
-          <div className='control is-centered has-icons-right'>
+        <div className='navbar-item field has-addons ml-6 pl-6'>
+          <div className='control has-icons-right'>
             <input className='input is-family-monospace' type="search" placeholder='search...'/>
             <span className='icon is-small is-right'>
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -34,7 +33,7 @@ const NavBar = () => {
       </div>
 
       <div id="navBarMain" className='navbar-menu'>
-        <div className='navbar-start'>
+        <div className='navbar-start ml-4'>
           <div className='navbar-item has-dropdown is-hoverable'>
             <a className='navbar-link has-text-info'>
               Shop By Genre
@@ -93,17 +92,20 @@ const NavBar = () => {
               </div>
           </div>
         </div>
-        <div className='navbar-end'>
+        <div className='navbar-end mr-4'>
           {/* <a className='navbar-item' href="#">
             <i className="fa-solid fa-magnifying-glass"></i>
           </a> */}
+          <span className='icon is-medium mr-2'>
           <a className='navbar-item' href="/cart">
-              <i className="has-text-black fa-solid fa-cart-shopping fas fa-2x"></i>
+              <i className="has-text-info fa-solid fa-cart-shopping fas fa-lg"></i>
           </a>
+          </span>
+          <span className='icon is-medium ml-2'>
           <a className='navbar-item' href="/login">
-              <i className="has-text-black fa-solid fa-right-to-bracket fas fa-2x"></i>
+              <i className="has-text-info fa-solid fa-right-to-bracket fas fa-lg"></i>
           </a>
-              
+          </span>    
            
           
         </div>
