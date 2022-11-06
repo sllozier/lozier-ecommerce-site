@@ -4,11 +4,12 @@ const SaleRibbon = () => {
 
     return(
         <>
-        <div className="container is-max-widescreen is-family-monospace">
-            <div className="notification is-success">
-                This container is <strong>sales ribbon</strong> across the top of the homepage.
+        <section className="hero is-small is-success is-family-monospace">
+            <div className="hero-body has-text-centered">
+                <p className="subtitle">This hero is <strong>sales ribbon</strong> across the top of the homepage.
+                </p>
             </div>
-        </div>
+        </section>
         </>
     )
 }

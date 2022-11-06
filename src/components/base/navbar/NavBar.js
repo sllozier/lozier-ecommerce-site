@@ -21,7 +21,7 @@ const NavBar = () => {
             </span>
           </div>
           <div className='control '>
-            <button type="submit" class="button is-danger is-family-monospace">Search</button>
+            <button type="submit" className="button is-danger is-family-monospace">Search</button>
           </div>
         </div>
   
