@@ -4,13 +4,12 @@ import HomeHero from './HomeHero';
 const Home = () => {
     return (
         <>
-        <HomeHero />
         <div className='container is-family-monospace'>
         <div className='divider is-link'>NavBar Component</div>
         <h1 className='has-background-link'>Main NavBar includes:
         <p>Home Button, Dropdown filters, Search Bar, LogIn, Cart, Sale Ribbon Placeholders</p>
         </h1>
-        
+        <HomeHero />
         <div className='divider is-warning'>Main Hero Component</div>
         <h1 className='has-background-warning'>Hero With Logo MP4 comp</h1>
         <div className='divider is-warning'>Carousel Component</div>
