@@ -6,7 +6,6 @@ import SaleRibbon from './SaleRibbon';
 const NavBar = () => {
   return (
     <>
-    <SaleRibbon/>
     
     <nav className='navbar is-transparent is-primary has-logo-above is-family-monospace' role="navigation" aria-label="main navigation">
       <div className='navbar-brand is-family-monospace'>
