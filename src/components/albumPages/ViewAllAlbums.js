@@ -1,59 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAlbumsThunk } from '../../store/reducers1/albumReducer';
+import { fetchAlbums } from '../../store/reducers/albumSlice';
 import { Link } from 'react-router-dom';
+import Pagination from './Pagination';
+
+
+
 
 
 
 const ViewAllAlbums = () => {
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const allAlbums = useSelector((state) => state.albums);
-  AOS.init()
-
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const PageSize = 4;
+  const allAlbums = useSelector((state) => state.album.albumList);
+  // AOS.init()
+  
+  
   // dispatch thunk to get all albums
   useEffect(() => {
-    dispatch(setAlbumsThunk());
-  }, [dispatch]);
-
-  // check if data has loaded
-  useEffect(() => {
-    if (allAlbums.length > 0) {
+      setLoading(true);
+      dispatch(fetchAlbums());
       setLoading(false);
-    }
-  }, [allAlbums]);
+  }, []);
 
-  return loading ? (
-    <div>Albums loading...</div>
-  ) : (
+  const currentData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return allAlbums.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
+
+ 
+  return (
+    
     <>
-      {/* <h1 className='landing-header'>Welcome to Flintstones Album Collective</h1> */}
-      <div className='landing-container'>
-        <img src='https://wallpaper.dog/large/5447354.jpg' />
-        <h1>All Products</h1>
-        <div className='all-product-container'>
-          {allAlbums.map((album) => (
-            <div key={album.id} >
-              <Link id='link-style' to={'/products/' + album.id}>
-                <img
-                  className="albumArt"
-                  data-aos="flip-up"
-                  delay="2000"
-                  src={album.image}
-                  alt=""
-                />
-                <div>
-                  <h4>{album.title}</h4>
-                  <p >${album.price}</p>
-                  <p>{album.stock} left in store</p>
+      <section className='section'>
+        <div className='container'>
+          <h3 className='title has-text-centered is-size-4'>Albums</h3>
+          <div className='columns mt-5 is-8 is-variable' >
+              {currentData.map((album) => (
+                <div className='column is-4-tablet is-3-desktop' key={album.id}>
+                <div className='card'>
+                  <div className='card-image has-text-centered px6'>
+                    <img src={album.image}/>
+                  </div>
+                  <div className='card-content'>
+                    <p className='title is-size-5'>{album.title}</p>
+                    <p>${album.price}</p>
+                    <p>{album.stock} in stock</p>
+                  </div>
+                  <footer className='card-footer'>
+                    <p className='card-footer-item'>
+                      <a href="" className='has-text-black'>View</a>
+                    </p>
+                  </footer>
                 </div>
-              </Link>
-              {/* <button>Add to Cart</button> */}
-            </div>
-          ))}
+                </div>
+              ))}
+          </div>
         </div>
-      </div>
-     
+        <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={allAlbums.length}
+          pageSize={PageSize}
+          onPageChange={page => setCurrentPage(page)}/>
+      </section>    
     </>
   );
 }

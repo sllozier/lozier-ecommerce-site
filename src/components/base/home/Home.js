@@ -1,6 +1,7 @@
 import React from 'react';
 import AdCarousel from './AdCarousel';
 import HomeHero from './HomeHero';
+import ViewAllAlbums from '../../albumPages/ViewAllAlbums';
 
 const Home = () => {
     return (
@@ -21,7 +22,7 @@ const Home = () => {
                 <h1 className='has-background-warning'>Carousel Ads? comp</h1>
            
            
-                <div className='divider is-warning'>Display Albums Component</div>
+                <div className='container'><ViewAllAlbums/></div>
                 <h1 className='has-background-warning'>View All Albums Comp</h1>
             
             
