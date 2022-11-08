@@ -11,29 +11,35 @@ import Pagination from './Pagination';
 
 const ViewAllAlbums = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const PageSize = 4;
+  let PageSize = 4;
   const allAlbums = useSelector((state) => state.album.albumList);
   // AOS.init()
   
   
   // dispatch thunk to get all albums
   useEffect(() => {
-      setLoading(true);
       dispatch(fetchAlbums());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (allAlbums.length > 0){
       setLoading(false);
-  }, []);
+    }
+  }, [allAlbums]);
 
   const currentData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return allAlbums.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [currentPage, allAlbums]);
 
  
-  return (
-    
+  
+  return loading ? (
+    <div>Albums Loading...</div>
+  ) : (
     <>
       <section className='section'>
         <div className='container'>
@@ -60,13 +66,13 @@ const ViewAllAlbums = () => {
               ))}
           </div>
         </div>
-        <Pagination
+      </section>
+      <Pagination
           className="pagination-bar"
           currentPage={currentPage}
           totalCount={allAlbums.length}
           pageSize={PageSize}
-          onPageChange={page => setCurrentPage(page)}/>
-      </section>    
+          onPageChange={page => setCurrentPage(page)}/>    
     </>
   );
 }
