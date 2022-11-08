@@ -2,7 +2,8 @@ import React from 'react';
 import AdCarousel from './AdCarousel';
 import HomeHero from './HomeHero';
 import ViewAllAlbums from '../../albumPages/ViewAllAlbums';
-import App from '../../testingStuff/fakeApp';
+import CallToAction from './CallToAction';
+
 
 const Home = () => {
     return (
@@ -22,17 +23,17 @@ const Home = () => {
                 <div className='container'><AdCarousel/></div>
                 <h1 className='has-background-warning'>Carousel Ads? comp</h1>
            
-                <App/>
-                <div className='container'><ViewAllAlbums/></div>
+                
+                <div className='container is-family-monospace'><ViewAllAlbums/></div>
                 <h1 className='has-background-warning'>View All Albums Comp</h1>
             
             
-                <div className='divider is-warning'>Call to Action Component</div>
+                <div className='container is-family-monospace'><CallToAction/></div>
                 <h1 className='has-background-warning'>Newsletter SignUp & Follow on Social CallToAction comp</h1>
             
            
-                <div className='divider is-warning'>Footer Component</div>
-                <h1 className='has-background-warning'>Footer includes: comps
+                <div className='divider is-warning is-family-monospace'>Footer Component</div>
+                <h1 className='has-background-warning is-family-monospace'>Footer includes: comps
                 <p>Help & FAQ: rewards prog, about, contact us, FAQ, Privacy Pol, Terms, Return Pol;
                     My Acct: Login, Wish List, OrderHistory, Cart; Follow SM: IG, FB, Tw, Em, YouTube
                 </p>
