@@ -9,8 +9,8 @@ const Home = () => {
     return (
         <>
         <div className='container is-family-monospace'>
-        <div className='divider is-link'>NavBar Component</div>
-        <h1 className='has-background-link'>Main NavBar includes:
+        <div className='divider is-link is-family-monospace'>NavBar Component</div>
+        <h1 className='has-background-link is-family-monospace'>Main NavBar includes:
         <p>Home Button, Dropdown filters, Search Bar, LogIn, Cart, Sale Ribbon Placeholders</p>
         </h1>
         
@@ -19,17 +19,22 @@ const Home = () => {
         <div className='container'>
         <HomeHero />
         </div>
+
+                <div className='divider is-warning is-family-monospace'>Featured Albums Pagination</div>
+                <h1 className='has-background-warning'>Featured Albums comp here?</h1>
         
+                <div className='divider is-link is-family-monospace'>Ad Carousel Component</div>
+                <h1 className='has-background-link is-family-monospace'>Carousel Ads? comp</h1>
                 <div className='container'><AdCarousel/></div>
-                <h1 className='has-background-warning'>Carousel Ads? comp</h1>
-           
                 
+                <div className='divider is-link is-family-monospace'>All Albums Component</div>
+                <h1 className='has-background-link is-family-monospace'>View All Albums Comp</h1>
                 <div className='container is-family-monospace'><ViewAllAlbums/></div>
-                <h1 className='has-background-warning'>View All Albums Comp</h1>
-            
-            
+                
+                <div className='divider is-warning is-family-monospace'>Call To Action Component</div>
+                <h1 className='has-background-warning is-family-monospace'>Newsletter SignUp & Follow on Social CallToAction comp</h1>
                 <div className='container is-family-monospace'><CallToAction/></div>
-                <h1 className='has-background-warning'>Newsletter SignUp & Follow on Social CallToAction comp</h1>
+                
             
            
                 <div className='divider is-warning is-family-monospace'>Footer Component</div>
