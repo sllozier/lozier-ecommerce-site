@@ -5,9 +5,11 @@ import Router from "./Router";
 function App() {
     return(
         <>
+         <div id='main'>
             <SaleRibbon/>
             <NavBar/>
             <Router />
+         </div>
         </>
     )
 }

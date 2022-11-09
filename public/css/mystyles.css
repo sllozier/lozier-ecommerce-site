@@ -12,6 +12,12 @@
 .navbar-item.field {
   width: 100%; }
 
+.navbar-brand {
+  justify-content: space-between; }
+
+.navbar-item {
+  align-item: center; }
+
 .pagination-container {
   display: flex;
   list-style-type: none; }
@@ -59,6 +65,9 @@
       .pagination-container .pagination-item.disabled:hover {
         background-color: transparent;
         cursor: default; }
+
+.hero-body {
+  letter-spacing: 3px; }
 
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
@@ -361,13 +370,13 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: "Odibee Sans", cursive; }
+  font-family: "Odibee Sans", sans-serif; }
 
 code,
 pre {
   -moz-osx-font-smoothing: auto;
   -webkit-font-smoothing: auto;
-  font-family: monospace; }
+  font-family: "Questrial", sans-serif; }
 
 body {
   color: #242125;
@@ -7106,7 +7115,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   font-weight: 700 !important; }
 
 .is-family-primary {
-  font-family: "Odibee Sans", cursive !important; }
+  font-family: "Odibee Sans", sans-serif !important; }
 
 .is-family-secondary {
   font-family: "Satisfy", cursive !important; }
@@ -7115,10 +7124,10 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important; }
 
 .is-family-monospace {
-  font-family: monospace !important; }
+  font-family: "Questrial", sans-serif !important; }
 
 .is-family-code {
-  font-family: monospace !important; }
+  font-family: "Questrial", sans-serif !important; }
 
 .is-block {
   display: block !important; }
@@ -8443,13 +8452,13 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: "Odibee Sans", cursive; }
+  font-family: "Odibee Sans", sans-serif; }
 
 code,
 pre {
   -moz-osx-font-smoothing: auto;
   -webkit-font-smoothing: auto;
-  font-family: monospace; }
+  font-family: "Questrial", sans-serif; }
 
 body {
   color: #242125;

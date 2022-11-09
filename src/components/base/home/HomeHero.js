@@ -4,7 +4,7 @@ const HomeHero = () => {
 
     return(
         <>
-        <section className="hero is-fullheight video">
+        <section className="hero is-fullheight video is-hidden-touch">
     <div className="hero-video">
         <video poster="/piccies/WaybackHero.jpg" id="bgvid" playsInline autoPlay muted loop>
             <source src="/video/WaybackHero.webm" type="video/webm"/>

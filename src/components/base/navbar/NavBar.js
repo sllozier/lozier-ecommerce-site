@@ -8,11 +8,13 @@ const NavBar = () => {
     <>
     
     <nav className='navbar is-transparent is-primary has-logo-above is-family-monospace' role="navigation" aria-label="main navigation">
+
       <div className='navbar-brand is-family-monospace'>
-        <a className='navbar-item mr-6 pr-6' href="/">
+        <a className='navbar-item is-hidden-touch' href="/">
           <img src="/piccies/waybackNavbarLogo.svg" width="280" height="70"/>
         </a>
-        <div className='navbar-item field has-addons ml-6 pl-6'>
+        
+        <div className='navbar-item field has-addons force-center'>
           <div className='control has-icons-right'>
             <input className='input is-family-monospace' type="search" placeholder='search...'/>
             <span className='icon is-small is-right'>
@@ -23,13 +25,13 @@ const NavBar = () => {
             <button type="submit" className="button is-danger is-family-monospace">Search</button>
           </div>
         </div>
-  
+        </div>
         <a role="button" className='navbar-burger burger' aria-label="menu" aria-expanded="false" data-target="navBarMain">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
-      </div>
+      
 
       <div id="navBarMain" className='navbar-menu'>
         <div className='navbar-start ml-4'>
@@ -109,6 +111,7 @@ const NavBar = () => {
           
         </div>
       </div>
+      
     </nav>
    
 

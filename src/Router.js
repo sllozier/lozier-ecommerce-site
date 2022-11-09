@@ -28,7 +28,7 @@ const Router = () => {
 
     return (
 
-        <div id='main'>
+
             <Routes>
                 <Route path='*' element={<PageNotFound />} />
                 <Route index path='/' element={<Home />} />
@@ -51,7 +51,7 @@ const Router = () => {
                 <Route path='/about' element={<About/>}/>
 
             </Routes>
-        </div>
+        
 
     )
 }
