@@ -4,11 +4,11 @@ const HomeHero = () => {
 
     return(
         <>
-        <section className="hero is-fullheight video is-hidden-touch">
+        <section className="hero is-halfheight video is-hidden-touch">
     <div className="hero-video">
-        <video poster="/piccies/WaybackHero.jpg" id="bgvid" playsInline autoPlay muted loop>
-            <source src="/video/WaybackHero.webm" type="video/webm"/>
-            <source src="/video/WaybackHero.mp4" type="video/mp4"/>
+        <video poster="/piccies/WaybackHeroHalf.jpg" id="bgvid" playsInline autoPlay muted loop>
+            <source src="/video/WaybackHeroHalf.webm" type="video/webm"/>
+            <source src="/video/WaybackHeroHalf.mp4" type="video/mp4"/>
         </video>
     </div>
 </section>

@@ -4,6 +4,20 @@ import { LogoutButton } from '../../auth';
 import SaleRibbon from './SaleRibbon';
 
 const NavBar = () => {
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+  
+      });
+    });
+  });
+
   return (
     <>
     
@@ -26,7 +40,7 @@ const NavBar = () => {
           </div>
         </div>
         </div>
-        <a role="button" className='navbar-burger burger' aria-label="menu" aria-expanded="false" data-target="navBarMain">
+        <a role="button" className='navbar-burger burger' aria-label="menu" aria-expanded="false" data-target="navBarMain" href="/login">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>

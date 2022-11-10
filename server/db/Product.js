@@ -4,7 +4,7 @@ const Order = require('./Order');
 
 // Album
 const Product = db.define('product', {
-  title: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
@@ -22,15 +22,28 @@ const Product = db.define('product', {
   stock: {
     type: Sequelize.INTEGER,
   },
+  popularity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 5,
+  },
   image: {
     type: Sequelize.STRING,
     defaultValue: "https://www.furnacemfg.com/wp-content/uploads/2018/12/black_vinyl.jpg"
     // 'vinyl_default.jpeg', // if this relative path doesn't render, use "https://www.furnacemfg.com/wp-content/uploads/2018/12/black_vinyl.jpg" as a fallback
   },
-  description: {
-    type: Sequelize.TEXT,
+  spotifyId: {
+    type: Sequelize.STRING,
   },
-
+  trackTotal: {
+    type: Sequelize.INTEGER,
+  },
+  releaseDate: {
+    type: Sequelize.STRING,
+    notNull: true,
+  },
+  label: {
+    type: Sequelize.STRING,
+  },
 });
 
 Product.afterCreate(async(product) => {

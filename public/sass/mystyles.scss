@@ -1,8 +1,12 @@
 @charset "utf-8";
 
-
+@import "./fontawesome/_all.scss";
 @import "./base/_all.sass";
 @import "./components/_all.sass";
+@import "./fontawesome/solid.scss";
+@import "./fontawesome/brands.scss";
+@import "./fontawesome/regular.scss";
+
 @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Questrial&family=Satisfy&display=swap');
 @import "../../node_modules/bulma/bulma.sass";
 @import "../../node_modules/slick-carousel/slick/slick.scss";

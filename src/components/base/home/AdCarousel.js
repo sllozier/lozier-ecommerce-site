@@ -16,7 +16,7 @@ const AdCarousel = () => {
 
     return(
         <>
-        <div>
+        <div >
             <h2>Carousel</h2>
             <Slider {...settings}>
                 <figure className="image is-3by1">

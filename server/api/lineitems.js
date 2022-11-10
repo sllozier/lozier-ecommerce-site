@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const LineItem = require('../db/LineItem')
+const LineItem = require('../db')
 
 router.get('/lineitems', async (req, res, next) => {
     try {

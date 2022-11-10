@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Product = require('../db/Product');
+const Product = require('../db');
 
 
 router.get('/albums', async (req, res, next) => {

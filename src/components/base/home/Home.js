@@ -16,7 +16,7 @@ const Home = () => {
         
         
         </div>
-        <div className='container'>
+        <div className='container is-fluid'>
         <HomeHero />
         </div>
 
@@ -25,7 +25,7 @@ const Home = () => {
         
                 <div className='divider is-link is-family-monospace'>Ad Carousel Component</div>
                 <h1 className='has-background-link is-family-monospace'>Carousel Ads? comp</h1>
-                <div className='container'><AdCarousel/></div>
+                <div className='container is-fluid'><AdCarousel/></div>
                 
                 <div className='divider is-link is-family-monospace'>All Albums Component</div>
                 <h1 className='has-background-link is-family-monospace'>View All Albums Comp</h1>
@@ -33,7 +33,7 @@ const Home = () => {
                 
                 <div className='divider is-warning is-family-monospace'>Call To Action Component</div>
                 <h1 className='has-background-warning is-family-monospace'>Newsletter SignUp & Follow on Social CallToAction comp</h1>
-                <div className='container is-family-monospace'><CallToAction/></div>
+                <CallToAction/>
                 
             
            

@@ -3,7 +3,7 @@ const app = require('./app');
 const db = require('./db')
 
 const init = async () => {
-    await db.syncAndSeed();
+    await db.seed();
     app.listen(port, ()=> console.log(`listening on port ${port}`));
 };
 
