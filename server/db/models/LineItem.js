@@ -15,6 +15,7 @@ const LineItem = db.define('lineitem', {
         const currentItems = await LineItem.findAll({
             where: { orderId: lineItem.orderId },
         });
+        //console.log("LINE ITEM CURR", currentItems)
         if (
             currentItems.some(
                 item => item.productId === Number(lineItem.productId)
@@ -23,10 +24,13 @@ const LineItem = db.define('lineitem', {
             throw new Error('Item already exists in order');
     },
     beforeSave: async lineItem => {
-        if (lineItem.qty < 1)
+        //console.log("LI QT BS", lineItem.quantity, "LI ORID BS", lineItem.orderId, "LI PRID BS", lineItem.productId)
+        if (lineItem.quantity < 1)
             throw new Error('Quantity cannot be less than 1');
         const product = await lineItem.getProduct();
-        if (lineItem.qty > product.stock)
+        //console.log("LINE ITEM PRODUCT STK", product.stock);
+        //console.log("LINE ITEM QTY", lineItem.quantity)
+        if (lineItem.quantity > product.stock)
             throw new Error(
                 'Quantity cannot be more than amount in stock'
             );

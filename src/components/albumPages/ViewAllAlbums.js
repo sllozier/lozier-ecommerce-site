@@ -16,7 +16,7 @@ const ViewAllAlbums = () => {
   let PageSize = 4;
   const allAlbums = useSelector((state) => state.album.albumList);
   // AOS.init()
-  
+  //console.log("VIEW ALBUMS", allAlbums)
   
   // dispatch thunk to get all albums
   useEffect(() => {
@@ -58,7 +58,7 @@ const ViewAllAlbums = () => {
                   </div>
                   <footer className='card-footer'>
                     <p className='card-footer-item'>
-                      <a href="" className='has-text-black'>View</a>
+                      <a href={`/albums/${album.id}`} className='has-text-black'>View</a>
                     </p>
                   </footer>
                 </div>

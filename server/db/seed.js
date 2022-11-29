@@ -16,7 +16,9 @@ const seed = async () => {
   
       // Accounts
       const accountData = await getPeoples();
-      const accounts = await Promise.all(accountData.map(account => Account.create(account)));
+      const accounts = await Promise.all(
+        accountData.map(account => Account.create(account))
+        );
 
       const admin = await Account.create({
         firstName: "Grace",
@@ -27,100 +29,9 @@ const seed = async () => {
         isAdmin: true,
     });
       await Order.create({ accountId: admin.id });
-    //   const bilal = await Account.create({
-    //     username: 'bilal',
-    //     password: 'password1',
-    //     email: 'bilal@gmail.com',
-    //     firstName: 'Bilal',
-    //     lastName: 'Abbas',
-    //     address: '123 London Street',
-    //     isAdmin: false,
-    //   });
-  
-    //   const sarah = await Account.create({
-    //     username: 'sarah',
-    //     password: 'password2',
-    //     email: 'sarah@gmail.com',
-    //     firstName: 'Sarah',
-    //     lastName: 'Lozier',
-    //     address: '123 Maine Lane',
-    //     isAdmin: false,
-    //   });
-  
-    //   const will = await Account.create({
-    //     username: 'w',
-    //     password: 'w',
-    //     email: 'will@gmail.com',
-    //     firstName: 'Will',
-    //     lastName: 'Siddons',
-    //     address: '123 Philly Road',
-    //     isAdmin: true,
-    //   });
-  
-    //   const austin = await Account.create({
-    //     username: 'austin',
-    //     password: 'password4',
-    //     email: 'austin@gmail.com',
-    //     firstName: 'Austin',
-    //     lastName: 'Gautney',
-    //     address: '123 Stone Cold Court',
-    //     isAdmin: true,
-    //   });
-  
-      // Order
-      // const order1 = await Order.create({
-      //   isCart: false,
-      //   accountId: 1,
-      //   purchaseDate: new Date(),
-        // cart: [
-        //   "product1",
-        //   "product2"
-        // ]
-      //});
-  
-      // const order2 = await Order.create({
-      //   accountId: 2,
-      // });
-  
-      // const order3 = await Order.create({
-      //   isCart: false,
-      //   accountId: 4,
-      //   purchaseDate: new Date()
-      // });
-  
-      // const order4 = await Order.create({
-      //   accountId: 4,
-      // });
-  
-      // Genre
-      // const pop = await Genre.create({
-      //   name: 'pop',
-      // });
-  
-      // const rock = await Genre.create({
-      //   name: 'rock',
-      // });
-  
-      // const classical = await Genre.create({
-      //   name: 'classical',
-      // });
-  
-      // const hipHop = await Genre.create({
-      //   name: 'hip hop',
-      // });
-  
-      // LineItem
-  
-  
+    
       // Product
       const [albums, artists] = await getAlbumData();
-        let artSize = Object.keys(artists).length;
-       //console.log("SEED ARTISTS LGTH", artSize)
-        let albSize = Object.keys(albums).length;
-        //console.log("SEED ALBUMS LGTH", albSize)
-      
-      
-      
       const products = await Promise.all(
         albums.map(async album => {
        
@@ -129,16 +40,13 @@ const seed = async () => {
             spotifyId: album.artists[0].id
           },
         });
-        //let singleArtSize = Object.keys(art).length;
-        //console.log("SEED ART LGTH", singleArtSize)
-      
+       
 
         if(!art){
           
           let spotifyArtist = artists.find(
             art => art.id === album.artists[0].id
             );
-          //console.log("SEED SPOTART", spotifyArtist)
           art = await Artist.create({
             name: spotifyArtist.name,
             spotifyId: spotifyArtist.id,
@@ -149,7 +57,7 @@ const seed = async () => {
          
         let prod = await Product.create({
           name: album.name,
-          price: 999 + Math.ceil(album.popularity / 10) *100,
+          price: (album.popularity / 10) * 10.05,
           stock: Math.floor(Math.random() * 16),
           popularity: album.popularity,
           image: album.images[0].url,
@@ -174,42 +82,45 @@ const seed = async () => {
       }
       
       ));
+
       //LOAD ORDERS
-    //   for (let i = 0; i < 100; i++) {
-    //     //every 4th order is active
-    //     const order = await Order.create({ complete: !(i % 4 === 0) });
+      for (let i = 0; i < 100; i++) {
+        //every 4th order is active
+        const order = await Order.create({ complete: !(i % 4 === 0) });
 
-    //     //get available products
-    //     const available = products.filter(prod =>
-    //         order.complete ? prod : prod.stock
-    //     );
+        //get available products
+        const available = products.filter(prod =>
+        order.complete ? prod : prod.stock
+        );
+        //give each order between 0 and 4 random albums
+        for (let j = 0; j < Math.ceil(Math.random() * 4); j++) {
+            //grab a random product, make a lineItem
+            const curProd =
+                available[Math.floor(Math.random() * available.length)];
+            // ensure only new lineItems are added in seed
+            const isNew = (await order.getLineitems()).every(
+                item => item.productId !== curProd.id
+            );
+           
+            if (isNew && curProd.stock > 0)
+                await curProd.createLineitem({
+                    quantity: Math.ceil(Math.random() * curProd.stock),
+                    orderId: order.id,
+                });
+                
+        }
 
-    //     //give each order between 0 and 4 random albums
-    //     for (let j = 0; j < Math.ceil(Math.random() * 4); j++) {
-    //         //grab a random product, make a lineItem
-    //         const curProd =
-    //             available[Math.floor(Math.random() * available.length)];
-
-    //         // ensure only new lineItems are added in seed
-    //         const isNew = (await order.getLineItems()).every(
-    //             item => item.productId !== curProd.id
-    //         );
-    //         if (isNew)
-    //             await curProd.createLineItem({
-    //                 qty: Math.ceil(Math.random() * curProd.stock),
-    //                 orderId: order.id,
-    //             });
-    //     }
-
-    //     //give 25 users 4 orders, rest an empty cart
-    //     await users[Math.floor(i / 4)].addOrder(order);
-
-    //     if (i >= 25) await (await Order.create()).setUser(users[i]);
-    // }
+        //give 25 accounts 4 orders, rest an empty cart
+        await accounts[Math.floor(i / 4)].addOrder(order);
+        if (i >= 25) await (await Order.create()).setAccount(accounts[i]);
+    }
   
-      console.log(`Seeding successful!`,);
+      console.log(`Seeding successful!`,
+      //"Order Special Methods:" , Object.keys(Order.prototype),
+      //"Product Special Methods:", Object.keys(Product.prototype),
+      //"Line Item Special Methods:", Object.keys(LineItem.prototype)
+      );
     } catch (error) {
-      // seeding failure message
       console.log(`Seeding Problem! Error in seed Function: ${error}`);
     }
   };
@@ -218,7 +129,7 @@ const seed = async () => {
         try{
           await seed();
         }catch(error){
-          console.error(error);
+          console.error("RUN SEED ERROR", error);
           process.exitCode = 1;
         }finally {
           console.log(`closing db connection`);
