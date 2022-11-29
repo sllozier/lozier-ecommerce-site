@@ -8,19 +8,20 @@ const client_code = Buffer.from(
 ).toString('base64');
 
 
-const fetchAuth = async() => {
+const getAuth = async() => {
     try{
         const token_url = "https://accounts.spotify.com/api/token";
-        const res = await axios.post(
+        const response = await axios.post(
             token_url,
-            'grant_type=client_credentials',{
+            'grant_type=client_credentials',
+            {
                 headers: {
                     Authorization: `Basic ${client_code}`,
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
             }
         );
-        return res.data.access_token;
+        return response.data.access_token;
     }catch(error){
         console.error(error);
     }
@@ -28,23 +29,26 @@ const fetchAuth = async() => {
 
 const getAlbumList = async() => {
     try{
-        const access_token = await fetchAuth();
-        const albumIdNums = [];
+        const access_token = await getAuth();
+
+        const albumIds = [];
         let url = "https://api.spotify.com/v1/browse/new-releases?limit=50";
-        const res = await axios.get(url, {
+        //first 50 albums
+        const response = await axios.get(url, {
             headers: {
                 Authorization: `Bearer ${access_token}`,
             },
         });
-        res.data.albums.items.forEach(album => albumIdNums.push(album.id));
+        response.data.albums.items.forEach(album => albumIds.push(album.id));
+        //next 50 albums
         url += '&offset=50';
         const resOffset = await axios.get(url, {
             headers: {
                 Authorization: `Bearer ${access_token}`,
             },
         });
-        resOffset.data.albums.items.forEach(album => albumIdNums.push(album.id));
-        return albumIdNums;
+        resOffset.data.albums.items.forEach(album => albumIds.push(album.id));
+        return albumIds;
     }catch(error){
         console.error(error);
     }
@@ -52,30 +56,39 @@ const getAlbumList = async() => {
 
 const getAlbumData = async()=> {
     try{
-        const access_token = await fetchAuth();
-        const albumIdNums = await getAlbumList();
-        const uniqueAlbumIds = albumIdNums.filter((id, index, array) => array.indexOf(id) === index);
+        const access_token = await getAuth();
+        const albumIds = await getAlbumList();
+
+        const uniqueAlbumIds = albumIds.filter(
+            (id, index, array) => array.indexOf(id) === index
+            );
         let artists = [];
         let albums = [];
 
+            //getting album data, 20 at a time
             for(let i = 0; i < Math.ceil(uniqueAlbumIds.length / 20); i++){
                 let setOfAlbumIds = uniqueAlbumIds
                 .slice(i * 20, 20 + i * 20)
-                .join(',')
-        let albumsRes = await axios.get(`https://api.spotify.com/v1/albums?ids=${setOfAlbumIds}`, {
+                .join(',');
+        let albumsResponse = await axios.get(`https://api.spotify.com/v1/albums?ids=${setOfAlbumIds}`,
+        {
             headers: {
                 Authorization: `Bearer ${access_token}`,
             },
         });
-        let setOfArtistIds = albumsRes.data.albums.map(album => album.artists[0].id);
-        let artistsRes = await axios.get(`https://api.spotify.com/v1/artists?ids=${setOfArtistIds}`, {
+        //get artists
+        let setOfArtistIds = albumsResponse.data.albums.map(album => album.artists[0].id);
+        let artistsResponse = await axios.get(`https://api.spotify.com/v1/artists?ids=${setOfArtistIds}`,
+        {
             headers: {
                 Authorization: `Bearer ${access_token}`,
             },
         });
-        albums = [...albums, ...albumsRes.data.albums];
-        artists = [...albums, ...artistsRes.data.artists];
+        albums = [...albums, ...albumsResponse.data.albums];
+        artists = [...artists, ...artistsResponse.data.artists];
             }
+            //console.log("SPOTIFY ALBUM DATA", albums[0]);
+            //console.log("SPOTIFY ARTIST DATA", artists[0]);
             return [albums, artists];
     }catch(error){
         console.error(error);

@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Order, Account } = require('../db');
 
-
 //NEED TO REWRITE??
 
 router.get('/orders', async (req, res, next) => {

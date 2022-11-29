@@ -9,7 +9,7 @@ router.use('/', require('./albums'))
 router.use('/', require('./accounts'))
 router.use('/', require('./orders'))
 router.use('/', require('./lineitems'))
-router.use('/', require('./genres'))
+//router.use('/', require('./genres'))
 
 router.use('/', require('./cart'))
 router.use('/', require('./admin'))
