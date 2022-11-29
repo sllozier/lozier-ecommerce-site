@@ -114,27 +114,31 @@ const seed = async () => {
   
       // Product
       const [albums, artists] = await getAlbumData();
-        //console.log("SEED ALBUM TYPE", typeof albums);
-        //console.log("SEED ARTIST TYPE", typeof artists);
+        let artSize = Object.keys(artists).length;
+       console.log("SEED ARTISTS LGTH", artSize)
+        let albSize = Object.keys(albums).length;
+        console.log("SEED ALBUMS LGTH", albSize)
+      
       
       
       const products = await Promise.all(
         albums.map(async album => {
-        //console.log('SEED ALBUM ARTIST ID', album.artists[0].id)
+       
         let art = await Artist.findOne({
           where: {
             spotifyId: album.artists[0].id
           },
         });
-        
-        //console.log("SEED ART", !art)
+        let singleArtSize = Object.keys(art).length;
+        console.log("SEED ART LGTH", singleArtSize)
+      
 
         if(!art){
-           // console.log("SEED ARTIST TYPE 2", artists[0]);
+          
           let spotifyArtist = artists.find(
             art => art.id === album.artists[0].id
             );
-           //console.log("SEED SPOTIFYARTIST", spotifyArtist.name)
+          //console.log("SEED SPOTART", spotifyArtist)
           art = await Artist.create({
             name: spotifyArtist.name,
             spotifyId: spotifyArtist.id,
@@ -142,7 +146,7 @@ const seed = async () => {
             genre: spotifyArtist.genres[0],
           });
          }
-         //console.log("SEED ART", art)
+         
         let prod = await Product.create({
           name: album.name,
           price: 999 + Math.ceil(album.popularity / 10) *100,
@@ -155,9 +159,8 @@ const seed = async () => {
           label: album.label,
           artistId: art.id,
         });
-        //console.log("SEED ALBUM TRACKS?", album.tracks)
+        
         album.tracks.items.map(async track => {
-         // console.log("SEED TRACK", track)
           await Track.create({
             name: track.name,
             spotifyId: track.id,

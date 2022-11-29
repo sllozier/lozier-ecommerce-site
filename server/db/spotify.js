@@ -88,7 +88,7 @@ const getAlbumData = async()=> {
         artists = [...albums, ...artistsResponse.data.artists];
             }
             //console.log("SPOTIFY ALBUM DATA", albums[0]);
-            console.log("SPOTIFY ARTIST DATA", artists[0]);
+            //console.log("SPOTIFY ARTIST DATA", artists[0]);
             return [albums, artists];
     }catch(error){
         console.error(error);
