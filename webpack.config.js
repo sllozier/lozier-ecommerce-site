@@ -1,8 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
-module.exports = {
-  mode: "production",
+module.exports = (env) => ({
+  mode: "development",
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -13,6 +14,9 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/mystyles.css'
+    }),
+    new Dotenv({
+      path: './.env'
     }),
   ],
   performance:{
@@ -38,4 +42,4 @@ module.exports = {
           ]},
     ],
   },
-};
+});

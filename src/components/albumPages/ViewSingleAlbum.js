@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAlbumThunk } from '../../store/reducers1/singleAlbumReducer';
+import { fetchAlbumData } from '../../store/reducers/albumSlice';
+import { updateQuantities, createCart } from '../../store/reducers/cartSlice';
 import { useParams } from 'react-router-dom';
-import { createCart, updateQuantities } from '../../store/reducers1/cartReducer';
+//import { createCart, updateQuantities } from '../../store/reducers1/cartReducer';
 
 const ViewSingleAlbum = () => {
   const { id } = useParams();
@@ -10,16 +11,16 @@ const ViewSingleAlbum = () => {
   const [loading, setLoading] = useState(true);
   const [ productId, setProductId ] = useState(Infinity);
   const [ productAmount, setProductAmount ] = useState(1);
-  const album = useSelector((state) => state.singleAlbum);
+  const album = useSelector((state) => state.album.albumData);
   const auth = useSelector((state) => state.account);
   const cart = useSelector((state) => state.cart);
 
 console.log('SINGLE ALBUM', album);
-  console.log('ALBUM AUTH', auth);
-  console.log('GUEST CART', cart);
+  //console.log('ALBUM AUTH', auth);
+  //console.log('GUEST CART', cart);
 
   useEffect(() => {
-    dispatch(setAlbumThunk(id));
+    dispatch(fetchAlbumData(id));
   }, [dispatch]);
 
   useEffect(() => {
