@@ -3,56 +3,64 @@ const db = require('../database');
 const Order = require('./Order');
 
 // Album
-const Product = db.define('product', {
-  name: {
-    type: Sequelize.STRING,
-    notNull: true,
-  },
-  price: {
-    type: Sequelize.INTEGER,
-    notNull: true,
-  },
-  stock: {
-    type: Sequelize.INTEGER,
-    defaultValue: 5,
-  },
-  popularity: {
-    type: Sequelize.INTEGER,
-    defaultValue: 50,
-  },
-  image: {
-    type: Sequelize.STRING,
-    defaultValue: "https://www.furnacemfg.com/wp-content/uploads/2018/12/black_vinyl.jpg"
-    // 'vinyl_default.jpeg', // if this relative path doesn't render, use "https://www.furnacemfg.com/wp-content/uploads/2018/12/black_vinyl.jpg" as a fallback
-  },
-  spotifyId: {
-    type: Sequelize.STRING,
-  },
-  totalTrack: {
-    type: Sequelize.INTEGER,
-  },
-releaseDate: {
-    type: Sequelize.STRING,
-    notNull: true,
-  },
-  label: {
-    type: Sequelize.STRING,
-  },
-  },
+const Product = db.define(
+  'product',
   {
-  hooks: {
-      afterUpdate: async product => {
-          const items = await product.getLineItems();
-          await Promise.all(
-              items
-                  .filter(item => item.qty > product.stock)
-                  .map(item => {
-                      item.update({ qty: product.stock });
-                  })
-          );
+      name: {
+          type: Sequelize.STRING,
+          notNull: true,
+      },
+      price: {
+          type: Sequelize.DECIMAL(10, 2),
+          notNull: true,
+          validate: {
+            isDecimal: true,
+            min: 0.0,
+          },
+      },
+      stock: {
+          type: Sequelize.INTEGER,
+          defaultValue: 5,
+      },
+      popularity: {
+          type: Sequelize.INTEGER,
+          defaultValue: 50,
+      },
+      image: {
+          type: Sequelize.STRING,
+          defaultValue: "https://www.furnacemfg.com/wp-content/uploads/2018/12/black_vinyl.jpg",
+      },
+      spotifyId: {
+          type: Sequelize.STRING,
+      },
+      trackTotal: {
+          type: Sequelize.INTEGER,
+      },
+      releaseDate: {
+          type: Sequelize.STRING,
+          notNull: true,
+      },
+      label: {
+          type: Sequelize.STRING,
       },
   },
-});
+  {
+      hooks: {
+          afterUpdate: async product => {
+              const items = await product.getLineitems();
+              await Promise.all(
+                  items
+                      .filter(item => item.quantity > product.stock)
+                      .map(item => {
+                          item.update({ quantity: product.stock });
+                      })
+              );
+          },
+      },
+  }
+);
+
+module.exports = Product;
 
 // Product.afterCreate(async(product) => {
 //   if(product.id === 4){
@@ -107,4 +115,4 @@ releaseDate: {
 //   }
 // });
 
-module.exports = Product;
+//module.exports = Product;
