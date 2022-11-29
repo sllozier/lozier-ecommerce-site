@@ -73,8 +73,9 @@ const getAlbumData = async()=> {
                 Authorization: `Bearer ${access_token}`,
             },
         });
+      
         albums = [...albums, ...albumsRes.data.albums];
-        artists = [...albums, ...artistsRes.data.artists];
+        artists = [...artists, ...artistsRes.data.artists];
             }
             return [albums, artists];
     }catch(error){

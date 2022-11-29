@@ -27,51 +27,164 @@ Artist.hasMany(Product);
 Product.belongsTo(Artist);
 
 
-const seed = async () => {
-  try {
-    console.log(`Seeding started...`);
-    await db.sync({ force: true });
+const syncAndSeed = async() => {
+  await db.sync({ force: true });
 
-    // Account
-    const bilal = await Account.create({
-      username: 'bilal',
-      password: 'password1',
-      email: 'bilal@gmail.com',
-      firstName: 'Bilal',
-      lastName: 'Abbas',
-      address: '123 London Street',
-      isAdmin: false,
-    });
+   // Account
+   const bilal = await Account.create({
+    username: 'bilal',
+    password: 'password1',
+    email: 'bilal@gmail.com',
+    firstName: 'Bilal',
+    lastName: 'Abbas',
+    address: '123 London Street',
+    isAdmin: false,
+  });
 
-    const sarah = await Account.create({
-      username: 'sarah',
-      password: 'password2',
-      email: 'sarah@gmail.com',
-      firstName: 'Sarah',
-      lastName: 'Lozier',
-      address: '123 Maine Lane',
-      isAdmin: false,
-    });
+  const sarah = await Account.create({
+    username: 'sarah',
+    password: 'password2',
+    email: 'sarah@gmail.com',
+    firstName: 'Sarah',
+    lastName: 'Lozier',
+    address: '123 Maine Lane',
+    isAdmin: false,
+  });
 
-    const will = await Account.create({
-      username: 'w',
-      password: 'w',
-      email: 'will@gmail.com',
-      firstName: 'Will',
-      lastName: 'Siddons',
-      address: '123 Philly Road',
-      isAdmin: true,
-    });
+  const will = await Account.create({
+    username: 'w',
+    password: 'w',
+    email: 'will@gmail.com',
+    firstName: 'Will',
+    lastName: 'Siddons',
+    address: '123 Philly Road',
+    isAdmin: true,
+  });
 
-    const austin = await Account.create({
-      username: 'austin',
-      password: 'password4',
-      email: 'austin@gmail.com',
-      firstName: 'Austin',
-      lastName: 'Gautney',
-      address: '123 Stone Cold Court',
-      isAdmin: true,
-    });
+  const austin = await Account.create({
+    username: 'austin',
+    password: 'password4',
+    email: 'austin@gmail.com',
+    firstName: 'Austin',
+    lastName: 'Gautney',
+    address: '123 Stone Cold Court',
+    isAdmin: true,
+  });
+
+  const [albums, artists] = await getAlbumData();
+   
+    
+    const products = await Promise.all(albums.map(async album => {
+      //console.log('SEED Artist name?', album.artists[0].name)
+      const art = await Artist.findOne({
+        where: {
+          spotifyId: album.artists[0].id
+        },
+      });
+     //console.log("SEED ART", art)
+      
+      if(!art){
+        // function getObjKey(obj, val){
+        //   return Object.keys(obj).find(key => console.log("OBJKEY", obj[key]))
+        // }
+        // console.log("GETOBJKEYS?", getObjKey(artists, "id"))
+        let spotifyArtist = artists.find(art => art[0] === album.artists[0].id);
+        //console.log("SEED SPOTART", spotifyArtist)
+        art = await Artist.create({
+          name: spotifyArtist.name,
+          spotifyId: spotifyArtist.id,
+          image: spotifyArtist.images[0].url,
+          genre: spotifyArtist.genres[0],
+        });
+       }
+
+      let prod = await Product.create({
+        title: album.name,
+        price: 999 + Math.ceil(album.popularity / 10) *100,
+        stock: Math.floor(Math.random() * 16),
+        popularity: album.popularity,
+        image: album.images[0].url,
+        spotifyId: album.id,
+        trackTotal: album.total_tracks,
+        releaseDate: album.release_date,
+        label: album.label,
+        artistId: art.id,
+      });
+
+      album.tracks.items.map(async track => {
+        await Track.create({
+          name: track.name,
+          spotifyId: track.id,
+          length: track.duration_ms,
+          explicit: track.explicit,
+          preview: track.preview_url,
+          productId: prod.id,
+        });
+      });
+      return prod;
+    }));
+    console.log(`
+    Seeding successful!`,);
+}
+
+module.exports = {
+  db,
+  syncAndSeed,
+  Account,
+  Order,
+  Track,
+  Artist,
+  LineItem,
+  Product,
+};
+
+// const seed = async () => {
+//   try {
+//     console.log(`Seeding started...`);
+//     await db.sync({ force: true });
+
+//     // Account
+//     const bilal = await Account.create({
+//       username: 'bilal',
+//       password: 'password1',
+//       email: 'bilal@gmail.com',
+//       firstName: 'Bilal',
+//       lastName: 'Abbas',
+//       address: '123 London Street',
+//       isAdmin: false,
+//     });
+
+//     const sarah = await Account.create({
+//       username: 'sarah',
+//       password: 'password2',
+//       email: 'sarah@gmail.com',
+//       firstName: 'Sarah',
+//       lastName: 'Lozier',
+//       address: '123 Maine Lane',
+//       isAdmin: false,
+//     });
+
+//     const will = await Account.create({
+//       username: 'w',
+//       password: 'w',
+//       email: 'will@gmail.com',
+//       firstName: 'Will',
+//       lastName: 'Siddons',
+//       address: '123 Philly Road',
+//       isAdmin: true,
+//     });
+
+//     const austin = await Account.create({
+//       username: 'austin',
+//       password: 'password4',
+//       email: 'austin@gmail.com',
+//       firstName: 'Austin',
+//       lastName: 'Gautney',
+//       address: '123 Stone Cold Court',
+//       isAdmin: true,
+//     });
+
+    
 
     // Order
     // const order1 = await Order.create({
@@ -119,83 +232,83 @@ const seed = async () => {
 
 
     // Product
-    const [albums, artists] = await getAlbumData();
+    // const [albums, artists] = await getAlbumData();
    
     
-    const products = await Promise.all(albums.map(async album => {
-      console.log('SEED Artist name?', album.artists[0].name)
-      const art = await Artist.findOne({
-        where: {
-          spotifyId: album.artists[0].id
-        },
-      });
+    // const products = await Promise.all(albums.map(async album => {
+    //   console.log('SEED Artist name?', album.artists[0].name)
+    //   const art = await Artist.findOne({
+    //     where: {
+    //       spotifyId: album.artists[0].id
+    //     },
+    //   });
      //console.log("SEED ART", art)
       
-      if(!art){
+      // if(!art){
       
-        let spotifyArtist = artists.find(art => art.id === album.artists[0].id);
+      //   let spotifyArtist = artists.find(art => art.id === album.artists[0].id);
         // const obj = Object.keys(spotifyArtist)
         // console.log("SEED SPOT ART KEYS", obj)
-        art = await Artist.create({
-          name: spotifyArtist.name,
-          spotifyId: spotifyArtist.id,
-          image: spotifyArtist.images[0].url,
-          genre: spotifyArtist.genres[0],
-        });
-       }
+//         art = await Artist.create({
+//           name: spotifyArtist.name,
+//           spotifyId: spotifyArtist.id,
+//           image: spotifyArtist.images[0].url,
+//           genre: spotifyArtist.genres[0],
+//         });
+//        }
 
-      let prod = await Product.create({
-        title: album.name,
-        price: 999 + Math.ceil(album.popularity / 10) *100,
-        stock: Math.floor(Math.random() * 16),
-        popularity: album.popularity,
-        image: album.images[0].url,
-        spotifyId: album.id,
-        trackTotal: album.total_tracks,
-        releaseDate: album.release_date,
-        label: album.label,
-        artistId: art.id,
-      });
+//       let prod = await Product.create({
+//         title: album.name,
+//         price: 999 + Math.ceil(album.popularity / 10) *100,
+//         stock: Math.floor(Math.random() * 16),
+//         popularity: album.popularity,
+//         image: album.images[0].url,
+//         spotifyId: album.id,
+//         trackTotal: album.total_tracks,
+//         releaseDate: album.release_date,
+//         label: album.label,
+//         artistId: art.id,
+//       });
 
-      album.tracks.items.map(async track => {
-        await Track.create({
-          name: track.name,
-          spotifyId: track.id,
-          length: track.duration_ms,
-          explicit: track.explicit,
-          preview: track.preview_url,
-          productId: prod.id,
-        });
-      });
-      return prod;
-    }));
+//       album.tracks.items.map(async track => {
+//         await Track.create({
+//           name: track.name,
+//           spotifyId: track.id,
+//           length: track.duration_ms,
+//           explicit: track.explicit,
+//           preview: track.preview_url,
+//           productId: prod.id,
+//         });
+//       });
+//       return prod;
+//     }));
 
-    console.log(`
-    Seeding successful!`,);
-  } catch (err) {
-    // seeding failure message
-    console.log(`
-    Seeding Problem! Error in seed Function: ${err}
-    `);
-  }
-};
-    const runSeed = async() => {
-      console.log(`Start seeding...`);
-      try{
-        await seed();
-      }catch(error){
-        console.error(error);
-        process.exitCode = 1;
-      }finally {
-        console.log(`closing db connection`);
-        await db.close();
-        console.log(`db connection closed`);
-      }
-    };
+//     console.log(`
+//     Seeding successful!`,);
+//   } catch (err) {
+//     // seeding failure message
+//     console.log(`
+//     Seeding Problem! Error in seed Function: ${err}
+//     `);
+//   }
+// };
+//     const runSeed = async() => {
+//       console.log(`Start seeding...`);
+//       try{
+//         await seed();
+//       }catch(error){
+//         console.error(error);
+//         process.exitCode = 1;
+//       }finally {
+//         console.log(`closing db connection`);
+//         await db.close();
+//         console.log(`db connection closed`);
+//       }
+//     };
 
-    if (module === require.main){
-      runSeed();
-    }
+//     if (module === require.main){
+//       runSeed();
+//     }
 
 
 
@@ -287,13 +400,13 @@ const seed = async () => {
 //   }
 // };
 
-module.exports = {
-  db,
-  seed,
-  Account,
-  Order,
-  Track,
-  Artist,
-  LineItem,
-  Product,
-};
+// module.exports = {
+//   db,
+//   seed,
+//   Account,
+//   Order,
+//   Track,
+//   Artist,
+//   LineItem,
+//   Product,
+// };
