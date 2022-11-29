@@ -115,9 +115,9 @@ const seed = async () => {
       // Product
       const [albums, artists] = await getAlbumData();
         let artSize = Object.keys(artists).length;
-       console.log("SEED ARTISTS LGTH", artSize)
+       //console.log("SEED ARTISTS LGTH", artSize)
         let albSize = Object.keys(albums).length;
-        console.log("SEED ALBUMS LGTH", albSize)
+        //console.log("SEED ALBUMS LGTH", albSize)
       
       
       
@@ -129,8 +129,8 @@ const seed = async () => {
             spotifyId: album.artists[0].id
           },
         });
-        let singleArtSize = Object.keys(art).length;
-        console.log("SEED ART LGTH", singleArtSize)
+        //let singleArtSize = Object.keys(art).length;
+        //console.log("SEED ART LGTH", singleArtSize)
       
 
         if(!art){
@@ -175,37 +175,37 @@ const seed = async () => {
       
       ));
       //LOAD ORDERS
-      for (let i = 0; i < 100; i++) {
-        //every 4th order is active
-        const order = await Order.create({ complete: !(i % 4 === 0) });
+    //   for (let i = 0; i < 100; i++) {
+    //     //every 4th order is active
+    //     const order = await Order.create({ complete: !(i % 4 === 0) });
 
-        //get available products
-        const available = products.filter(prod =>
-            order.complete ? prod : prod.stock
-        );
+    //     //get available products
+    //     const available = products.filter(prod =>
+    //         order.complete ? prod : prod.stock
+    //     );
 
-        //give each order between 0 and 4 random albums
-        for (let j = 0; j < Math.ceil(Math.random() * 4); j++) {
-            //grab a random product, make a lineItem
-            const curProd =
-                available[Math.floor(Math.random() * available.length)];
+    //     //give each order between 0 and 4 random albums
+    //     for (let j = 0; j < Math.ceil(Math.random() * 4); j++) {
+    //         //grab a random product, make a lineItem
+    //         const curProd =
+    //             available[Math.floor(Math.random() * available.length)];
 
-            // ensure only new lineItems are added in seed
-            const isNew = (await order.getLineItems()).every(
-                item => item.productId !== curProd.id
-            );
-            if (isNew)
-                await curProd.createLineItem({
-                    qty: Math.ceil(Math.random() * curProd.stock),
-                    orderId: order.id,
-                });
-        }
+    //         // ensure only new lineItems are added in seed
+    //         const isNew = (await order.getLineItems()).every(
+    //             item => item.productId !== curProd.id
+    //         );
+    //         if (isNew)
+    //             await curProd.createLineItem({
+    //                 qty: Math.ceil(Math.random() * curProd.stock),
+    //                 orderId: order.id,
+    //             });
+    //     }
 
-        //give 25 users 4 orders, rest an empty cart
-        await users[Math.floor(i / 4)].addOrder(order);
+    //     //give 25 users 4 orders, rest an empty cart
+    //     await users[Math.floor(i / 4)].addOrder(order);
 
-        if (i >= 25) await (await Order.create()).setUser(users[i]);
-    }
+    //     if (i >= 25) await (await Order.create()).setUser(users[i]);
+    // }
   
       console.log(`Seeding successful!`,);
     } catch (error) {

@@ -85,7 +85,7 @@ const getAlbumData = async()=> {
             },
         });
         albums = [...albums, ...albumsResponse.data.albums];
-        artists = [...albums, ...artistsResponse.data.artists];
+        artists = [...artists, ...artistsResponse.data.artists];
             }
             //console.log("SPOTIFY ALBUM DATA", albums[0]);
             //console.log("SPOTIFY ARTIST DATA", artists[0]);
