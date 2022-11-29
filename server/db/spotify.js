@@ -74,7 +74,7 @@ const getAlbumData = async()=> {
             },
         });
         albums = [...albums, ...albumsRes.data.albums];
-        artists = [...albums, ...artistsRes.data.artists];
+        artists = [...artists, ...artistsRes.data.artists];
             }
             return [albums, artists];
     }catch(error){

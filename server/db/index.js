@@ -123,8 +123,7 @@ const seed = async () => {
    
     
     const products = await Promise.all(albums.map(async album => {
-      console.log('SEED Artist name?', album.artists[0].name)
-      const art = await Artist.findOne({
+      let art = await Artist.findOne({
         where: {
           spotifyId: album.artists[0].id
         },
@@ -145,7 +144,7 @@ const seed = async () => {
        }
 
       let prod = await Product.create({
-        title: album.name,
+        name: album.name,
         price: 999 + Math.ceil(album.popularity / 10) *100,
         stock: Math.floor(Math.random() * 16),
         popularity: album.popularity,
