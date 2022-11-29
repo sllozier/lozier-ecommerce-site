@@ -30,14 +30,17 @@ const getAuth = async() => {
 const getAlbumList = async() => {
     try{
         const access_token = await getAuth();
+
         const albumIds = [];
         let url = "https://api.spotify.com/v1/browse/new-releases?limit=50";
+        //first 50 albums
         const response = await axios.get(url, {
             headers: {
                 Authorization: `Bearer ${access_token}`,
             },
         });
         response.data.albums.items.forEach(album => albumIds.push(album.id));
+        //next 50 albums
         url += '&offset=50';
         const resOffset = await axios.get(url, {
             headers: {
@@ -55,10 +58,14 @@ const getAlbumData = async()=> {
     try{
         const access_token = await getAuth();
         const albumIds = await getAlbumList();
-        const uniqueAlbumIds = albumIds.filter((id, index, array) => array.indexOf(id) === index);
+
+        const uniqueAlbumIds = albumIds.filter(
+            (id, index, array) => array.indexOf(id) === index
+            );
         let artists = [];
         let albums = [];
 
+            //getting album data, 20 at a time
             for(let i = 0; i < Math.ceil(uniqueAlbumIds.length / 20); i++){
                 let setOfAlbumIds = uniqueAlbumIds
                 .slice(i * 20, 20 + i * 20)
@@ -69,6 +76,7 @@ const getAlbumData = async()=> {
                 Authorization: `Bearer ${access_token}`,
             },
         });
+        //get artists
         let setOfArtistIds = albumsResponse.data.albums.map(album => album.artists[0].id);
         let artistsResponse = await axios.get(`https://api.spotify.com/v1/artists?ids=${setOfArtistIds}`,
         {
@@ -80,7 +88,7 @@ const getAlbumData = async()=> {
         artists = [...albums, ...artistsResponse.data.artists];
             }
             //console.log("SPOTIFY ALBUM DATA", albums[0]);
-            //console.log("SPOTIFY ARTIST DATA", artists[0]);
+            console.log("SPOTIFY ARTIST DATA", artists[0]);
             return [albums, artists];
     }catch(error){
         console.error(error);

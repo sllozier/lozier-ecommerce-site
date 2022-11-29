@@ -15,9 +15,14 @@ const LineItem = require('./models/LineItem');
 Account.hasMany(Order);
 Order.belongsTo(Account);
 
+Order.hasMany(LineItem);
+LineItem.belongsTo(Order);
 
-Product.belongsToMany(Order, { through: LineItem });
-Order.belongsToMany(Product, { through: LineItem });
+Product.hasMany(LineItem);
+LineItem.belongsTo(Product);
+
+Tag.belongsToMany(Product, { through: 'productTag' });
+Product.belongsToMany(Tag, { through: 'productTag' });
 
 Product.hasMany(Track);
 Track.belongsTo(Product);
@@ -25,17 +30,14 @@ Track.belongsTo(Product);
 Artist.hasMany(Product);
 Product.belongsTo(Artist);
 
-Tag.belongsToMany(Product, { through: 'productTag' });
-Product.belongsToMany(Tag, { through: 'productTag' });
-
 
 module.exports = {
   db,
   Account,
+  Tag,
   Order,
+  Product,
   Track,
   Artist,
   LineItem,
-  Product,
-  Tag,
 };
