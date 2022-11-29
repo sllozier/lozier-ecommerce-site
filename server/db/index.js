@@ -123,8 +123,8 @@ const seed = async () => {
    
     
     const products = await Promise.all(albums.map(async album => {
-      //console.log('SEED Artist name?', album.artists[0].name)
-      let art = await Artist.findOne({
+      console.log('SEED Artist name?', album.artists[0].name)
+      const art = await Artist.findOne({
         where: {
           spotifyId: album.artists[0].id
         },
@@ -132,8 +132,10 @@ const seed = async () => {
      //console.log("SEED ART", art)
       
       if(!art){
+      
         let spotifyArtist = artists.find(art => art.id === album.artists[0].id);
-        console.log(spotifyArtist.name)
+        // const obj = Object.keys(spotifyArtist)
+        // console.log("SEED SPOT ART KEYS", obj)
         art = await Artist.create({
           name: spotifyArtist.name,
           spotifyId: spotifyArtist.id,
