@@ -17,30 +17,37 @@ const orderSlice = createSlice({
     initialState: {
         orderList: [],
         orderData: {},
-        lineItems: 0,
+        lineItems: [],
+        lineItem: {},
     },
     reducers: {
         setOrderData: (state, action) => {
             return action.payload;
         },
         getOrderList: (state, action) => {
-            state.orderList = action.payload;
-            return state;
+           if(!action.orderList) return state;
+           return action.orderList;
         },
-        getOrderData: (state, action) => {
-            state.orderData = action.payload;
-            return state;
-        },
+        // getOrderData: (state, action) => {
+        //     state.orderData = action.payload;
+        //     return state;
+        // },
         addItem: (state) => {
-            state.lineItems += 1;
+            return state.map(order => order.complete
+                ? order : lineItems.push(action.payload));
         },
         removeItem: (state, action) => {
-            state.lineItems = action.payload;
-            return state;
+            return state.map(order => order.complete
+                ? order : lineItems.filter(item => item.id !== action.itemId));
         },
         _updateQuantity: (state, action) => {
-            state.lineItems = action.payload;
+            const orderToUpdate = state.orderList.filter(order => !order.complete);
+            const itemToUpdate = orderToUpdate.lineItems.filter(item => item.id === action.itemId);
+            if(action.num <= 0 || action.num > orderToUpdate.itemToUpdate.product.stock)
             return state;
+            const nextState = JSON.parse(JSON.stringify(state));
+            nextState.lineItems.quantity = action.num;
+            return nextState;
         },
         setErrorMsg: (state, action) => {
             state.errorMsg = action.payload;
@@ -53,7 +60,7 @@ export default orderSlice.reducer;
 export const {
     setOrders,
     getOrderList,
-    getOrderData,
+    //getOrderData,
     addItem,
     removeItem,
     _updateQuantity,
