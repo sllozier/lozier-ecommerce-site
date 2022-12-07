@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { attemptLogin } from '../../store/reducers1/authReducer';
+//import { attemptLogin } from '../../store/reducers1/authReducer';
 
 const LogIn = () => {
     const dispatch = useDispatch();

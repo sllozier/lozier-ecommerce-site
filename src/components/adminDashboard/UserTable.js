@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAccountThunk, deleteAccountThunk } from '../../store/reducers1/accountsReducer';
+//import { getAccountThunk, deleteAccountThunk } from '../../store/reducers1/accountsReducer';
 // import LoadUsers from './LoadUsers';
 // import RemoveUser from './RemoveUser';
 // import ModifyUser from './ModifyUser';

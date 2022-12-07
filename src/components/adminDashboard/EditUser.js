@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { editAccountThunk } from '../../store/reducers1/accountsReducer'
+//import { editAccountThunk } from '../../store/reducers1/accountsReducer'
 
 const EditUser = () => {
     const dispatch = useDispatch()

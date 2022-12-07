@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { logoutAccount } from "../../store/reducers1/authReducer";
+//import { logoutAccount } from "../../store/reducers1/authReducer";
 
 
 //THIS IS USED IN THE MAIN NAVBAR, NEED TO CHANGE TO LOGOUT ONLY//
