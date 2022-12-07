@@ -15,26 +15,28 @@ const Cart = () => {
     const [ total, setTotal ] = useState(0);
     const dispatch = useDispatch();
     const account = useSelector((state) => state.auth);
-    const order = useSelector((state) => state.order);
+    const orderList = useSelector((state) => state.order.orderList);
+    const order = useSelector((state) => state.order.orderData);
     console.log('CART ORDER', order)
+    console.log('CART ORDER List', orderList)
 
-    // const activeOrder = useSelector((state) =>
-    // state.order.find((order) => !order.complete)) || { lineItems: [] };
+    //const activeOrder = useSelector((state) =>
+    //state.order.find((order) => !order.complete)) || { lineItems: [] };
 
-    const { lineItems } = activeOrder;
+    //const { lineItems } = activeOrder;
 
     useEffect(() => {
         dispatch(fetchOrderList(account.id));
     }, [account]);
 
-    useEffect(() => {
-        setTotal(lineItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
-    }, [lineItems])
+    // useEffect(() => {
+    //     setTotal(lineItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
+    // }, [lineItems])
   
     return(
         <>
         <h1>Cart Stuff</h1>
-        <p>{item.product.name}</p>
+        {/* <p>{item.product.name}</p>
         <h3>Artist:</h3>
         <p>{item.product.artist.name}</p>
         <h3>Price:</h3>
@@ -56,7 +58,7 @@ const Cart = () => {
         </button>
         <h1>Checkout</h1>
         <p>Link to checkout here</p>
-        <p>Subtotal: ${(total /100).toFixed(2)}</p>
+        <p>Subtotal: ${(total /100).toFixed(2)}</p> */}
         </>
     )
 
