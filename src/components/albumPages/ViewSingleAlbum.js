@@ -12,7 +12,8 @@ const ViewSingleAlbum = () => {
   const dispatch = useDispatch();
   const [ playingId, setPlayingId ] = useState(-1);
 
-  console.log('SING ALBUM TRACKS', album)
+  console.log('SING ALBUM', album);
+  console.log('SING ALBUM ID', album.id)
 
   useEffect(() => {
     window.scrollTo(0,0);
