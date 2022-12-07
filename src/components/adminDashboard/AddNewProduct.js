@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addProduct, addProductThunk } from '../../store/reducers1/adminReducer';
+//import { addProduct, addProductThunk } from '../../store/reducers1/adminReducer';
 
 const AddNewProduct = () => {
     const dispatch = useDispatch()

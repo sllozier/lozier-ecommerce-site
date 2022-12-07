@@ -15,8 +15,9 @@ const ViewAllAlbums = () => {
   const [currentPage, setCurrentPage] = useState(1);
   let PageSize = 4;
   const allAlbums = useSelector((state) => state.album.albumList);
+  
   // AOS.init()
-  //console.log("VIEW ALBUMS", allAlbums)
+  //console.log("VIEW ALBUMS DATA", albumData)
   
   // dispatch thunk to get all albums
   useEffect(() => {

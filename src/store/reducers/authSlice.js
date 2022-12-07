@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-import history from '../../utils/history';
+//import history from '../../utils/history';
 //import { fetchCart, accountAttachCart } from './cartSlice';
 
 

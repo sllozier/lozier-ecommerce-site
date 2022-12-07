@@ -23,6 +23,10 @@ const Track = db.define('track', {
         type: Sequelize.STRING,
         defaultValue: null,
     },
+    image: {
+        type: Sequelize.STRING,
+        defaultValue: "https://www.furnacemfg.com/wp-content/uploads/2018/12/black_vinyl.jpg",
+    },
 });
 
 module.exports = Track;
