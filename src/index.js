@@ -1,20 +1,21 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import React from "react";
+import { createRoot } from "react-dom/client";
 import App from "./App";
-import { Provider } from 'react-redux';
-import store from './store';
-import history from './utils/history';
-import { BrowserRouter } from 'react-router-dom';
+import { Provider } from "react-redux";
+import { store, persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+//import history from './utils/history';
+import { BrowserRouter } from "react-router-dom";
 import "../public/sass/mystyles.scss";
 
-
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById("root"));
 
 root.render(
-    <BrowserRouter history={history}>
-        <Provider store={store}> 
-            <App />
-        </Provider>
-    </BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>
 );
-

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logoutAccount } from "../../store/reducers1/authReducer";
+//import { logoutAccount } from "../../store/reducers1/authReducer";
 import { LogIn } from "../auth";
 
 //THIS WILL NEED TO BE MOVED TO PORTAL AND NAVBAR WILL BE HERE INSTEAD//

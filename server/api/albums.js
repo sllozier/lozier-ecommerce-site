@@ -7,7 +7,6 @@ router.get("/albums", async (req, res, next) => {
     const albumList = await Product.findAll({
       include: Artist,
     });
-    console.log("ALBUMLIST API", albumList);
     res.send(albumList);
   } catch (error) {
     next(error);

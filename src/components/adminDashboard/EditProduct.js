@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateProduct, fetchSingleProduct, editProductThunk } from '../../store/reducers1/adminReducer'
+//import { updateProduct, fetchSingleProduct, editProductThunk } from '../../store/reducers1/adminReducer'
 import { useParams } from 'react-router-dom';
 // import { editProductThunk } from '../../../store/reducers1/productsReducer'
 

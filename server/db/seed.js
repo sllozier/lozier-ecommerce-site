@@ -75,6 +75,7 @@ const seed = async () => {
             length: track.duration_ms,
             explicit: track.explicit,
             preview: track.preview_url,
+            image: track.image,
             productId: prod.id,
           });
         });

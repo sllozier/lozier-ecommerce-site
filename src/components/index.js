@@ -24,6 +24,7 @@ import{
 import{
     ViewAllAlbums,
     ViewSingleAlbum,
+    Pagination,
 } from "./albumPages";
 
 import{
