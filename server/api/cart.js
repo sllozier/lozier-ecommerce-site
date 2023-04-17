@@ -160,8 +160,7 @@ router.get("/cart/:accountId/:UUID", async (req, res, next) => {
           isCart: true,
         },
         include: {
-          model: Product,
-          attributes: ["id", "title", "price", "stock", "description", "image"],
+          model: LineItem,
         },
       });
     } else if (req.params.accountId !== 0) {
@@ -171,8 +170,7 @@ router.get("/cart/:accountId/:UUID", async (req, res, next) => {
           isCart: true,
         },
         include: {
-          model: Product,
-          attributes: ["id", "title", "price", "stock", "description", "image"],
+          model: LineItem,
         },
       });
     }
