@@ -4,3 +4,4 @@ node_modules
 .env
 request.rest
 bundle.js.LICENSE.txt
+package-lock.json
