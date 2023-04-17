@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAlbumData } from "../../store/reducers/albumSlice";
 import { addItem } from "../../store/reducers/orderSlice";
+import { createCart } from "../../store/reducers/cartSlice";
 import { useParams, Link } from "react-router-dom";
 
 const ViewSingleAlbum = () => {
   const album = useSelector((state) => state.album.albumData);
+  const auth = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
   const artist = album.artist || {};
   const [productAmount, setProductAmount] = useState(1);
   const params = useParams();
   const dispatch = useDispatch();
   const [playingId, setPlayingId] = useState(-1);
 
-  console.log("SING ALBUM", album);
-  console.log("SING ALBUM ID", album.id);
+  console.log("CART STATE", cart);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,6 +69,12 @@ const ViewSingleAlbum = () => {
     });
   };
 
+  const accountId = auth.id || 0;
+  let UUID = cart.UUID || "empty";
+  if (accountId == 0 && UUID == "empty" && localStorage.UUID !== undefined) {
+    UUID = localStorage.getItem("UUID");
+  }
+  console.log("LOCAL STORAGE", localStorage);
   return (
     <section className="section is-family-monospace">
       <div className="container">
@@ -116,7 +124,15 @@ const ViewSingleAlbum = () => {
                             }`}
                             onClick={
                               album.stock > 0
-                                ? () => dispatch(addItem(album.id))
+                                ? () =>
+                                    dispatch(
+                                      createCart(
+                                        album.id,
+                                        accountId,
+                                        UUID,
+                                        changeAmount()
+                                      )
+                                    )
                                 : null
                             }
                           >
@@ -139,8 +155,8 @@ const ViewSingleAlbum = () => {
                         album.tracks.map((track) => (
                           <div className="list-item" key={track.id}>
                             {/* image section */}
-                            <div class="list-item-image">
-                              <figure class="image is-64x64">
+                            <div className="list-item-image">
+                              <figure className="image is-64x64">
                                 <img src={album.image} />
                               </figure>
                             </div>
