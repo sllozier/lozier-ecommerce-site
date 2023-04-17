@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAlbumData } from "../../store/reducers/albumSlice";
 import { addItem } from "../../store/reducers/orderSlice";
+import { createCart } from "../../store/reducers/cartSlice";
 import { useParams, Link } from "react-router-dom";
 
 const ViewSingleAlbum = () => {
   const album = useSelector((state) => state.album.albumData);
+  const auth = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
   const artist = album.artist || {};
+  const [productAmount, setProductAmount] = useState(1);
   const params = useParams();
   const dispatch = useDispatch();
   const [playingId, setPlayingId] = useState(-1);
 
-  console.log("SING ALBUM", album);
-  console.log("SING ALBUM ID", album.id);
+  console.log("CART STATE", cart);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,8 +62,21 @@ const ViewSingleAlbum = () => {
     nextTrack.classList.toggle("playing");
   };
 
+  const changeAmount = (prop) => (event) => {
+    setProductAmount({
+      ...productAmount,
+      [prop]: event.target.value,
+    });
+  };
+
+  const accountId = auth.id || 0;
+  let UUID = cart.UUID || "empty";
+  if (accountId == 0 && UUID == "empty" && localStorage.UUID !== undefined) {
+    UUID = localStorage.getItem("UUID");
+  }
+  console.log("LOCAL STORAGE", localStorage);
   return (
-    <section className="section">
+    <section className="section is-family-monospace">
       <div className="container">
         <div className="columns is-12 is-variable">
           <div className="column is-9-desktop is-5-tablet">
@@ -69,106 +85,132 @@ const ViewSingleAlbum = () => {
                 <img src={album.image} />
               </div>
               <div className="card-content">
-                <p className="title is-size-5">Title: {album.name}</p>
-                <Link to={`/singleArtist/${artist.id}`}>
-                  <p className="sub-title">Artist: {artist.name}</p>
-                </Link>
-                <p className="title is-size-5">Label: {album.label}</p>
-                {artist.genre ? (
-                  <p className="title is-size-5">
-                    Genre: {toTitleCase(artist.genre)}
-                  </p>
-                ) : (
-                  <p className="title is-size-5">Genre: N/A</p>
-                )}
-                <p className="title is-size-5">
-                  Date Released: {album.releaseDate}
-                </p>
+                <h1 className="title is-4 mb-2">Title: {album.name}</h1>
+                <div className="list has-visible-pointer-controls">
+                  <div className="list-item">
+                    <div className="list-item-content">
+                      <div className="list-item-title">
+                        <Link to={`/singleArtist/${artist.id}`}>
+                          <p>Artist: {artist.name}</p>
+                        </Link>
+                        <p>Label: {album.label}</p>
+                        {artist.genre ? (
+                          <p>Genre: {toTitleCase(artist.genre)}</p>
+                        ) : (
+                          <p>Genre: N/A</p>
+                        )}
+                        <p>Date Released: {album.releaseDate}</p>
+                      </div>
+                    </div>
+                    <div className="list-item-controls">
+                      <div className="is-flex is-align-items-center">
+                        <span>Price: {displayPrice(album.price)}</span>
+                        <div className="control ml-3 is-hidden-mobile">
+                          <input
+                            className="input is-primary"
+                            type="number"
+                            min="1"
+                            max={album.stock}
+                            style={{ width: "7ch" }}
+                            onChange={(event) =>
+                              changeAmount(Number(event.target.value))
+                            }
+                          ></input>
+                        </div>
+                        <div className="buttons ml-3">
+                          <button
+                            className={`album-button single-view-button button is-dark ${
+                              album.stock > 0 ? "" : "disabled"
+                            }`}
+                            onClick={
+                              album.stock > 0
+                                ? () =>
+                                    dispatch(
+                                      createCart(
+                                        album.id,
+                                        accountId,
+                                        UUID,
+                                        changeAmount()
+                                      )
+                                    )
+                                : null
+                            }
+                          >
+                            <span className="icon">
+                              <i className="fa-solid fa-cart-plus"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <footer className="card-footer">
                 <div className="card-footer-item">
-                  <p className="title is-size-5">Tracks: {album.totalTracks}</p>
+                  <p className="title is-size-5">{album.totalTracks}</p>
                   <div id="playlist">
                     <div className="list has-overflow-ellipsis has-visible-pointer-controls has-hoverable-list-items">
                       {album.tracks &&
                         album.tracks.map((track) => (
                           <div className="list-item" key={track.id}>
+                            {/* image section */}
+                            <div className="list-item-image">
+                              <figure className="image is-64x64">
+                                <img src={album.image} />
+                              </figure>
+                            </div>
+                            {/* content section */}
                             <div className="list-item-content">
                               <div className="list-item-title">
                                 {track.name}
                               </div>
                               <div className="description">
-                                {artist.name} .{" "}
                                 {convertTrackLength(track.length)}
                                 {track.length < 6000 ? "seconds" : "minutes"}
                               </div>
-                              <div className="list-item-controls">
-                                <div className="buttons">
-                                  {track.preview ? (
-                                    <>
-                                      <audio
-                                        preload="auto"
-                                        src={track.preview}
-                                        id={track.id}
-                                      ></audio>
-                                      {playingId !== track.id ? (
-                                        <button
-                                          className="button is-primary"
-                                          onClick={() =>
-                                            handleClickAudio(track.id)
-                                          }
-                                        >
-                                          <span className="icon is-medium mr-2">
-                                            <i className="fa-solid fa-circle-play"></i>
-                                          </span>
-                                        </button>
-                                      ) : (
-                                        <button
-                                          className="button is-black"
-                                          onClick={() =>
-                                            handleClickAudio(track.id)
-                                          }
-                                        >
-                                          <span className="icon is-medium mr-2">
-                                            <i className="fa-solid fa-circle-stop"></i>
-                                          </span>
-                                        </button>
-                                      )}
-                                    </>
-                                  ) : (
-                                    "Preview Not Available"
-                                  )}
-                                </div>
+                            </div>
+                            <div className="list-item-controls">
+                              <div className="buttons">
+                                {track.preview ? (
+                                  <>
+                                    <audio
+                                      preload="auto"
+                                      src={track.preview}
+                                      id={track.id}
+                                    ></audio>
+                                    {playingId !== track.id ? (
+                                      <button
+                                        className="button is-light is-hidden-mobile"
+                                        onClick={() =>
+                                          handleClickAudio(track.id)
+                                        }
+                                      >
+                                        <span className="icon">
+                                          <i className="fa-solid fa-play"></i>
+                                        </span>
+                                      </button>
+                                    ) : (
+                                      <button
+                                        className="button is-light is-hidden-mobile"
+                                        onClick={() =>
+                                          handleClickAudio(track.id)
+                                        }
+                                      >
+                                        <span className="icon">
+                                          <i className="fa-solid fa-stop"></i>
+                                        </span>
+                                      </button>
+                                    )}
+                                  </>
+                                ) : (
+                                  "Preview Not Available"
+                                )}
                               </div>
                             </div>
                           </div>
                         ))}
                     </div>
-                  </div>
-                </div>
-                <div className="card-footer-item">
-                  <h4>Price: {displayPrice(album.price)}</h4>
-                  <div className="single-album-buttons">
-                    <button
-                      className={`album-button single-view-button button is-dark ${
-                        album.stock > 0 ? "" : "disabled"
-                      }`}
-                      onClick={
-                        album.stock > 0
-                          ? () => dispatch(addItem(album.id))
-                          : null
-                      }
-                    >
-                      {album.stock > 0 ? "Add to Cart" : "Not in stock"}
-                    </button>
-                    <Link to={"/"}>
-                      <button className="album-button single-view-button button is-dark">
-                        <span className="icon is-medium">
-                          <i className="fa-solid fa-house-user"></i>
-                        </span>
-                        <span>Home</span>
-                      </button>
-                    </Link>
                   </div>
                 </div>
               </footer>
@@ -177,6 +219,49 @@ const ViewSingleAlbum = () => {
         </div>
       </div>
     </section>
+
+    // {/* <div class="list-item">
+    //   //image section
+
+    //         <div class="list-item-image">
+    //           <figure class="image is-64x64">
+    //             <img src="https://ia801504.us.archive.org/35/items/mbid-2e999a18-f74d-49f4-8e01-d4f354ad5a32/mbid-2e999a18-f74d-49f4-8e01-d4f354ad5a32-30261100157.jpg" alt="Friends That Break Your Heart">
+    //           </figure>
+    //         </div>
+
+    // //content section
+    //         <div class="list-item-content">
+    //           <div class="list-item-title">
+    //             Life Is Not The Same
+    //           </div>
+    //           <div class="description">
+    //             James Blake · 3:20
+    //           </div>
+    //         </div>
+
+    //         //controls section
+
+    //         <div class="list-item-controls">
+    //           <div class="buttons">
+    //             <button class="button is-light is-hidden-mobile">
+    //               <span class="icon">
+    //                 <i class="fas fa-play"></i>
+    //               </span>
+    //             </button>
+    //             <button class="button is-light is-hidden-mobile">
+    //               <span class="icon">
+    //                 <i class="fas fa-heart"></i>
+    //               </span>
+    //             </button>
+    //             <button class="button is-light">
+    //               <span class="icon">
+    //                 <i class="fas fa-ellipsis-v"></i>
+    //               </span>
+    //             </button>
+    //           </div>
+    //         </div>
+
+    //       </div> */}
 
     // <div className='single-album'>
     //   <div className='single-album-image-info'>

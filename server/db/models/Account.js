@@ -1,16 +1,14 @@
-const Sequelize = require('sequelize');
-const db = require('../database');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const Sequelize = require("sequelize");
+const db = require("../database");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const JWT = process.env.TOKEN;
 
 const SALT_ROUNDS = 5;
 
-
-
 // NOTE: need to add authentication (jwt)
-const Account = db.define('account', { 
+const Account = db.define("account", {
   username: {
     type: Sequelize.STRING,
     unique: true,
@@ -42,66 +40,64 @@ const Account = db.define('account', {
       notEmpty: true,
     },
   },
-  isAdmin: { // true = admin account, false = user account
+  isAdmin: {
+    // true = admin account, false = user account
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
   address: {
     type: Sequelize.STRING,
-  }
+  },
   // paymentInfo: {
   //   type: Sequelize.STRING,
   //   defaultValue: 'XXX-XXX-XXXX',
   // }
 });
 
-
-
 //AUTH
 
-Account.prototype.comparePassword = function(pswd) {
-  console.log('PSWD', pswd);
+Account.prototype.comparePassword = function (pswd) {
+  // console.log('PSWD', pswd);
   return bcrypt.compare(pswd, this.password);
-}
+};
 
-Account.prototype.generateToken = function() {
-  return jwt.sign({id: this.id}, JWT)
-}
+Account.prototype.generateToken = function () {
+  return jwt.sign({ id: this.id }, JWT);
+};
 
-
-Account.byToken = async function(token) {
-  try{
-    console.log('MODEL TOKEN', token)
-    const {id} = await jwt.verify(token, JWT)
-    console.log('MODEL ID', id)
-    const account = Account.findByPk(id)  
-    if(!account){
-      throw 'nooo';
+Account.byToken = async function (token) {
+  try {
+    // console.log('MODEL TOKEN', token)
+    const { id } = await jwt.verify(token, JWT);
+    //console.log('MODEL ID', id)
+    const account = Account.findByPk(id);
+    if (!account) {
+      throw "nooo";
     }
     return account;
-  }catch{
-    const error = Error('bad credentials')
+  } catch {
+    const error = Error("bad credentials");
     error.status = 401;
     throw error;
   }
 };
 
-Account.authenticate = async function({username, password}) {
+Account.authenticate = async function ({ username, password }) {
   const account = await Account.findOne({
     where: {
       username,
     },
   });
-  if(!account || !(await account.comparePassword(password))){
-    const error = Error('Incorrect username or password');
+  if (!account || !(await account.comparePassword(password))) {
+    const error = Error("Incorrect username or password");
     error.status = 401;
-    throw error; 
+    throw error;
   }
-    return account.generateToken();
-  };
-  
-const hashPassword = async function(account) {
-  if (account.changed('password')){
+  return account.generateToken();
+};
+
+const hashPassword = async function (account) {
+  if (account.changed("password")) {
     account.password = await bcrypt.hash(account.password, SALT_ROUNDS);
   }
 };
@@ -118,4 +114,3 @@ Account.prototype.cancelOrder = () => {};
 Account.prototype.cancelOrder = () => {};
 
 module.exports = Account;
-
