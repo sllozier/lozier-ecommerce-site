@@ -1,135 +1,146 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { LogoutButton } from '../../auth';
-import SaleRibbon from './SaleRibbon';
+import React from "react";
+import { Link } from "react-router-dom";
+import { LogoutButton } from "../../auth";
+import SaleRibbon from "./SaleRibbon";
 
 const NavBar = () => {
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-    $navbarBurgers.forEach( el => {
-      el.addEventListener('click', () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const $navbarBurgers = Array.prototype.slice.call(
+      document.querySelectorAll(".navbar-burger"),
+      0
+    );
+    $navbarBurgers.forEach((el) => {
+      el.addEventListener("click", () => {
         const target = el.dataset.target;
         const $target = document.getElementById(target);
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-  
+        el.classList.toggle("is-active");
+        $target.classList.toggle("is-active");
       });
     });
   });
 
   return (
     <>
-    
-    <nav className='navbar is-transparent is-primary has-logo-above is-family-monospace' role="navigation" aria-label="main navigation">
-
-      <div className='navbar-brand is-family-monospace'>
-        <a className='navbar-item is-hidden-touch' href="/">
-          <img src="/piccies/waybackNavbarLogo.svg" width="280" height="70"/>
-        </a>
-        
-        <div className='navbar-item field has-addons force-center'>
-          <div className='control has-icons-right'>
-            <input className='input is-family-monospace' type="search" placeholder='search...'/>
-            <span className='icon is-small is-right'>
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </span>
-          </div>
-          <div className='control '>
-            <button type="submit" className="button is-danger is-family-monospace">Search</button>
+      <nav
+        className="navbar is-transparent is-primary has-logo-above is-family-monospace"
+        role="navigation"
+        aria-label="main navigation"
+      >
+        <div className="navbar-brand ml-4 is-family-monospace">
+          <a className="navbar-item is-hidden-touch" href="/">
+            <img src="/piccies/waybackNavbarLogo.svg" width="280" height="70" />
+          </a>
+          <div className="navbar-end mr-4">
+            <div className="navbar-item field has-addons ">
+              <div className="control has-icons-right ">
+                <input
+                  className="input is-family-monospace"
+                  type="search"
+                  placeholder="search..."
+                />
+                <span className="icon is-small is-right">
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </span>
+              </div>
+              <div className="control ">
+                <button
+                  type="submit"
+                  className="button is-danger is-family-monospace"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-        <a role="button" className='navbar-burger burger' aria-label="menu" aria-expanded="false" data-target="navBarMain" href="/login">
+        <a
+          role="button"
+          className="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navBarMain"
+          href="/login"
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
-      
 
-      <div id="navBarMain" className='navbar-menu'>
-        <div className='navbar-start ml-4'>
-          <div className='navbar-item has-dropdown is-hoverable'>
-            <a className='navbar-link has-text-info'>
-              Shop By Genre
-            </a>
-              <div className='navbar-dropdown'>
-                <a className='navbar-item' href='albums'>
+        <div id="navBarMain" className="navbar-menu">
+          <div className="navbar-start ml-4">
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link has-text-info">Shop By Genre</a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item" href="albums">
                   Genre 1
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Genre 2
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Genre 3
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Genre 4
                 </a>
               </div>
             </div>
-            <div className='navbar-item has-dropdown is-hoverable'>
-            <a className='navbar-link has-text-info' href='/albums'>
-              Shop By Artist
-            </a>
-            <div className='navbar-dropdown'>
-                <a className='navbar-item' href='albums'>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link has-text-info" href="/albums">
+                Shop By Artist
+              </a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item" href="albums">
                   Artist 1
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Artist 2
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Artist 3
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Artist 4
                 </a>
               </div>
             </div>
-            <div className='navbar-item has-dropdown is-hoverable'>
-            <a className='navbar-link has-text-info' href='/albums'>
-              Shop By Title
-            </a>
-            <div className='navbar-dropdown'>
-                <a className='navbar-item' href='albums'>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link has-text-info" href="/albums">
+                Shop By Title
+              </a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item" href="albums">
                   Title 1
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Title 2
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Title 3
                 </a>
-                <a className='navbar-item' href='albums'>
+                <a className="navbar-item" href="albums">
                   Title 4
                 </a>
               </div>
+            </div>
           </div>
-        </div>
-        <div className='navbar-end mr-4'>
-          {/* <a className='navbar-item' href="#">
+          <div className="navbar-end mr-4">
+            {/* <a className='navbar-item' href="#">
             <i className="fa-solid fa-magnifying-glass"></i>
           </a> */}
-          <span className='icon is-medium mr-2'>
-          <a className='navbar-item' href="/cart">
-              <i className="has-text-info fa-solid fa-cart-shopping fas fa-lg"></i>
-          </a>
-          </span>
-          <span className='icon is-medium ml-2'>
-          <a className='navbar-item' href="/login">
-              <i className="has-text-info fa-solid fa-right-to-bracket fas fa-lg"></i>
-          </a>
-          </span>    
-           
-          
+            <span className="icon is-medium mr-2">
+              <a className="navbar-item" href="/cart">
+                <i className="has-text-info fa-solid fa-cart-shopping fas fa-lg"></i>
+              </a>
+            </span>
+            <span className="icon is-medium ml-2">
+              <a className="navbar-item" href="/login">
+                <i className="has-text-info fa-solid fa-right-to-bracket fas fa-lg"></i>
+              </a>
+            </span>
+          </div>
         </div>
-      </div>
-      
-    </nav>
-   
-
-
+      </nav>
 
       {/* <div className="nav-container">
         <div>
@@ -184,6 +195,6 @@ const NavBar = () => {
       </div> */}
     </>
   );
-}
+};
 
 export default NavBar;
