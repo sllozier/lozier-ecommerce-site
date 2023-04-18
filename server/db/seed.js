@@ -15,14 +15,24 @@ const seed = async () => {
     );
 
     const admin = await Account.create({
-      firstName: "Grace",
-      lastName: "Shopper",
+      firstName: "Boss",
+      lastName: "Admin",
       username: "admin",
       password: "password",
-      email: "graceShopper@email.com",
+      email: "bossAdmin@email.com",
       isAdmin: true,
     });
     await Order.create({ accountId: admin.id });
+
+    const user = await Account.create({
+      firstName: "Peep",
+      lastName: "User",
+      username: "user",
+      password: "password",
+      email: "peepUser@email.com",
+      isAdmin: false,
+    });
+    await Order.create({ accountId: user.id });
 
     // Product
     const [albums, artists] = await getAlbumData();

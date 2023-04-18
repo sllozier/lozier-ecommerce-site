@@ -156,7 +156,7 @@ router.get("/cart/:accountId/:UUID", async (req, res, next) => {
     if (req.params.UUID !== "empty") {
       cart = await Order.findOne({
         where: {
-          UUID: req.params.UUID,
+          accountId: req.params.accountId,
           isCart: true,
         },
         include: {
