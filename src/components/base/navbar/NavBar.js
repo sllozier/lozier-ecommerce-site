@@ -1,9 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { LogoutButton } from "../../auth";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../../store/reducers/authSlice";
 import SaleRibbon from "./SaleRibbon";
+import { useSelector, useDispatch } from "react-redux";
 
 const NavBar = () => {
+  const account = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   document.addEventListener("DOMContentLoaded", () => {
     const $navbarBurgers = Array.prototype.slice.call(
       document.querySelectorAll(".navbar-burger"),
@@ -19,6 +24,10 @@ const NavBar = () => {
     });
   });
 
+  const logoutAccount = () => {
+    dispatch(logout());
+    // navigate("/");
+  };
   return (
     <>
       <nav
@@ -128,14 +137,30 @@ const NavBar = () => {
             {/* <a className='navbar-item' href="#">
             <i className="fa-solid fa-magnifying-glass"></i>
           </a> */}
+            {account.id ? (
+              <span className="icon is-medium ml-2">
+                <a
+                  className="navbar-item has-tooltip-arrow has-tooltip-left has-tooltip-info"
+                  data-tooltip="logout"
+                  onClick={logoutAccount}
+                >
+                  <i className="has-text-info fa-solid fa-right-from-bracket fas fa-lg"></i>
+                </a>
+              </span>
+            ) : (
+              <span className="icon is-medium ml-2">
+                <a
+                  className="navbar-item has-tooltip-arrow has-tooltip-left has-tooltip-info"
+                  data-tooltip="login"
+                  href="/login"
+                >
+                  <i className="has-text-info fa-solid fa-right-to-bracket fas fa-lg"></i>
+                </a>
+              </span>
+            )}
             <span className="icon is-medium mr-2">
               <a className="navbar-item" href="/cart">
                 <i className="has-text-info fa-solid fa-cart-shopping fas fa-lg"></i>
-              </a>
-            </span>
-            <span className="icon is-medium ml-2">
-              <a className="navbar-item" href="/login">
-                <i className="has-text-info fa-solid fa-right-to-bracket fas fa-lg"></i>
               </a>
             </span>
           </div>

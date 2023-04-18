@@ -74,7 +74,7 @@ const ViewSingleAlbum = () => {
   if (accountId == 0 && UUID == "empty" && localStorage.UUID !== undefined) {
     UUID = localStorage.getItem("UUID");
   }
-  console.log("LOCAL STORAGE", localStorage);
+
   return (
     <section className="section is-family-monospace">
       <div className="container">

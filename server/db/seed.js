@@ -117,9 +117,11 @@ const seed = async () => {
     console.log(
       `Seeding successful!`,
       "Order Special Methods:",
-      Object.keys(Order.prototype)
-      //"Product Special Methods:", Object.keys(Product.prototype),
-      //"Line Item Special Methods:", Object.keys(LineItem.prototype)
+      Object.keys(Order.prototype),
+      "Product Special Methods:",
+      Object.keys(Product.prototype),
+      "Line Item Special Methods:",
+      Object.keys(LineItem.prototype)
     );
   } catch (error) {
     console.log(`Seeding Problem! Error in seed Function: ${error}`);

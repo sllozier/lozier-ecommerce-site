@@ -7,7 +7,7 @@ const cartSlice = createSlice({
   initialState: {},
   reducers: {
     getCartData: (state, action) => {
-      state.accountData = action.payload;
+      state.cartData = action.payload;
       return state;
     },
     clearCart: (state, action) => {
@@ -54,6 +54,7 @@ export const createCart = (productId, accountId, UUID) => async (dispatch) => {
 
 export const fetchCartData = (accountId, UUID) => async (dispatch) => {
   try {
+    console.log("FETCHCART", accountId, UUID);
     const { data: cartData } = await axios.get(
       `/api/cart/${accountId}/${UUID}`
     );
