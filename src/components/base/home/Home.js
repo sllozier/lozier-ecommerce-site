@@ -7,7 +7,7 @@ import CallToAction from "./CallToAction";
 const Home = () => {
   return (
     <>
-      <div className="container has-background-cream is-family-monospace"></div>
+      <div className="container is-family-monospace"></div>
       <div className="container is-fluid">
         <HomeHero />
       </div>
