@@ -36,7 +36,7 @@ export const fetchAuthAccount = () => async (dispatch) => {
           authorization: token,
         },
       });
-      console.log("RES DATA FETCH AUTH", res.data);
+      //console.log("RES DATA FETCH AUTH", res.data);
       dispatch(fetchCartData(res.data.id));
       dispatch(setAuth(res.data));
     }
@@ -49,7 +49,7 @@ export const attemptLogin = (authInfo) => async (dispatch) => {
   try {
     const res = await axios.post("/auth/login", authInfo);
     window.localStorage.setItem("token", res.data);
-    console.log("RES DATA LOG", res.data);
+    //console.log("RES DATA LOG", res.data);
     dispatch(fetchAuthAccount());
     localStorage.removeItem("UUID");
   } catch (error) {
@@ -60,8 +60,9 @@ export const attemptLogin = (authInfo) => async (dispatch) => {
 export const createAuthAccount = (authInfo) => async (dispatch) => {
   try {
     const res = await axios.post("/auth/signup", authInfo);
-    window.localStorage.setItem("token".res.data.token);
-    dispatch(accountAttachCart(res.data.id, localStorage.UUID));
+    window.localStorage.setItem("token", res.data.token);
+    const UUID = localStorage.UUID;
+    dispatch(accountAttachCart(res.data.id, UUID));
   } catch (error) {
     console.log("CREATE AUTH ACCT ERROR", error);
   }

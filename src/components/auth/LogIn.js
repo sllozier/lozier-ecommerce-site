@@ -58,7 +58,7 @@ const LogIn = () => {
         />
         <button type="submit">Log In</button>
       </form>
-      <Link to="/account-nav/signup">Sign up for a new account?</Link>
+      <Link to="/signup">Sign up for a new account?</Link>
     </div>
   );
 };

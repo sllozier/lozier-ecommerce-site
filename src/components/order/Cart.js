@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  fetchOrderList,
-  removeOrderItem,
-  updateQuantity,
-} from "../../store/reducers/orderSlice";
-
-import { fetchCartData } from "../../store/reducers/cartSlice";
+  fetchCartData,
+  updateQuantities,
+  removeProduct,
+  checkout,
+} from "../../store/reducers/cartSlice";
 
 //DIVIDE INTO CHOOSE QTY COMP, DELETE ITEM COMP, GUEST/USER CART COMP,
 //CHECKOUT, PAYMENTREC OR CONFIRM COMP?
@@ -16,18 +15,25 @@ const Cart = () => {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const account = useSelector((state) => state.auth);
-  const cart = useSelector((state) => state.cart);
-  console.log("CART", cart);
-  console.log("AUTH", account);
+  const cart = useSelector((state) => state.cart.cartData);
+
+  let UUID = cart.UUID || "empty";
+  const accountId = account.id || 0;
+  if (accountId === 0 && UUID === "empty" && localStorage.UUID !== undefined) {
+    UUID = localStorage.getItem("UUID");
+  }
+
   //const activeOrder = useSelector((state) =>
   //state.order.find((order) => !order.complete)) || { lineItems: [] };
 
   //const { lineItems } = activeOrder;
 
   useEffect(() => {
-    dispatch(fetchCartData(account.id, account.UUID));
+    dispatch(fetchCartData(accountId, UUID));
   }, [account]);
 
+  console.log("CART", cart);
+  console.log("ACCOUNT", account);
   // useEffect(() => {
   //     setTotal(lineItems.reduce((acc, item) => acc + item.product.price * item.quantity, 0));
   // }, [lineItems])
@@ -35,6 +41,55 @@ const Cart = () => {
   return (
     <>
       <h1>Cart Stuff</h1>
+
+      {cart?.products ? (
+        <div>
+          {cart?.products?.map((item) => (
+            <div key={item.id}>
+              <p>{item.name}</p>
+              <h3>Artist:</h3>
+
+              <h3>Price:</h3>
+              <p>{item.price}</p>
+              <h3>Quantity:</h3>
+              <button
+                onClick={() =>
+                  dispatch(updateQuantities(item.id, item.quantity - 1))
+                }
+              >
+                -
+              </button>
+              <button
+                onClick={() =>
+                  dispatch(updateQuantities(item.id, item.Quantity + 1))
+                }
+              >
+                +
+              </button>
+              <button
+                onClick={() => {
+                  if (
+                    confirm(
+                      `Are you sure you want to delete "${item.name}" from your cart?`
+                    )
+                  )
+                    dispatch(removeProduct(item.id));
+                }}
+              >
+                Delete
+              </button>
+              <h1>Checkout</h1>
+              <p>Link to checkout here</p>
+              <p>Subtotal: ${cart.orderTotal}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <h3>Your Cart is empty</h3>
+        </div>
+      )}
+
       {/* <p>{item.product.name}</p>
         <h3>Artist:</h3>
         <p>{item.product.artist.name}</p>

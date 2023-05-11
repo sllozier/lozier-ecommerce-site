@@ -22,7 +22,7 @@ const seed = async () => {
       email: "bossAdmin@email.com",
       isAdmin: true,
     });
-    await Order.create({ accountId: admin.id });
+    //await Order.create({ accountId: admin.id });
 
     const user = await Account.create({
       firstName: "Peep",
@@ -32,7 +32,32 @@ const seed = async () => {
       email: "peepUser@email.com",
       isAdmin: false,
     });
-    await Order.create({ accountId: user.id });
+    // await Order.create({ accountId: user.id });
+
+    //ORDER
+    const order1 = await Order.create({
+      isCart: false,
+      accountId: 1,
+      purchaseDate: new Date(),
+      // cart: [
+      //   "product1",
+      //   "product2"
+      // ]
+    });
+
+    const order2 = await Order.create({
+      accountId: 2,
+    });
+
+    const order3 = await Order.create({
+      isCart: false,
+      accountId: 4,
+      purchaseDate: new Date(),
+    });
+
+    const order4 = await Order.create({
+      accountId: 4,
+    });
 
     // Product
     const [albums, artists] = await getAlbumData();
@@ -85,44 +110,44 @@ const seed = async () => {
     );
 
     //LOAD ORDERS
-    for (let i = 0; i < 100; i++) {
-      //every 4th order is active
-      const order = await Order.create({ complete: !(i % 4 === 0) });
+    // for (let i = 0; i < 100; i++) {
+    //   //every 4th order is active
+    //   const order = await Order.create({ complete: !(i % 4 === 0) });
 
-      //get available products
-      const available = products.filter((prod) =>
-        order.complete ? prod : prod.stock
-      );
-      //give each order between 0 and 4 random albums
-      for (let j = 0; j < Math.ceil(Math.random() * 4); j++) {
-        //grab a random product, make a lineItem
-        const curProd = available[Math.floor(Math.random() * available.length)];
-        // ensure only new lineItems are added in seed
-        const isNew = (await order.getLineitems()).every(
-          (item) => item.productId !== curProd.id
-        );
+    //   //get available products
+    //   const available = products.filter((prod) =>
+    //     order.complete ? prod : prod.stock
+    //   );
+    //   //give each order between 0 and 4 random albums
+    //   for (let j = 0; j < Math.ceil(Math.random() * 4); j++) {
+    //     //grab a random product, make a lineItem
+    //     const curProd = available[Math.floor(Math.random() * available.length)];
+    //     // ensure only new lineItems are added in seed
+    //     const isNew = (await order.getProducts()).every(
+    //       (item) => item.productId !== curProd.id
+    //     );
 
-        if (isNew && curProd.stock > 0)
-          await curProd.createLineitem({
-            quantity: Math.ceil(Math.random() * curProd.stock),
-            orderId: order.id,
-          });
-      }
+    //     if (isNew && curProd.stock > 0)
+    //       await curProd.createLineitem({
+    //         quantity: Math.ceil(Math.random() * curProd.stock),
+    //         orderId: order.id,
+    //       });
+    //   }
 
-      //give 25 accounts 4 orders, rest an empty cart
-      await accounts[Math.floor(i / 4)].addOrder(order);
-      if (i >= 25) await (await Order.create()).setAccount(accounts[i]);
-    }
+    //   //give 25 accounts 4 orders, rest an empty cart
+    //   await accounts[Math.floor(i / 4)].addOrder(order);
+    //   if (i >= 25) await (await Order.create()).setAccount(accounts[i]);
+    // }
 
-    console.log(
-      `Seeding successful!`,
-      "Order Special Methods:",
-      Object.keys(Order.prototype),
-      "Product Special Methods:",
-      Object.keys(Product.prototype),
-      "Line Item Special Methods:",
-      Object.keys(LineItem.prototype)
-    );
+    // console.log(
+    //   `Seeding successful!`,
+    //   "Order Special Methods:",
+    //   Object.keys(Order.prototype),
+    //   "Product Special Methods:",
+    //   Object.keys(Product.prototype),
+    //   "Line Item Special Methods:",
+    //   Object.keys(LineItem.prototype)
+    // );
   } catch (error) {
     console.log(`Seeding Problem! Error in seed Function: ${error}`);
   }
@@ -134,10 +159,6 @@ const runSeed = async () => {
   } catch (error) {
     console.error("RUN SEED ERROR", error);
     process.exitCode = 1;
-  } finally {
-    console.log(`closing db connection`);
-    await db.close();
-    console.log(`db connection closed`);
   }
 };
 

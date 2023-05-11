@@ -15,7 +15,7 @@ const ViewSingleAlbum = () => {
   const dispatch = useDispatch();
   const [playingId, setPlayingId] = useState(-1);
 
-  console.log("CART STATE", cart);
+  //console.log("CART STATE", cart);
 
   useEffect(() => {
     window.scrollTo(0, 0);
