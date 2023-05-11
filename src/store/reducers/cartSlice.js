@@ -7,7 +7,7 @@ const cartSlice = createSlice({
   initialState: {},
   reducers: {
     getCartData: (state, action) => {
-      state.accountData = action.payload;
+      state.cartData = action.payload;
       return state;
     },
     clearCart: (state, action) => {
@@ -28,7 +28,6 @@ export const { getCartData, clearCart, setErrorMsg } = cartSlice.actions;
 
 export const createCart = (productId, accountId, UUID) => async (dispatch) => {
   try {
-    console.log("PRODUCTID", productId, "ACCT ID", accountId, "UUID", UUID);
     const { data: newCartData } = await axios.post("/api/cart", {
       productId,
       accountId,
@@ -38,6 +37,7 @@ export const createCart = (productId, accountId, UUID) => async (dispatch) => {
     if (accountId === 0) {
       localStorage.setItem("UUID", newCartData.UUID);
     }
+    console.log("CREATE CART", newCartData);
     dispatch(
       updateQuantities(
         newCartData.id,
@@ -54,9 +54,11 @@ export const createCart = (productId, accountId, UUID) => async (dispatch) => {
 
 export const fetchCartData = (accountId, UUID) => async (dispatch) => {
   try {
+    // console.log("FETCHCART", accountId, UUID);
     const { data: cartData } = await axios.get(
       `/api/cart/${accountId}/${UUID}`
     );
+    console.log("FETCH CART", cartData);
     dispatch(getCartData(cartData));
   } catch (error) {
     console.log("FETCH CART DATA ERROR", error);
@@ -65,7 +67,7 @@ export const fetchCartData = (accountId, UUID) => async (dispatch) => {
 
 export const accountAttachCart = (accountId, UUID) => async (dispatch) => {
   try {
-    await axios.put(`/api/cart/attach/${accountId}`, UUID);
+    await axios.put(`/api/cart/attach/${accountId}`, { UUID });
     dispatch(fetchCartData(accountId, UUID));
   } catch (error) {
     console.log("ACCT ATTACH CART ERROR", error);
@@ -98,12 +100,11 @@ export const updateQuantities =
   (cartId, UUID, accountId, productId, op, num = 1) =>
   async (dispatch) => {
     try {
-      console.log("CARTID", cartId, "UUID", UUID);
+      // console.log("CARTID", cartId, "UUID", UUID);
 
       await axios.put("/api/cart", {
         cartId,
         UUID,
-        accountId,
         productId,
         op,
         num,

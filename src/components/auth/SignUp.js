@@ -1,87 +1,98 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { createAuthAccount } from "../../store/reducers/authSlice";
 //import { createAccount } from '../../store/reducers1/authReducer';
 
 const SignUp = () => {
-    const account = useSelector((state) => state.account);
-    console.log('ACCOUNT?', account)
-    const dispatch = useDispatch();
-    const [form, setForm] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        username: '',
-        password: '',
+  const account = useSelector((state) => state.auth);
+  //console.log("ACCOUNT?", account);
+  const dispatch = useDispatch();
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+  });
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleChange = (props) => (event) => {
+    setForm({
+      ...form,
+      [props]: event.target.value,
     });
+  };
 
-    const [ isClicked, setIsClicked ] = useState(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await dispatch(createAuthAccount(form));
+  };
 
-    const handleChange = (props) => (event) => {
-        setForm({
-            ...form,
-            [props]: event.target.value,
-        });
-    };
+  return !account.id ? (
+    <>
+      <div id="account-signup" className="signup-container">
+        <h2>Sign up here:</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            name="firstName"
+            value={account.firstName}
+            onChange={handleChange("firstName")}
+          />
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        await dispatch(createAccount(form));  
-    };
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            name="lastName"
+            value={account.lastName}
+            onChange={handleChange("lastName")}
+          />
 
-    
+          <label htmlFor="email">Email:</label>
+          <input
+            name="email"
+            type="email"
+            value={account.email}
+            onChange={handleChange("email")}
+          />
 
-    return !account.id ? (
-        <>
-            <div id='account-signup' className='signup-container'>
-                <h2>Sign up here:</h2>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor='firstName'>First Name:</label>
-                    <input
-                        name='firstName'
-                        value={account.firstName}
-                        onChange={handleChange('firstName')} />
+          <label htmlFor="username">Choose a username:</label>
+          <input
+            name="username"
+            value={account.username}
+            onChange={handleChange("username")}
+          />
 
-                    <label htmlFor='lastName'>Last Name:</label>
-                    <input
-                        name='lastName'
-                        value={account.lastName}
-                        onChange={handleChange('lastName')} />
+          <label htmlFor="password">Password:</label>
+          <input
+            name="password"
+            type="password"
+            value={account.password}
+            onChange={handleChange("password")}
+          />
 
-                    <label htmlFor='email'>Email:</label>
-                    <input
-                        name='email'
-                        type='email'
-                        value={account.email}
-                        onChange={handleChange('email')} />
+          <button type="submit" onClick={() => setIsClicked(!isClicked)}>
+            Submit
+          </button>
+          {isClicked ? (
+            <Link to="/login">Sign In here!</Link>
+          ) : (
+            <h3>Click submit to complete sign up!</h3>
+          )}
 
-                    <label htmlFor='username'>Choose a username:</label>
-                    <input
-                        name='username'
-                        value={account.username}
-                        onChange={handleChange('username')} />
-
-                    <label htmlFor='password'>Password:</label>
-                    <input
-                        name='password'
-                        type='password'
-                        value={account.password}
-                        onChange={handleChange('password')} />
-                    
-                    <button type='submit' onClick={() => setIsClicked(!isClicked)}>Submit</button>
-                    {isClicked ? <Link to='/account-nav'>Sign In here!</Link> : <h3>Click submit to complete sign up!</h3>}
-                    
-                    <button type='button'><Link to='/'>Cancel</Link></button>
-                </form>
-                
-            </div>
-        </>
-        ): ( <div>You already have an account!</div>)
-}
+          <button type="button">
+            <Link to="/">Cancel</Link>
+          </button>
+        </form>
+      </div>
+    </>
+  ) : (
+    <div>You already have an account!</div>
+  );
+};
 
 export default SignUp;
-
-
 
 // const [hideRequired, setHideRequired] = useState(true);
 // if (account.password === account.confirmPassword) {
@@ -105,9 +116,11 @@ export default SignUp;
 //     alert('Enter matching password')
 //     setAccount({ ...account, password: '', confirmPassword: '' })
 // }
-{/* <label htmlFor='confirmPassword'>Confirm password: {hideRequired ? '' : <span className='required'>password confirmation required</span>}</label>
+{
+  /* <label htmlFor='confirmPassword'>Confirm password: {hideRequired ? '' : <span className='required'>password confirmation required</span>}</label>
 <input
     name='confirmPassword'
     type='password'
     value={account.confirmPassword}
-    onChange={handleChange('confirmpassword')} /> */}
+    onChange={handleChange('confirmpassword')} /> */
+}

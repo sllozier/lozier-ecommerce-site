@@ -1,9 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { LogoutButton } from "../../auth";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../../store/reducers/authSlice";
 import SaleRibbon from "./SaleRibbon";
+import { useSelector, useDispatch } from "react-redux";
 
 const NavBar = () => {
+  const account = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   document.addEventListener("DOMContentLoaded", () => {
     const $navbarBurgers = Array.prototype.slice.call(
       document.querySelectorAll(".navbar-burger"),
@@ -19,6 +24,10 @@ const NavBar = () => {
     });
   });
 
+  const logoutAccount = () => {
+    dispatch(logout());
+    // navigate("/");
+  };
   return (
     <>
       <nav
@@ -28,7 +37,11 @@ const NavBar = () => {
       >
         <div className="navbar-brand ml-4 is-family-monospace">
           <a className="navbar-item is-hidden-touch" href="/">
-            <img src="/piccies/waybackNavbarLogo.svg" width="280" height="70" />
+            <img
+              src="/piccies/waybackNavbarLogo_new.png"
+              // width="280"
+              // height="70"
+            />
           </a>
           <div className="navbar-end mr-4">
             <div className="navbar-item field has-addons ">
@@ -69,7 +82,7 @@ const NavBar = () => {
         <div id="navBarMain" className="navbar-menu">
           <div className="navbar-start ml-4">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link has-text-info">Shop By Genre</a>
+              <a className="navbar-link has-text-warning">Shop By Genre</a>
               <div className="navbar-dropdown">
                 <a className="navbar-item" href="albums">
                   Genre 1
@@ -86,7 +99,7 @@ const NavBar = () => {
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link has-text-info" href="/albums">
+              <a className="navbar-link has-text-warning" href="/albums">
                 Shop By Artist
               </a>
               <div className="navbar-dropdown">
@@ -105,7 +118,7 @@ const NavBar = () => {
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link has-text-info" href="/albums">
+              <a className="navbar-link has-text-warning" href="/albums">
                 Shop By Title
               </a>
               <div className="navbar-dropdown">
@@ -128,14 +141,30 @@ const NavBar = () => {
             {/* <a className='navbar-item' href="#">
             <i className="fa-solid fa-magnifying-glass"></i>
           </a> */}
+            {account.id ? (
+              <span className="icon is-medium ml-2">
+                <a
+                  className="navbar-item has-tooltip-arrow has-tooltip-left has-tooltip-info"
+                  data-tooltip="logout"
+                  onClick={logoutAccount}
+                >
+                  <i className="has-text-warning fa-solid fa-right-from-bracket fas fa-lg"></i>
+                </a>
+              </span>
+            ) : (
+              <span className="icon is-medium ml-2">
+                <a
+                  className="navbar-item has-tooltip-arrow has-tooltip-left has-tooltip-info"
+                  data-tooltip="login"
+                  href="/login"
+                >
+                  <i className="has-text-warning fa-solid fa-right-to-bracket fas fa-lg"></i>
+                </a>
+              </span>
+            )}
             <span className="icon is-medium mr-2">
               <a className="navbar-item" href="/cart">
-                <i className="has-text-info fa-solid fa-cart-shopping fas fa-lg"></i>
-              </a>
-            </span>
-            <span className="icon is-medium ml-2">
-              <a className="navbar-item" href="/login">
-                <i className="has-text-info fa-solid fa-right-to-bracket fas fa-lg"></i>
+                <i className="has-text-warning fa-solid fa-cart-shopping fas fa-lg"></i>
               </a>
             </span>
           </div>

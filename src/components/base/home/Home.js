@@ -8,15 +8,15 @@ const Home = () => {
   return (
     <>
       <div className="container is-family-monospace"></div>
-      <div className="container is-fluid">
+      <div className="container has-background-warning is-fluid">
         <HomeHero />
       </div>
 
-      <div className="container is-fluid ">
+      <div className="container has-background-danger is-fluid ">
         <AdCarousel />
       </div>
 
-      <div className="container is-family-monospace">
+      <div className="container has-background-warning is-fluid is-family-monospace">
         <ViewAllAlbums />
       </div>
 

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { attemptLogin } from "../../store/reducers/authSlice";
 //import { fetchCartData } from "../../store/reducers/cartSlice";
 
 const LogIn = () => {
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  console.log("AUTH", auth.isAdmin);
 
   const [state, setState] = useState({
     username: "",
@@ -21,12 +25,17 @@ const LogIn = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await dispatch(
-      attemptLogin({
+    dispatch(
+      await attemptLogin({
         username: state.username,
         password: state.password,
       })
     );
+    if (auth.isAdmin) {
+      navigate("/adminDashboard");
+    } else if (!auth.isAdmin) {
+      navigate("/account");
+    }
   };
 
   console.log("LOGIN STATE", state);
@@ -49,7 +58,7 @@ const LogIn = () => {
         />
         <button type="submit">Log In</button>
       </form>
-      <Link to="/account-nav/signup">Sign up for a new account?</Link>
+      <Link to="/signup">Sign up for a new account?</Link>
     </div>
   );
 };

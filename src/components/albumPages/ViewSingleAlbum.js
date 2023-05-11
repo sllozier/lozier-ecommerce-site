@@ -15,7 +15,7 @@ const ViewSingleAlbum = () => {
   const dispatch = useDispatch();
   const [playingId, setPlayingId] = useState(-1);
 
-  console.log("CART STATE", cart);
+  //console.log("CART STATE", cart);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -74,7 +74,7 @@ const ViewSingleAlbum = () => {
   if (accountId == 0 && UUID == "empty" && localStorage.UUID !== undefined) {
     UUID = localStorage.getItem("UUID");
   }
-  console.log("LOCAL STORAGE", localStorage);
+
   return (
     <section className="section is-family-monospace">
       <div className="container">
