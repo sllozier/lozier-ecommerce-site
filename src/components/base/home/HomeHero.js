@@ -4,7 +4,7 @@ const HomeHero = () => {
   return (
     <>
       <section className="hero is-halfheight video ">
-        <div className="hero-video container is-fluid">
+        <div className="hero-video  container is-fluid">
           <video
             poster="/piccies/WaybackHeroHalf.jpg"
             id="bgvid"

@@ -1,4 +1,20 @@
+$cream: #ede8d1;
+
 $slick-font-path: "~slick-carousel/slick/fonts/" !default;
 $slick-font-family: "slick" !default;
 $slick-loader-path: "~slick-carousel/slick/" !default;
-$slick-arrow-color: black !default; 
+$slick-arrow-color: white !default; 
+
+.container  
+    &.slider
+        padding: 2rem
+
+.slick-prev::before
+    color: $cream !important
+  
+
+.slick-next::before
+    color: $cream !important
+
+.slick-dots li button::before
+        color: $cream !important
