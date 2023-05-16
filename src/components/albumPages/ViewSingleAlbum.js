@@ -6,7 +6,7 @@ import { createCart } from "../../store/reducers/cartSlice";
 import { useParams, Link } from "react-router-dom";
 
 const ViewSingleAlbum = () => {
-  const album = useSelector((state) => state.album.albumData);
+  const album = useSelector((state) => state.album);
   const auth = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
   const artist = album.artist || {};
@@ -74,6 +74,8 @@ const ViewSingleAlbum = () => {
   if (accountId == 0 && UUID == "empty" && localStorage.UUID !== undefined) {
     UUID = localStorage.getItem("UUID");
   }
+
+  console.log("ALBUM", album);
 
   return (
     <section className="section is-family-monospace">
