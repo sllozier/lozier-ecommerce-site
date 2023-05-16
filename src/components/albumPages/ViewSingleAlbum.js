@@ -15,8 +15,6 @@ const ViewSingleAlbum = () => {
   const dispatch = useDispatch();
   const [playingId, setPlayingId] = useState(-1);
 
-  //console.log("CART STATE", cart);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -37,12 +35,6 @@ const ViewSingleAlbum = () => {
     return string.replace(/\w\S*/g, function (text) {
       return text.charAt(0).toUpperCase() + text.substring(1).toLowerCase();
     });
-  };
-
-  const displayPrice = (price) => {
-    //price /= 100;
-    price.toLocaleString("en-US", { style: "currency", currency: "USD" });
-    return `$${price}`;
   };
 
   const handleClickAudio = (id) => {
@@ -104,7 +96,7 @@ const ViewSingleAlbum = () => {
                     </div>
                     <div className="list-item-controls">
                       <div className="is-flex is-align-items-center">
-                        <span>Price: {displayPrice(album.price)}</span>
+                        <span>Price: ${album.price}</span>
                         <div className="control ml-3 is-hidden-mobile">
                           <input
                             className="input is-primary"
